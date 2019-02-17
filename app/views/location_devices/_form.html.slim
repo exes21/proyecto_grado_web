@@ -1,0 +1,15 @@
+= form_for @location_device do |f|
+  - if @location_device.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@location_device.errors.count, "error")} prohibited this location_device from being saved:"
+      ul
+        - @location_device.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :access_point
+    = f.text_field :access_point
+  .field
+    = f.label :coordenate
+    = f.text_field :coordenate
+  .actions = f.submit

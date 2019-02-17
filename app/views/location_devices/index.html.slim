@@ -1,0 +1,23 @@
+h1 Listing location_devices
+
+table
+  thead
+    tr
+      th Access point
+      th Coordenate
+      th
+      th
+      th
+
+  tbody
+    - @location_devices.each do |location_device|
+      tr
+        td = location_device.access_point
+        td = location_device.coordenate
+        td = link_to 'Show', location_device
+        td = link_to 'Edit', edit_location_device_path(location_device)
+        td = link_to 'Destroy', location_device, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Location device', new_location_device_path

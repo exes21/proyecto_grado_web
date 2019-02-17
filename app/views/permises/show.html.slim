@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Object:
+  = @permise.object
+p
+  strong Method:
+  = @permise.method
+
+=> link_to 'Edit', edit_permise_path(@permise)
+'|
+=< link_to 'Back', permises_path

@@ -1,0 +1,41 @@
+aside#sidebar-left.sidebar-circle
+  = render "shared/nav/left_bar/user_card"
+  ul.sidebar-menu
+    li.submenu
+      a href="javascript:void(0);"
+        span.icon
+          i.fa.fa-home
+        span.text Configuración
+        span.arrow
+        span.selected
+      ul
+        //falta un acento
+        li
+          = link_to  "Conf. Geografica", general_settings_form_path
+        li
+          = link_to  "Usuario", User
+        li
+          = link_to  "Permisos", Permise
+        li
+          = link_to  "Roles de usuario", Role
+        li
+          = link_to  "Equipo", AccessPoint
+        li
+          = link_to  "Área", Zone
+
+    li.submenu
+      a href="javascript:void(0);"
+        span.icon
+          i.fa.fa-leaf
+        span.text Áreas
+        span.arrow
+      ul
+        - Zone.all.each do |zone|
+          li
+            = link_to  zone.name, zone
+    li.submenu
+      a href="javascript:void(0);"
+        span.icon
+          i.fa.fa-leaf
+        span.text Reportes
+        span.arrow

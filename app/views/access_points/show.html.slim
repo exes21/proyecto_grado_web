@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Ip address:
+  = @access_point.ip_address
+p
+  strong Mac address:
+  = @access_point.mac_address
+p
+  strong User:
+  = @access_point.user
+p
+  strong Password:
+  = @access_point.password
+
+=> link_to 'Edit', edit_access_point_path(@access_point)
+'|
+=< link_to 'Back', access_points_path

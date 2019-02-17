@@ -1,0 +1,23 @@
+h1 Listing mobiles
+
+table
+  thead
+    tr
+      th Modelo
+      th Mac address
+      th
+      th
+      th
+
+  tbody
+    - @mobiles.each do |mobile|
+      tr
+        td = mobile.modelo
+        td = mobile.mac_address
+        td = link_to 'Show', mobile
+        td = link_to 'Edit', edit_mobile_path(mobile)
+        td = link_to 'Destroy', mobile, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Mobile', new_mobile_path

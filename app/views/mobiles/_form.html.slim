@@ -1,0 +1,15 @@
+= form_for @mobile do |f|
+  - if @mobile.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@mobile.errors.count, "error")} prohibited this mobile from being saved:"
+      ul
+        - @mobile.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :modelo
+    = f.text_field :modelo
+  .field
+    = f.label :mac_address
+    = f.text_field :mac_address
+  .actions = f.submit

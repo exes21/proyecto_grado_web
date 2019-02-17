@@ -1,0 +1,21 @@
+= form_for @access_point do |f|
+  - if @access_point.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@access_point.errors.count, "error")} prohibited this access_point from being saved:"
+      ul
+        - @access_point.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :ip_address
+    = f.text_field :ip_address
+  .field
+    = f.label :mac_address
+    = f.text_field :mac_address
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :password
+    = f.text_field :password
+  .actions = f.submit

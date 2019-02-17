@@ -1,0 +1,25 @@
+h1 Listing data
+
+table
+  thead
+    tr
+      th Mobile
+      th Type
+      th Value
+      th
+      th
+      th
+
+  tbody
+    - @data.each do |datum|
+      tr
+        td = datum.mobile
+        td = datum.type
+        td = datum.value
+        td = link_to 'Show', datum
+        td = link_to 'Edit', edit_datum_path(datum)
+        td = link_to 'Destroy', datum, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Datum', new_datum_path

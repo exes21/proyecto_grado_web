@@ -1,0 +1,23 @@
+h1 Listing permises
+
+table
+  thead
+    tr
+      th Object
+      th Method
+      th
+      th
+      th
+
+  tbody
+    - @permises.each do |permise|
+      tr
+        td = permise.object
+        td = permise.method
+        td = link_to 'Show', permise
+        td = link_to 'Edit', edit_permise_path(permise)
+        td = link_to 'Destroy', permise, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Permise', new_permise_path

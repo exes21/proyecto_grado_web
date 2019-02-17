@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Modelo:
+  = @mobile.modelo
+p
+  strong Mac address:
+  = @mobile.mac_address
+
+=> link_to 'Edit', edit_mobile_path(@mobile)
+'|
+=< link_to 'Back', mobiles_path

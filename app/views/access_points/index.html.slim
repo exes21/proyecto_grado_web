@@ -1,0 +1,27 @@
+h1 Listing access_points
+
+table
+  thead
+    tr
+      th Ip address
+      th Mac address
+      th User
+      th Password
+      th
+      th
+      th
+
+  tbody
+    - @access_points.each do |access_point|
+      tr
+        td = access_point.ip_address
+        td = access_point.mac_address
+        td = access_point.user
+        td = access_point.password
+        td = link_to 'Show', access_point
+        td = link_to 'Edit', edit_access_point_path(access_point)
+        td = link_to 'Destroy', access_point, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Access point', new_access_point_path

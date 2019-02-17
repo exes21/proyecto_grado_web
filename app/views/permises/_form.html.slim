@@ -1,0 +1,15 @@
+= form_for @permise do |f|
+  - if @permise.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@permise.errors.count, "error")} prohibited this permise from being saved:"
+      ul
+        - @permise.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :object
+    = f.text_field :object
+  .field
+    = f.label :method
+    = f.text_field :method
+  .actions = f.submit

@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Mobile:
+  = @datum.mobile
+p
+  strong Type:
+  = @datum.type
+p
+  strong Value:
+  = @datum.value
+
+=> link_to 'Edit', edit_datum_path(@datum)
+'|
+=< link_to 'Back', data_path

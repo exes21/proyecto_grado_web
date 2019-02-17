@@ -1,0 +1,23 @@
+h1 Listing zones
+
+table
+  thead
+    tr
+      th Name
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @zones.each do |zone|
+      tr
+        td = zone.name
+        td = zone.description
+        td = link_to 'Show', zone
+        td = link_to 'Edit', edit_zone_path(zone)
+        td = link_to 'Destroy', zone, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Zone', new_zone_path

@@ -1,0 +1,30 @@
+li.dropdown.navbar-message
+    a.dropdown-toggle data-toggle="dropdown" href="#"
+      i.fa.fa-envelope-o
+      span.count.label.label-danger.rounded 7
+    .dropdown-menu.animated.flipInX
+      .dropdown-header
+        span.title
+          | Messages
+          strong (7)
+        span.option.text-right
+          a href="#"  + New message
+      .dropdown-body
+        form.form-horizontal action="#"
+          .form-group.has-feedback.has-feedback-sm.m-5
+            input.form-control.input-sm placeholder=("Search message...") type="text" /
+            button.btn.btn-theme.fa.fa-search.form-control-feedback type="submit"
+        .media-list.niceScroll
+          a.media href="page-messages.html"
+          .pull-left
+            img.media-object.img-circle alt="..." src="http://img.djavaui.com/?create=50x50,4888E1?f=ffffff" /
+          .media-body
+            span.media-heading John Kribo
+            span.media-text I was impressed how fast the content is loaded. Congratulations. nice design.                  
+            span.media-meta
+              i.fa.fa-reply
+            span.media-meta
+              i.fa.fa-paperclip
+            span.media-meta.pull-right 13 minutes                                                  
+      .dropdown-footer
+        a href="page-messages.html"  See All
