@@ -1,8 +1,15 @@
-h1 Editing access_point
+.row 
+  .col-md-12
+    .panel.rounded.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title Editar router
+        .pull-right
+          button.btn.btn-sm data-action="collapse" data-container="body" data-original-title="" data-placement="top" data-title="Collapse" data-toggle="tooltip" title="" 
+            i.fa.fa-angle-up
+          button.btn.btn-sm data-action="remove" data-container="body" data-original-title="" data-placement="top" data-title="Remove" data-toggle="tooltip" title="" 
+            i.fa.fa-times
+        .clearfix
 
-== render 'form'
-
-=> link_to 'Show', @access_point
-'|
-=< link_to 'Back', access_points_path
-
+      .panel-body.no-padding
+        == render 'form'

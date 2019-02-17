@@ -1,21 +1,29 @@
-= form_for @access_point do |f|
-  - if @access_point.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@access_point.errors.count, "error")} prohibited this access_point from being saved:"
-      ul
-        - @access_point.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :ip_address
-    = f.text_field :ip_address
-  .field
-    = f.label :mac_address
-    = f.text_field :mac_address
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :password
-    = f.text_field :password
-  .actions = f.submit
+.row
+  = form_for(@access_point, html: {class: "form-horizontal form-bordered"}) do |f|
+    .col-sm-6
+      .form-group
+        = f.label :zone, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.select :zone,options_from_collection_for_select(Zone.all, "id", "name"), { class: 'form-control'}
+      .form-group
+        = f.label :ip_address, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.text_field :ip_address, class: "form-control"
+      .form-group
+        = f.label :mac_address, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.text_field :mac_address, class: "form-control"
+      .form-group
+        = f.label :user, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.text_field :user, class: "form-control"
+      .form-group
+        = f.label :password, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.password_field :password, class: "form-control"
+      .form-group
+        .pull-right
+          = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
+          = f.submit "Guardar", class: "btn btn-success mr-5"
+    .col-sm-6
+      #map style=("width: 100%; height: 400px;")

@@ -18,11 +18,13 @@ ActiveRecord::Schema.define(version: 2019_02_17_013836) do
   create_table "access_points", force: :cascade do |t|
     t.string "ip_address"
     t.string "mac_address"
+    t.bigint "zone_id"
     t.string "user"
     t.string "password"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["zone_id"], name: "index_access_points_on_zone_id"
   end
 
   create_table "coordinates", force: :cascade do |t|
