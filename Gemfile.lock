@@ -53,7 +53,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.3.0)
+    cancan (1.6.10)
     choice (0.2.0)
     chronic (0.10.2)
     coderay (1.1.2)
@@ -235,7 +235,7 @@ DEPENDENCIES
   aasm
   bootsnap (>= 1.1.0)
   byebug
-  cancancan
+  cancan
   coffee-rails (~> 4.2)
   devise
   dotenv

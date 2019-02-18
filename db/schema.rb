@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(version: 2019_02_17_013836) do
   end
 
   create_table "permises", force: :cascade do |t|
-    t.string "object"
-    t.string "method"
+    t.string "name"
+    t.string "subject_class"
+    t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
