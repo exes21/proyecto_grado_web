@@ -8,14 +8,13 @@
           = link_to fa_icon('plus'), new_access_point_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
-        - @access_points.each do |access_point|
-          ul.list-unstyled.list-real-estate
+        ul.list-unstyled.list-real-estate
+         - @access_points.each do |access_point|
             li
-              a href="#"
-              p
-                i.fa.fa-male.fg-success
-                i.fa.fa-male.fg-success
-                | population
-              h3
-                | 5,970
-                span People
+               = link_to access_point do
+                  .pull-left
+                    h3
+                      = access_point.ip_address
+                  .pull-right
+                    = link_to 'Destroy', access_point, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                  .clearfix

@@ -1,23 +1,22 @@
-h1 Listing zones
-
-table
-  thead
-    tr
-      th Name
-      th Description
-      th
-      th
-      th
-
-  tbody
-    - @zones.each do |zone|
-      tr
-        td = zone.name
-        td = zone.description
-        td = link_to 'Show', zone
-        td = link_to 'Edit', edit_zone_path(zone)
-        td = link_to 'Destroy', zone, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Zone', new_zone_path
+.row
+  .col-md-12
+    .panel.panel-success.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title Lista de Áreas
+        .pull-right
+          = link_to fa_icon('plus'), new_zone_path, class: 'btn btn-sm'
+        .clearfix
+      .panel-body
+        ul.list-unstyled.list-real-estate
+          - @zones.each do |zone|
+              li
+                = link_to zone do
+                  .pull-left
+                    h3
+                      = zone.name
+                    p
+                      span = zone.description
+                  .pull-right
+                    = link_to 'Destroy', zone, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                  .clearfix

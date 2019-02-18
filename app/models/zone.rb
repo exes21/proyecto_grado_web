@@ -1,2 +1,3 @@
-class Zone < ApplicationRecord
+class Zone < ApplicationRecord 
+  validates_presence_of :name, message: "can't be blank"
 end

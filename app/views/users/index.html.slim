@@ -1,2 +1,21 @@
-h1 Users#index
-p Find me in app/views/users/index.html.slim
+.row
+  .col-md-12
+    .panel.panel-success.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title Lista de Usuarios Administrativos
+        .pull-right
+          = link_to fa_icon('plus'), new_user_path, class: 'btn btn-sm'
+        .clearfix
+      .panel-body
+        - @users.each do |user|
+          ul.list-unstyled.list-real-estate
+            li
+              a href="#"
+              p
+                i.fa.fa-male.fg-success
+                i.fa.fa-male.fg-success
+                | population
+              h3
+                | 5,970
+                span People

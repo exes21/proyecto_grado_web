@@ -1,17 +1,24 @@
 aside#sidebar-left.sidebar-circle
   = render "shared/nav/left_bar/user_card"
   ul.sidebar-menu
+    li
+      =link_to root_path do
+        span.icon
+          i.fa.fa-home
+        span.text Inicio
+       
+
     li.submenu
       a href="javascript:void(0);"
         span.icon
-          i.fa.fa-home
+          i.fa.fa-cog
         span.text Configuración
         span.arrow
         span.selected
       ul
-        //falta un acento
+        
         li
-          = link_to  "Conf. Geografica", general_settings_form_path
+          = link_to  "Conf. Geográfica", general_settings_form_path
         li
           = link_to  "Usuario", User
         li
@@ -26,16 +33,16 @@ aside#sidebar-left.sidebar-circle
     li.submenu
       a href="javascript:void(0);"
         span.icon
-          i.fa.fa-leaf
+          i.fa.fa-sitemap
         span.text Áreas
         span.arrow
       ul
         - Zone.all.each do |zone|
           li
             = link_to  zone.name, zone
-    li.submenu
+    li
       a href="javascript:void(0);"
         span.icon
-          i.fa.fa-leaf
+          i.fa.fa-area-chart
         span.text Reportes
         span.arrow

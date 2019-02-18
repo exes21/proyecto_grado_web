@@ -1,23 +1,21 @@
-h1 Listing permises
-
-table
-  thead
-    tr
-      th Object
-      th Method
-      th
-      th
-      th
-
-  tbody
-    - @permises.each do |permise|
-      tr
-        td = permise.object
-        td = permise.method
-        td = link_to 'Show', permise
-        td = link_to 'Edit', edit_permise_path(permise)
-        td = link_to 'Destroy', permise, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Permise', new_permise_path
+.row
+  .col-md-12
+    .panel.panel-success.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title Lista de roles
+        .pull-right
+          = link_to fa_icon('plus'), new_permise_path, class: 'btn btn-sm'
+        .clearfix
+      .panel-body
+        - @permises.each do |permise|
+          ul.list-unstyled.list-real-estate
+            li
+              a href="#"
+              p
+                i.fa.fa-male.fg-success
+                i.fa.fa-male.fg-success
+                | population
+              h3
+                | 5,970
+                span People
