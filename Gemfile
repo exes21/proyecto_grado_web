@@ -15,7 +15,7 @@ gem 'whenever' # Cron Jobs para correr tareas a determinada hora
 gem 'sidekiq' # Manejo de tareas en segundo plano
 gem 'redis' # Base de datos en memoria para guardar tareas en segundo plano
 gem 'devise' # Manejo de accesos de usuarios
-gem 'cancancan' # Manejo de permisos
+gem 'cancan' # Manejo de permisos
 gem 'slim-rails' # Hacer HTML mas legible
 gem 'dotenv' # Gema para manejar claves y variables de la maquina
 gem 'aasm' # Gema para manejar estados
