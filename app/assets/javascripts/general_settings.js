@@ -1,7 +1,13 @@
 $(document).ready(function(){
+  var home_map = new GMaps({
+    el: '#map',
+    lat:  19.4743005,
+    lng: -70.6653768,
+  });
+
   var points = []
   var map = new GMaps({
-    el: '#setting-map',
+    el: '#map',
     lat:  19.4743005,
     lng: -70.6653768,
     click: function(e) {
