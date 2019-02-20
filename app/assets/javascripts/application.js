@@ -61,14 +61,3 @@
 //= require apps
 //= require pages/blankon.dashboard
 //= require demo
-
-//= require gmaps
-
-
-$(document).ready(function(){
-  var map = new GMaps({
-    el: '#map',
-    lat:  19.4743005,
-    lng: -70.6653768
-  });
-});
