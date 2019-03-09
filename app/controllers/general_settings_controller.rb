@@ -3,5 +3,6 @@ class GeneralSettingsController < ApplicationController
   end
 
   def save
+    binding.pry
   end
 end
