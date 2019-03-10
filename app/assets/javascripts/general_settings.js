@@ -1,4 +1,3 @@
-$(document).ready(function(){
   var points = []
   var map = new GMaps({
     el: '#map',
@@ -47,7 +46,9 @@ $(document).ready(function(){
     $.ajax({
       type: "POST",
       url: "/general_settings/save",
-      data: points,
+      data: {
+        points: points
+      },
       success: function(data, textStatus, jqXHR){
         console.log("guardo");
       },
@@ -62,5 +63,3 @@ $(document).ready(function(){
     $('.list-group-item').remove();
     map.removeMarkers();
   });
-
-});

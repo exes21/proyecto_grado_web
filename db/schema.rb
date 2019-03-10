@@ -30,8 +30,11 @@ ActiveRecord::Schema.define(version: 2019_02_17_013836) do
   create_table "coordinates", force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
+    t.string "locatable_type"
+    t.bigint "locatable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["locatable_type", "locatable_id"], name: "index_coordinates_on_locatable_type_and_locatable_id"
   end
 
   create_table "data", force: :cascade do |t|

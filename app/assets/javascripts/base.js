@@ -23,8 +23,6 @@
 //= require bootstrap-tour
 //= require retina
 //= require jquery.cubeportfolio
-//= require moment
-//= require daterangepicker
 //= require datatables/js/jquery.dataTables.min
 //= require datatables/extentions/dataTables.select.min
 //= require datatables/extentions/dataTables.buttons.min
@@ -47,3 +45,4 @@
 
 //= require gmaps
 //= require general_settings
+//= require access_point

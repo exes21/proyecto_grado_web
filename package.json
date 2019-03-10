@@ -1,5 +1,7 @@
 {
   "name": "jpir_web",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jshint": "^2.10.1"
+  }
 }

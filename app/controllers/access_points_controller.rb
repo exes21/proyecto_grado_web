@@ -15,6 +15,7 @@ class AccessPointsController < ApplicationController
   # GET /access_points/new
   def new
     @access_point = AccessPoint.new
+    @access_point.build_coordinate
   end
 
   # GET /access_points/1/edit
@@ -69,7 +70,9 @@ class AccessPointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def access_point_params
-      params.require(:access_point).permit(:ip_address, :mac_address, :user, :password, :zone_id)
+      params.require(:access_point).permit(:ip_address, :mac_address, :user, :password, :zone_id, locations_attributes: [
+        :latitude, :longitud
+      ])
     end
 
 end
