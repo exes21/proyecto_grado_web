@@ -46,15 +46,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_013836) do
     t.index ["mobile_id"], name: "index_data_on_mobile_id"
   end
 
-  create_table "limite_zones", force: :cascade do |t|
-    t.bigint "zones_id"
-    t.bigint "coordinate_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["coordinate_id"], name: "index_limite_zones_on_coordinate_id"
-    t.index ["zones_id"], name: "index_limite_zones_on_zones_id"
-  end
-
   create_table "location_devices", force: :cascade do |t|
     t.bigint "access_point_id"
     t.bigint "coordinate_id"
@@ -147,8 +138,6 @@ ActiveRecord::Schema.define(version: 2019_02_17_013836) do
   end
 
   add_foreign_key "data", "mobiles"
-  add_foreign_key "limite_zones", "coordinates"
-  add_foreign_key "limite_zones", "zones", column: "zones_id"
   add_foreign_key "location_devices", "access_points"
   add_foreign_key "location_devices", "coordinates"
   add_foreign_key "permises_roles", "permises", column: "permises_id"
