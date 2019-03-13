@@ -1,10 +1,10 @@
-class CordinatesController < ApplicationController
+class CoordinatesController < ApplicationController
   before_action :set_cordinate, only: [:show, :edit, :update, :destroy]
 
   # GET /cordinates
   # GET /cordinates.json
   def index
-    @cordinates = Cordinate.all
+    render json: Coordinate.where(locatable_type: "Mobile").uniq { |p| p.locatable_id }.to_json
   end
 
   # GET /cordinates/1

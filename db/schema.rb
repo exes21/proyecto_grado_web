@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_17_013836) do
+ActiveRecord::Schema.define(version: 2019_02_17_013019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "access_points", force: :cascade do |t|
+    t.string "ssid"
     t.string "ip_address"
     t.string "mac_address"
     t.bigint "zone_id"
@@ -56,10 +57,11 @@ ActiveRecord::Schema.define(version: 2019_02_17_013836) do
   end
 
   create_table "mobiles", force: :cascade do |t|
-    t.string "modelo"
     t.string "mac_address"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mobiles_on_user_id"
   end
 
   create_table "permises", force: :cascade do |t|

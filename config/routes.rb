@@ -16,10 +16,11 @@ Rails.application.routes.draw do
   resources :users
   resources :zones
   resources :devices
-
+  resources :coordinates, only: :index
   namespace :api do
-    get 'location/get'
+    post 'data/data_gather'
   end
+
   get 'dashboard/home'
   root 'dashboard#home'
 

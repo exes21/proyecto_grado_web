@@ -1,6 +1,6 @@
   var points = []
   var map = new GMaps({
-    el: '#map',
+    el: '#general_setting',
     lat:  19.4743005,
     lng: -70.6653768,
     click: function(e) {
