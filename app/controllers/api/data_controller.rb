@@ -1,15 +1,16 @@
 class Api::DataController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :set_user, :set_mobile, :set_access_point
-  
+
   def data_gather
     data_params.map do |key, value|
       @mobile.datums.create(
         type: key.to_s.classify,
         value: value,
+        access_point: @ap
       )
     end
-    
+
     @mobile.coordinates.create(location_params)
 
     render status: 200, json: @mobile.to_json
@@ -45,9 +46,10 @@ class Api::DataController < ApplicationController
   end
 
   def set_access_point
+    # TODO: verificar problema con la busqueda
     @ap = AccessPoint.find_by(
-                              ssid: JSON.parse(params["ssid"]), 
-                              ip_address: params["DefaultGate"].reverse!
-                             )
+                              ssid: JSON.parse(params["ssid"]),
+                              ip_address: (params["DefaultGate"].reverse!)
+                            )
   end
 end

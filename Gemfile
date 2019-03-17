@@ -21,6 +21,7 @@ gem 'dotenv' # Gema para manejar claves y variables de la maquina
 gem 'aasm' # Gema para manejar estados
 gem 'font-awesome-rails'
 gem "rails-settings-cached"
+gem "chartkick"
 
 # Gemas solo para usar en la maquina local
 group :development, :test do

@@ -18,5 +18,6 @@
                     p
                       span = zone.description
                   .pull-right
-                    = link_to 'Destroy', zone, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                    = link_to  "Editar", edit_zone_path(zone), class: "btn btn-default"
+                    = link_to 'Borrar', zone, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
                   .clearfix

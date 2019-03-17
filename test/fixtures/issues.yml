@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: one
+  since: 2019-03-16 10:52:58
+  until: 2019-03-16 10:52:58
+  status: 1
+  description: MyString
+  user: one
+  access_point: one
+  solved_at: 2019-03-16 10:52:58
+
+two:
+  data: two
+  since: 2019-03-16 10:52:58
+  until: 2019-03-16 10:52:58
+  status: 1
+  description: MyString
+  user: two
+  access_point: two
+  solved_at: 2019-03-16 10:52:58

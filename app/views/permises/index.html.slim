@@ -5,17 +5,18 @@
         .pull-left
           h3.panel-title Lista de roles
         .pull-right
-          = link_to fa_icon('plus'), new_permise_path, class: 'btn btn-sm'
+          = link_to fa_icon('plus'), new_permission_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
-        - @permises.each do |permise|
-          ul.list-unstyled.list-real-estate
-            li
-              a href="#"
-              p
-                i.fa.fa-male.fg-success
-                i.fa.fa-male.fg-success
-                | population
-              h3
-                | 5,970
-                span People
+        - @permissions.each do |permission|
+          ul.list-unstyled
+            - @permissions.each do |permission|
+              li
+                a href="#"
+                p
+                  i.fa.fa-male.fg-success
+                  i.fa.fa-male.fg-success
+                  | population
+                h3
+                  | 5,970
+                  span People

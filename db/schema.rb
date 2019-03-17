@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_17_013019) do
+ActiveRecord::Schema.define(version: 2019_03_16_145416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,29 @@ ActiveRecord::Schema.define(version: 2019_02_17_013019) do
 
   create_table "data", force: :cascade do |t|
     t.bigint "mobile_id"
+    t.bigint "access_point_id"
     t.string "type"
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["access_point_id"], name: "index_data_on_access_point_id"
     t.index ["mobile_id"], name: "index_data_on_mobile_id"
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.bigint "data_id"
+    t.datetime "since"
+    t.datetime "until"
+    t.integer "status"
+    t.string "description"
+    t.bigint "user_id"
+    t.bigint "access_point_id"
+    t.datetime "solved_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["access_point_id"], name: "index_issues_on_access_point_id"
+    t.index ["data_id"], name: "index_issues_on_data_id"
+    t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
   create_table "location_devices", force: :cascade do |t|
@@ -64,7 +82,18 @@ ActiveRecord::Schema.define(version: 2019_02_17_013019) do
     t.index ["user_id"], name: "index_mobiles_on_user_id"
   end
 
-  create_table "permises", force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "issue_id"
+    t.string "text"
+    t.bigint "user_id"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issue_id"], name: "index_notifications_on_issue_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "permissions", force: :cascade do |t|
     t.string "name"
     t.string "subject_class"
     t.string "action"
@@ -72,13 +101,13 @@ ActiveRecord::Schema.define(version: 2019_02_17_013019) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "permises_roles", force: :cascade do |t|
-    t.bigint "permises_id"
+  create_table "permissions_roles", force: :cascade do |t|
+    t.bigint "permissions_id"
     t.bigint "roles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["permises_id"], name: "index_permises_roles_on_permises_id"
-    t.index ["roles_id"], name: "index_permises_roles_on_roles_id"
+    t.index ["permissions_id"], name: "index_permissions_roles_on_permissions_id"
+    t.index ["roles_id"], name: "index_permissions_roles_on_roles_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -139,11 +168,17 @@ ActiveRecord::Schema.define(version: 2019_02_17_013019) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "data", "access_points"
   add_foreign_key "data", "mobiles"
+  add_foreign_key "issues", "access_points"
+  add_foreign_key "issues", "data", column: "data_id"
+  add_foreign_key "issues", "users"
   add_foreign_key "location_devices", "access_points"
   add_foreign_key "location_devices", "coordinates"
-  add_foreign_key "permises_roles", "permises", column: "permises_id"
-  add_foreign_key "permises_roles", "roles", column: "roles_id"
+  add_foreign_key "notifications", "issues"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "permissions_roles", "permissions", column: "permissions_id"
+  add_foreign_key "permissions_roles", "roles", column: "roles_id"
   add_foreign_key "zone__devices", "access_points"
   add_foreign_key "zone__devices", "zones"
 end

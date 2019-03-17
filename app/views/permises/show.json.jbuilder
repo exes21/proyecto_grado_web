@@ -1,1 +1,1 @@
-json.partial! "permises/permise", permise: @permise
+json.partial! "permissions/permission", permission: @permission

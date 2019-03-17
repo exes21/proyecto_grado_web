@@ -19,8 +19,8 @@ db/migrate/20190212011945_create_mobiles.rb,93
 class CreateMobiles < ActiveRecord::Migration[5.2]CreateMobiles1,0
   def changechange2,0
 
-db/migrate/20190212005833_create_permises.rb,95
-class CreatePermises < ActiveRecord::Migration[5.2]CreatePermises1,0
+db/migrate/20190212005833_create_permissions.rb,95
+class Createpermissions < ActiveRecord::Migration[5.2]Createpermissions1,0
   def changechange2,0
 
 db/migrate/20190217013019_create_settings.rb,118
@@ -40,8 +40,8 @@ db/migrate/20190212011004_create_zones.rb,89
 class CreateZones < ActiveRecord::Migration[5.2]CreateZones1,0
   def changechange2,0
 
-db/migrate/20190212010155_create_permises_roles.rb,105
-class CreatePermisesRoles < ActiveRecord::Migration[5.2]CreatePermisesRoles1,0
+db/migrate/20190212010155_create_permissions_roles.rb,105
+class CreatepermissionsRoles < ActiveRecord::Migration[5.2]CreatepermissionsRoles1,0
   def changechange2,0
 
 db/migrate/20190212011006_create_limite_zones.rb,101
@@ -78,14 +78,14 @@ class ZoneTest < ActiveSupport::TestCaseZoneTest3,0
 test/models/user_test.rb,54
 class UserTest < ActiveSupport::TestCaseUserTest3,0
 
-test/models/permise_test.rb,60
-class PermiseTest < ActiveSupport::TestCasePermiseTest3,0
+test/models/permission_test.rb,60
+class permissionTest < ActiveSupport::TestCasepermissionTest3,0
 
 test/models/mobile_ip_test.rb,62
 class MobileIpTest < ActiveSupport::TestCaseMobileIpTest3,0
 
-test/models/permises_role_test.rb,70
-class PermisesRoleTest < ActiveSupport::TestCasePermisesRoleTest3,0
+test/models/permissions_role_test.rb,70
+class permissionsRoleTest < ActiveSupport::TestCasepermissionsRoleTest3,0
 
 test/models/cordinate_test.rb,64
 class CordinateTest < ActiveSupport::TestCaseCordinateTest3,0
@@ -126,8 +126,8 @@ class RolesTest < ApplicationSystemTestCaseRolesTest3,0
 test/system/access_points_test.rb,72
 class AccessPointsTest < ApplicationSystemTestCaseAccessPointsTest3,0
 
-test/system/permises_test.rb,64
-class PermisesTest < ApplicationSystemTestCasePermisesTest3,0
+test/system/permissions_test.rb,64
+class permissionsTest < ApplicationSystemTestCasepermissionsTest3,0
 
 test/system/zone__devices_test.rb,70
 class ZoneDevicesTest < ApplicationSystemTestCaseZoneDevicesTest3,0
@@ -141,8 +141,8 @@ class ZonesTest < ApplicationSystemTestCaseZonesTest3,0
 test/system/devices_test.rb,62
 class DevicesTest < ApplicationSystemTestCaseDevicesTest3,0
 
-test/system/permises_roles_test.rb,74
-class PermisesRolesTest < ApplicationSystemTestCasePermisesRolesTest3,0
+test/system/permissions_roles_test.rb,74
+class permissionsRolesTest < ApplicationSystemTestCasepermissionsRolesTest3,0
 
 test/system/data_test.rb,56
 class DataTest < ApplicationSystemTestCaseDataTest3,0
@@ -156,11 +156,11 @@ class DataControllerTest < ActionDispatch::IntegrationTestDataControllerTest3,
 test/controllers/users_controller_test.rb,84
 class UsersControllerTest < ActionDispatch::IntegrationTestUsersControllerTest3,0
 
-test/controllers/permises_controller_test.rb,90
-class PermisesControllerTest < ActionDispatch::IntegrationTestPermisesControllerTest3,0
+test/controllers/permissions_controller_test.rb,90
+class permissionsControllerTest < ActionDispatch::IntegrationTestpermissionsControllerTest3,0
 
-test/controllers/permises_roles_controller_test.rb,100
-class PermisesRolesControllerTest < ActionDispatch::IntegrationTestPermisesRolesControllerTest3,0
+test/controllers/permissions_roles_controller_test.rb,100
+class permissionsRolesControllerTest < ActionDispatch::IntegrationTestpermissionsRolesControllerTest3,0
 
 test/controllers/devices_controller_test.rb,88
 class DevicesControllerTest < ActionDispatch::IntegrationTestDevicesControllerTest3,0
@@ -209,8 +209,8 @@ class ActiveSupport::TestCaseActiveSupport::TestCase5,0
 app/helpers/zones_helper.rb,35
 module ZonesHelperZonesHelper1,0
 
-app/helpers/permises_helper.rb,41
-module PermisesHelperPermisesHelper1,0
+app/helpers/permissions_helper.rb,41
+module permissionsHelperpermissionsHelper1,0
 
 app/helpers/data_helper.rb,33
 module DataHelperDataHelper1,0
@@ -237,8 +237,8 @@ module ApplicationHelperApplicationHelper1,0
 app/helpers/access_points_helper.rb,49
 module AccessPointsHelperAccessPointsHelper1,0
 
-app/helpers/permises_roles_helper.rb,51
-module PermisesRolesHelperPermisesRolesHelper1,0
+app/helpers/permissions_roles_helper.rb,51
+module permissionsRolesHelperpermissionsRolesHelper1,0
 
 app/helpers/users_helper.rb,35
 module UsersHelperUsersHelper1,0
@@ -261,13 +261,13 @@ module ZoneDevicesHelperZoneDevicesHelper1,0
 app/models/application_record.rb,67
 class ApplicationRecord < ActiveRecord::BaseApplicationRecord3,0
 
-app/models/permises_role.rb,430
-class PermisesRole < ApplicationRecordPermisesRole1,0
-  belongs_to :permisespermises2,0
-  belongs_to :permisespermises=2,0
-  belongs_to :permisesbuild_permises2,0
-  belongs_to :permisescreate_permises2,0
-  belongs_to :permisescreate_permises!2,0
+app/models/permissions_role.rb,430
+class permissionsRole < ApplicationRecordpermissionsRole1,0
+  belongs_to :permissionspermissions2,0
+  belongs_to :permissionspermissions=2,0
+  belongs_to :permissionsbuild_permissions2,0
+  belongs_to :permissionscreate_permissions2,0
+  belongs_to :permissionscreate_permissions!2,0
   belongs_to :rolesroles3,0
   belongs_to :rolesroles=3,0
   belongs_to :rolesbuild_roles3,0
@@ -299,8 +299,8 @@ class ZoneDevice < ApplicationRecordZoneDevice1,0
   belongs_to :zonecreate_zone3,0
   belongs_to :zonecreate_zone!3,0
 
-app/models/permise.rb,46
-class Permise < ApplicationRecordPermise1,0
+app/models/permission.rb,46
+class permission < ApplicationRecordpermission1,0
 
 app/models/location_device.rb,524
 class LocationDevice < ApplicationRecordLocationDevice1,0
@@ -368,8 +368,8 @@ module ApplicationCableApplicationCable1,0
   class Channel < ActionCable::Channel::BaseChannel2,0
   class Channel < ActionCable::Channel::BaseApplicationCable::Channel2,0
 
-app/controllers/permises_controller.rb,312
-class PermisesController < ApplicationControllerPermisesController1,0
+app/controllers/permissions_controller.rb,312
+class permissionsController < ApplicationControllerpermissionsController1,0
   def indexindex6,0
   def showshow12,0
   def newnew16,0
@@ -377,8 +377,8 @@ class PermisesController < ApplicationControllerPermisesController1,0
   def createcreate26,0
   def updateupdate42,0
   def destroydestroy56,0
-    def set_permiseset_permise66,0
-    def permise_paramspermise_params71,0
+    def set_permissionset_permission66,0
+    def permission_paramspermission_params71,0
 
 app/controllers/zone__devices_controller.rb,338
 class ZoneDevicesController < ApplicationControllerZoneDevicesController1,0
@@ -509,8 +509,8 @@ app/controllers/dashboard_controller.rb,94
 class DashboardController < ApplicationControllerDashboardController1,0
   def homehome2,0
 
-app/controllers/permises_roles_controller.rb,346
-class PermisesRolesController < ApplicationControllerPermisesRolesController1,0
+app/controllers/permissions_roles_controller.rb,346
+class permissionsRolesController < ApplicationControllerpermissionsRolesController1,0
   def indexindex6,0
   def showshow12,0
   def newnew16,0
@@ -518,8 +518,8 @@ class PermisesRolesController < ApplicationControllerPermisesRolesController1,
   def createcreate26,0
   def updateupdate42,0
   def destroydestroy56,0
-    def set_permises_roleset_permises_role66,0
-    def permises_role_paramspermises_role_params71,0
+    def set_permissions_roleset_permissions_role66,0
+    def permissions_role_paramspermissions_role_params71,0
 
 app/jobs/application_job.rb,58
 class ApplicationJob < ActiveJob::BaseApplicationJob1,0

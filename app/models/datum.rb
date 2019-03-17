@@ -1,5 +1,6 @@
 class Datum < ApplicationRecord
   belongs_to :mobile
+  belongs_to :access_point
 end
 
 class Ping < Datum ; end

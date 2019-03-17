@@ -1,48 +1,48 @@
 require 'test_helper'
 
-class PermisesControllerTest < ActionDispatch::IntegrationTest
+class permissionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @permise = permises(:one)
+    @permission = permissions(:one)
   end
 
   test "should get index" do
-    get permises_url
+    get permissions_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_permise_url
+    get new_permission_url
     assert_response :success
   end
 
-  test "should create permise" do
-    assert_difference('Permise.count') do
-      post permises_url, params: { permise: { method: @permise.method, object: @permise.object } }
+  test "should create permission" do
+    assert_difference('permission.count') do
+      post permissions_url, params: { permission: { method: @permission.method, object: @permission.object } }
     end
 
-    assert_redirected_to permise_url(Permise.last)
+    assert_redirected_to permission_url(permission.last)
   end
 
-  test "should show permise" do
-    get permise_url(@permise)
+  test "should show permission" do
+    get permission_url(@permission)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_permise_url(@permise)
+    get edit_permission_url(@permission)
     assert_response :success
   end
 
-  test "should update permise" do
-    patch permise_url(@permise), params: { permise: { method: @permise.method, object: @permise.object } }
-    assert_redirected_to permise_url(@permise)
+  test "should update permission" do
+    patch permission_url(@permission), params: { permission: { method: @permission.method, object: @permission.object } }
+    assert_redirected_to permission_url(@permission)
   end
 
-  test "should destroy permise" do
-    assert_difference('Permise.count', -1) do
-      delete permise_url(@permise)
+  test "should destroy permission" do
+    assert_difference('permission.count', -1) do
+      delete permission_url(@permission)
     end
 
-    assert_redirected_to permises_url
+    assert_redirected_to permissions_url
   end
 end

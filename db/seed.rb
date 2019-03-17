@@ -1,33 +1,33 @@
-User.find_or_create_by(
+User.new(
     name: "Robert",
     password: "123456789",
     password_confirmation: "123456789",
     email: "robert@hotmail.com"
-)
-User.find_or_create_by(
+).save
+User.new(
     name: "Administrador",
     password: "123456789",
     password_confirmation: "123456789",
     email: "administrador@hotmail.com"
-)
-User.find_or_create_by(
+).save
+User.new(
     name: "visitante1",
     password: "123456789",
     password_confirmation: "123456789",
     email: "prueba1@hotmail.com"
-)
-User.find_or_create_by(
+).save
+User.new(
     name: "visitante2",
     password: "123456789",
     password_confirmation: "123456789",
     email: "prueba2@hotmail.com"
-)
-User.find_or_create_by(
+).save
+User.new(
     name: "visitante3",
     password: "123456789",
     password_confirmation: "123456789",
     email: "prueba3@hotmail.com"
-)
+).save
 za = Zone.find_or_create_by(
    name: "Zona A"
 )

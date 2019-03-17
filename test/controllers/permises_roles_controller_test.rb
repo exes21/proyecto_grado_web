@@ -1,48 +1,48 @@
 require 'test_helper'
 
-class PermisesRolesControllerTest < ActionDispatch::IntegrationTest
+class permissionsRolesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @permises_role = permises_roles(:one)
+    @permissions_role = permissions_roles(:one)
   end
 
   test "should get index" do
-    get permises_roles_url
+    get permissions_roles_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_permises_role_url
+    get new_permissions_role_url
     assert_response :success
   end
 
-  test "should create permises_role" do
-    assert_difference('PermisesRole.count') do
-      post permises_roles_url, params: { permises_role: { permises_id: @permises_role.permises_id, roles_id: @permises_role.roles_id } }
+  test "should create permissions_role" do
+    assert_difference('permissionsRole.count') do
+      post permissions_roles_url, params: { permissions_role: { permissions_id: @permissions_role.permissions_id, roles_id: @permissions_role.roles_id } }
     end
 
-    assert_redirected_to permises_role_url(PermisesRole.last)
+    assert_redirected_to permissions_role_url(permissionsRole.last)
   end
 
-  test "should show permises_role" do
-    get permises_role_url(@permises_role)
+  test "should show permissions_role" do
+    get permissions_role_url(@permissions_role)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_permises_role_url(@permises_role)
+    get edit_permissions_role_url(@permissions_role)
     assert_response :success
   end
 
-  test "should update permises_role" do
-    patch permises_role_url(@permises_role), params: { permises_role: { permises_id: @permises_role.permises_id, roles_id: @permises_role.roles_id } }
-    assert_redirected_to permises_role_url(@permises_role)
+  test "should update permissions_role" do
+    patch permissions_role_url(@permissions_role), params: { permissions_role: { permissions_id: @permissions_role.permissions_id, roles_id: @permissions_role.roles_id } }
+    assert_redirected_to permissions_role_url(@permissions_role)
   end
 
-  test "should destroy permises_role" do
-    assert_difference('PermisesRole.count', -1) do
-      delete permises_role_url(@permises_role)
+  test "should destroy permissions_role" do
+    assert_difference('permissionsRole.count', -1) do
+      delete permissions_role_url(@permissions_role)
     end
 
-    assert_redirected_to permises_roles_url
+    assert_redirected_to permissions_roles_url
   end
 end

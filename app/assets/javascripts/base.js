@@ -38,6 +38,8 @@
 //= require jquery.gritter
 //= require raphael
 //= require morris
+//= require chartist
+//= require jquery.peity
 
 //= require apps
 //= require pages/blankon.dashboard
@@ -47,3 +49,6 @@
 //= require general_settings
 //= require access_point
 //= require dashboard
+
+
+//= require charts/zone

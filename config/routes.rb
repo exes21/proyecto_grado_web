@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :zone__devices
   resources :location_devices
   resources :access_points
-  resources :permises_roles
-  resources :permises
+  resources :permissions_roles
+  resources :permissions
   resources :roles
   resources :users
   resources :zones
