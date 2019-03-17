@@ -1,18 +1,66 @@
-p#notice = notice
+ .row
+  .col-sm-8
+    .row
+      .col-md-8
+        ul.list-inline.heading-issue-chart
+          li
+            span.label.label-circle.label-success &nbsp;
+            | Added
+          li
+            span.label.label-circle.label-warning &nbsp;
+            | Fixed
+          li
+            span.label.label-circle.label-danger &nbsp;
+            | Bug
+        = line_chart AccessPoint.group(:created_at).count
+    .row
+      .col-md-12
+        .panel.panel-default.panel-issue-tracker.shadow
+          .panel-heading
+            .pull-left
+              h3.panel-title Usuarios Conectados
+            .clearfix
+          .panel-body
+            .table-responsive
+              table.table.table-issue-tracker.table-middle
+                tbody
+                  - @access_point.datums.each do |dato|
+                    tr
+                      td
+                        span.label.label-danger.rounded
+                      td
+                        = link_to dato.mobile, ap
+                        p.no-margin
+                          | Direccion IP
+                      td
+                        = link_to ap.mac_address, ap
+                        p.no-margin
+                          | Mac Address
+                      td
+                        .label.label-danger.rounded
+                          | Errores:
+                          = ap.issues.count
+                      td
+                        .label.label-success.rounded
+                          | Reportes:
+                          = ap.datums.count
+                      td
+                        .label.label-default.rounded
+                          span Usuarios:
+                          = ap.users
 
-p
-  strong Ip address:
-  = @access_point.ip_address
-p
-  strong Mac address:
-  = @access_point.mac_address
-p
-  strong User:
-  = @access_point.user
-p
-  strong Password:
-  = @access_point.password
-
-=> link_to 'Edit', edit_access_point_path(@access_point)
-'|
-=< link_to 'Back', access_points_path
+    //--------------------------------------------------
+  .col-sm-4
+    .col-sm-12
+      .mini-stat-type-4.bg-success.shadow
+        h4 SSID
+        h3 =@access_point.ssid
+    .col-sm-12
+      .mini-stat-type-4.bg-success.shadow
+        h4 IP Address
+        h3 =@access_point.ip_address
+    .col-sm-12
+      .mini-stat-type-4.bg-success.shadow
+        h4 MacAddress
+        h3 =@access_point.mac_address
+        

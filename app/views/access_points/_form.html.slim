@@ -9,6 +9,10 @@
         .col-sm-8
           = f.select :zone_id,options_from_collection_for_select(Zone.all, "id", "name"), { class: 'form-control'}
       .form-group
+        = f.label :ssid, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.text_field :ssid, class: "form-control"
+      .form-group
         = f.label :ip_address, class: "col-sm-2 control-label", style: "text-align: left"
         .col-sm-8
           = f.text_field :ip_address, class: "form-control"

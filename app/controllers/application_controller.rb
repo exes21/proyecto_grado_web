@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
     flash[:alert] = "Access denied. You are not authorized to access the requested page."
     redirect_to root_path and return
   end
-
   protected
 
   #derive the model name from the controller. egs UsersController will return User
