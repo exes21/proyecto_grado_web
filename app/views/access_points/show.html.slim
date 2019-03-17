@@ -1,18 +1,50 @@
-p#notice = notice
+.row
+  .col-md-12
+    ul.list-inline.heading-issue-chart
+      li
+        span.label.label-circle.label-success &nbsp;
+        | Added
+      li
+        span.label.label-circle.label-warning &nbsp;
+        | Fixed
+      li
+        span.label.label-circle.label-danger &nbsp;
+        | Bug
+    = line_chart Zone.group(:created_at).count
+.row
+  .col-md-12
+    .panel.panel-default.panel-issue-tracker.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title Equipos
+        .clearfix
+      .panel-body
+        .table-responsive
+          table.table.table-issue-tracker.table-middle
+            tbody
+              - @zone.access_points.each do |ap|
+                tr
+                  td
+                    span.label.label-danger.rounded
+                  td
+                    = link_to ap.ip_address, ap
+                    p.no-margin
+                      | Direccion IP
+                  td
+                    = link_to ap.mac_address, ap
+                    p.no-margin
+                      | Mac Address
+                  td
+                    .label.label-danger.rounded
+                      | Errores:
+                      = ap.issues.count
+                  td
+                    .label.label-success.rounded
+                      | Reportes:
+                      = ap.datums.count
+                  td
+                    .label.label-default.rounded
+                      span Usuarios:
+                      = ap.users
 
-p
-  strong Ip address:
-  = @access_point.ip_address
-p
-  strong Mac address:
-  = @access_point.mac_address
-p
-  strong User:
-  = @access_point.user
-p
-  strong Password:
-  = @access_point.password
-
-=> link_to 'Edit', edit_access_point_path(@access_point)
-'|
-=< link_to 'Back', access_points_path
+//--------------------------------------------------
