@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :load_and_authorize_resource
-  before_action :load_permissions
+  protect_from_forgery
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = "Access denied. You are not authorized to access the requested page."
+    redirect_to root_path and return
+  end
 
   protected
 
@@ -15,6 +18,6 @@ class ApplicationController < ActionController::Base
 
   #load the permissions for the current user so that UI can be manipulated
   def load_permissions
-    @current_permissions = current_user.role.permissions.collect{ |i| [i.subject_class, i.action] }
+    @current_permissions = current_user.role.permissions.collect{|i| [i.subject_class, i.action]}
   end
 end

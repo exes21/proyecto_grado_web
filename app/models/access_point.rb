@@ -11,6 +11,6 @@ class AccessPoint < ApplicationRecord
 
 
   def users
-    datums.where('created_at > ?',5.minutes.ago).uniq { |p| p.user }.count
+    datums.where('created_at > ?', 5.minutes.ago).uniq { |p| p.user }.count
   end
 end

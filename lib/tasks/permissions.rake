@@ -38,7 +38,7 @@ def eval_cancan_action(action)
   case action.to_s
   when "index"
     name = 'list'
-    cancan_action = "index" <strong>#let the cancan action be the actual method name</strong>
+    cancan_action = "index"
     action_desc = I18n.t(:list)
   when "new", "create"
     name = 'create and update'
@@ -66,7 +66,7 @@ end
 
 #check if the permission is present else add a new one.
 def write_permission(model, cancan_action, name)
-  permission = Permission.find(:first, :conditions => ["subject_class = ? and action = ?", model, cancan_action])
+  permission = Permission.find_by(subject_class: model, action: cancan_action)
   unless permission
     permission = Permission.new
     permission.name = name

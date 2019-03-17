@@ -1,10 +1,19 @@
 Role.new(
     name: 'Administrador'
-)
+).save
 
 Role.new(
     name: 'Estudiante'
-)
+).save
+
+Rake::Task['permissions:permissions'].invoke
+Permission.all.each do |permission|
+  PermissionRole.create(
+    permission: permission,
+    role: Role.first
+  )
+end
+
 
 User.new(
     name: "Robert",
