@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   belongs_to :role
   has_many :mobiles
+
+  validates_presence_of :role
 end

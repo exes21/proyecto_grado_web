@@ -1,27 +1,43 @@
+Role.new(
+    name: 'Administrador'
+)
+
+Role.new(
+    name: 'Estudiante'
+)
+
 User.new(
     name: "Robert",
     password: "123456789",
     password_confirmation: "123456789",
-    email: "robert@hotmail.com"
+    email: "robert@hotmail.com",
+    role: Role.first
 ).save
 User.new(
     name: "Administrador",
     password: "123456789",
     password_confirmation: "123456789",
-    email: "administrador@hotmail.com"
+    email: "administrador@hotmail.com",
+    role: Role.first
 ).save
+
+
 User.new(
     name: "visitante1",
     password: "123456789",
     password_confirmation: "123456789",
-    email: "prueba1@hotmail.com"
+    email: "prueba1@hotmail.com",
+    role: Role.last
 ).save
+
 User.new(
     name: "visitante2",
     password: "123456789",
     password_confirmation: "123456789",
-    email: "prueba2@hotmail.com"
+    email: "prueba2@hotmail.com",
+    role: Role.last
 ).save
+
 User.new(
     name: "visitante3",
     password: "123456789",
