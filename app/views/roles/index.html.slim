@@ -8,16 +8,16 @@
           = link_to fa_icon('plus'), new_role_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
-        ul.list-unstyled.list-real-estate
+        ul.list-unstyled
           - @roles.each do |role|
               li
-                 = link_to role do
-                  .pull-left
-                    h3
-                      = role.name
-                    p
-                      span = role.description
-                  .pull-right
-                    = link_to 'Destroy', role, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
-                  .clearfix
-
+                  = link_to role do
+                    .pull-left
+                      h3
+                        = role.name
+                      p
+                        span = role.description
+                    .pull-right
+                      = link_to 'Modificar', edit_role_path(role), class: "btn btn-default"
+                      = link_to 'Borrar', role, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                    .clearfix

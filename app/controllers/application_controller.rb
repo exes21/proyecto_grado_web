@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  layout :layout_by_resource
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "Access denied. You are not authorized to access the requested page."
     redirect_to root_path and return
@@ -18,5 +19,13 @@ class ApplicationController < ActionController::Base
   #load the permissions for the current user so that UI can be manipulated
   def load_permissions
     @current_permissions = current_user.role.permissions.collect{|i| [i.subject_class, i.action]}
+  end
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
   end
 end

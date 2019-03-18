@@ -1,15 +1,21 @@
-= form_for @role do |f|
-  - if @role.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@role.errors.count, "error")} prohibited this role from being saved:"
-      ul
-        - @role.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_field :description
-  .actions = f.submit
+.row
+  = form_for(@role, html: {class: "form-horizontal form-bordered"}) do |f|
+    .col-sm-6
+      .form-group
+        = f.label :name, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.text_field :name, class: "form-control"
+      .form-group
+        = f.label :Descripción, class: "col-sm-2 control-label", style: "text-align: left"
+        .col-sm-8
+          = f.text_area :description, class: "form-control"
+      .form-group
+        .pull-right
+          = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
+          = f.submit "Guardar", class: "btn btn-success mr-5"
+    .col-sm-6
+      .form-group
+        = f.select :permission_id,
+                    options_for_select(Permission.all.map { |p| ["#{p.subject_class} - #{p.name} ", p.id] }),
+                    {},
+                    {multiple: true, class: "col-sm-12 form-control", style: "height: 20vw"}
