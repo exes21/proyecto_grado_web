@@ -1,5 +1,6 @@
 class MobilesController < ApplicationController
   before_action :set_mobile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /mobiles
   # GET /mobiles.json

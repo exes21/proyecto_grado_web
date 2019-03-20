@@ -49,7 +49,7 @@ class Api::DataController < ApplicationController
     # TODO: verificar problema con la busqueda
     @ap = AccessPoint.find_by(
                               ssid: JSON.parse(params["ssid"]),
-                              ip_address: (params["DefaultGate"].reverse!)
+                              ip_address: (params["DefaultGate"].reverse)
                             )
   end
 end

@@ -1,5 +1,6 @@
 class AccessPointsController < ApplicationController
   before_action :set_access_point, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /access_points
   # GET /access_points.json

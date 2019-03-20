@@ -13,3 +13,5 @@
           #general_setting style=("width: 100%; height: 400px;")
         .col-sm-4
           ul.list-group.no-margin#points-list
+- content_for :map_script do
+  = javascript_include_tag "general_settings"

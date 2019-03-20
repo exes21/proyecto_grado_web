@@ -1,7 +1,7 @@
-.sidebar-content
-  .media
-    .media-body
-      h4.media-heading
-        | Hola,
-        span = " nombre ususario"
-        / TODO: cambiar dato
+- if current_user.present?
+  .sidebar-content
+    .media
+      .media-body
+        h4.media-heading
+          | Hola,
+          span = current_user.name

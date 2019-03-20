@@ -1,18 +1,20 @@
+
 li.dropdown.navbar-profile
   a.dropdown-toggle data-toggle="dropdown" href="#"
     span.meta
-      span.text.hidden-xs.hidden-sm.text-muted Tol Lee
+      span.text.hidden-xs.hidden-sm.text-muted
+        = current_user.name
       span.caret
   ul.dropdown-menu.animated.flipInX
     li.dropdown-header Account
     li
-      a href="page-profile.html"
+      = link_to edit_user_registration_path(current_user) do
         i.fa.fa-user
         | Mi perfil
 
     li.divider
     li
-      a href="page-signin.html"
+      = link_to(destroy_user_session_path, method: :delete) do
         i.fa.fa-sign-out
         | Cerrar seccion
         / TODO: EL ACENTO

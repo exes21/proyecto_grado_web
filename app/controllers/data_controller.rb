@@ -1,5 +1,6 @@
 class DataController < ApplicationController
   before_action :set_datum, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /data
   # GET /data.json

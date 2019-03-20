@@ -1,44 +1,45 @@
 aside#sidebar-left.sidebar-circle
-  = render "shared/nav/left_bar/user_card"
-  ul.sidebar-menu
-    li
-      =link_to root_path do
-        span.icon
-          i.fa.fa-home
-        span.text Inicio
+  - if current_user.present?
+    = render "shared/nav/left_bar/user_card"
+    ul.sidebar-menu
+      li
+        =link_to root_path do
+          span.icon
+            i.fa.fa-home
+          span.text Inicio
 
-    li.submenu
-      a href="javascript:void(0);"
-        span.icon
-          i.fa.fa-cog
-        span.text Configuración
-        span.arrow
-        span.selected
-      ul
-        li
-          = link_to  "Conf. Geográfica", general_settings_form_path
-        li
-          = link_to  "Usuario", User
-        li
-          = link_to  "Roles de usuario", Role
-        li
-          = link_to  "Equipo", AccessPoint
-        li
-          = link_to  "Área", Zone
-
-    li.submenu
-      a href="javascript:void(0);"
-        span.icon
-          i.fa.fa-sitemap
-        span.text Áreas
-        span.arrow
-      ul
-        - Zone.all.each do |zone|
+      li.submenu
+        a href="javascript:void(0);"
+          span.icon
+            i.fa.fa-cog
+          span.text Configuración
+          span.arrow
+          span.selected
+        ul
           li
-            = link_to  zone.name, zone
-    li
-      a href="javascript:void(0);"
-        span.icon
-          i.fa.fa-area-chart
-        span.text Reportes
-        span.arrow
+            = link_to  "Conf. Geográfica", general_settings_form_path
+          li
+            = link_to  "Usuario", User
+          li
+            = link_to  "Roles de usuario", Role
+          li
+            = link_to  "Equipo", AccessPoint
+          li
+            = link_to  "Área", Zone
+
+      li.submenu
+        a href="javascript:void(0);"
+          span.icon
+            i.fa.fa-sitemap
+          span.text Áreas
+          span.arrow
+        ul
+          - Zone.all.each do |zone|
+            li
+              = link_to  zone.name, zone
+      li
+        a href="javascript:void(0);"
+          span.icon
+            i.fa.fa-area-chart
+          span.text Reportes
+          span.arrow

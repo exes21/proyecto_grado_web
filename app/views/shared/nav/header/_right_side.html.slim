@@ -1,3 +1,4 @@
 ul.nav.navbar-nav.navbar-right
-  = render "shared/nav/header/notification"
-  = render "shared/nav/header/account"
+  - if current_user.present?
+    = render "shared/nav/header/notification"
+    = render "shared/nav/header/account"

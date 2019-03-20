@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :mobiles
 
   validates_presence_of :role
+
 end

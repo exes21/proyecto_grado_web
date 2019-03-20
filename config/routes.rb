@@ -7,10 +7,7 @@ Rails.application.routes.draw do
 
   resources :data
   resources :mobiles
-  resources :zone__devices
-  resources :location_devices
   resources :access_points
-  resources :permissions_roles
   resources :permissions
   resources :roles
   resources :users

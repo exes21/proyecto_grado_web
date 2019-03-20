@@ -19,3 +19,4 @@ html
       i.fa.fa-angle-up
     script src=("//maps.google.com/maps/api/js?key=#{ENV['GMAPS']}")
     = javascript_include_tag 'base', 'data-turbolinks-track': 'reload'
+    = yield :map_script

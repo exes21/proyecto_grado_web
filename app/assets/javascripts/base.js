@@ -46,9 +46,7 @@
 //= require demo
 
 //= require gmaps
-//= require general_settings
 //= require access_point
-//= require dashboard
 
 
 //= require charts/zone

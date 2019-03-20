@@ -15,7 +15,8 @@
           = f.submit "Guardar", class: "btn btn-success mr-5"
     .col-sm-6
       .form-group
-        = f.select :permission_id,
-                    options_for_select(Permission.all.map { |p| ["#{p.subject_class} - #{p.name} ", p.id] }),
-                    {},
-                    {multiple: true, class: "col-sm-12 form-control", style: "height: 20vw"}
+        = fields_for :permission_roles do |p|
+          = p.select :permission_ids,
+                      options_for_select(Permission.all.map { |p| ["#{p.subject_class} - #{p.name} ", p.id] }, @role.permissions.pluck(:id)),
+                      {},
+                      {multiple: true, class: "col-sm-12 form-control", style: "height: 20vw"}

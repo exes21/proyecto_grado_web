@@ -1,5 +1,6 @@
 class ZonesController < ApplicationController
   before_action :set_zone, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /zones
   # GET /zones.json

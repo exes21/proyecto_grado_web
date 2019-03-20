@@ -3,19 +3,23 @@
     .panel.panel-success.shadow
       .panel-heading
         .pull-left
-          h3.panel-title Lista de Usuarios Administrativos
+          h3.panel-title Lista de Usuarios
         .pull-right
-          = link_to fa_icon('plus'), new_user_path, class: 'btn btn-sm'
+          = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
-        - @users.each do |user|
-          ul.list-unstyled.list-real-estate
-            li
-              a href="#"
-              p
-                i.fa.fa-male.fg-success
-                i.fa.fa-male.fg-success
-                | population
-              h3
-                | 5,970
-                span People
+        table.table.table-issue-tracker.table-middle
+          tbody
+            - @users.each do |user|
+              tr
+                td
+                  = link_to user do
+                    h3
+                      = user.name
+
+                td
+                  i.fa.fa-male.fg-success
+                  = user.email
+                  = user.phone_number
+                td
+                  = user.role.name
