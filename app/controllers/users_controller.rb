@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all
     @user = User.new
+    @users = User.where(role: Role.first)
+    @students = User.where(role: Role.second)
   end
 
   def new
@@ -28,9 +29,4 @@ class UsersController < ApplicationController
 
   def update
   end
-
-  def usuario_administrador
-    @users = User.where(role: Role.first)
-  end
-
 end

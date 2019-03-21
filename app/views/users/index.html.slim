@@ -1,160 +1,49 @@
-.row
-  .col-md-12
-      .panel-heading
-        = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
-        .clearfix
-      = link_to administradores_path do 
-        .col-sm-4
-          .mini-stat-type-2.shadow.border-success
-              h3 ="Usuarios Administrativos"
-      = link_to administradores_path do 
-        .col-sm-4
-          .mini-stat-type-2.shadow.border-success
-            h3 ="Usuarios de Red"
-      = link_to new_user_path do 
-        .col-sm-4
-          .mini-stat-type-2.shadow.border-success
-            h3 ="Crear Crear Administrador"
-      = link_to administradores_path do 
-        .col-sm-4
-          .mini-stat-type-2.shadow.border-success
-            h3 ="Desactivar usuarios"
-      = link_to administradores_path do 
-        .col-sm-4
-          .mini-stat-type-2.shadow.border-success
-            h3 ="Cargar usuarios"
-      //-----------------------------
-      #basic-wizard-vertical
-  h4 Basic Wizard Vertical
+#basic-wizard-vertical
   .panel.panel-tab.panel-tab-double.panel-tab-vertical.row.no-margin.rounded.shadow
     /! Start tabs heading
     .panel-heading.no-padding.col-md-3
       ul.nav.nav-tabs.nav-pills
         li.active
           a aria-expanded="true" data-toggle="tab" href="#tab2-1" 
-           =fa_icon "cog"
+            i.fa.fa-cog
           div
             span.text-strong Usuarios Administrativos
         li
           a aria-expanded="false" data-toggle="tab" href="#tab2-2" 
-            i.fa.fa-file-text
+            i.fa.fa-users
           div
-            span.text-strong Step 2
-            span Product details
+            span.text-strong Usuarios de Red
         li
           a aria-expanded="false" data-toggle="tab" href="#tab2-3" 
-            i.fa.fa-credit-card
+            i.fa.fa-user-times
           div
-            span.text-strong Step 3
-            span Payment
+            span.text-strong Desactivar usuarios
         li
           a aria-expanded="false" data-toggle="tab" href="#tab2-4" 
-            i.fa.fa-check-circle
+            i.fa.fa-upload
           div
-            span.text-strong Step 4
-            span Confirmation
+            span.text-strong Cargar usuarios
     /! /.panel-heading
     /! / End tabs heading
     /! Start tabs content
     .panel-body.col-md-9
       form.tab-content.form-horizontal action="#" 
         #tab2-1.tab-pane.fade.inner-all.active.in
-          h4.page-header Personal details
-          .form-group
-            label.col-sm-2 First Name
-            .col-sm-4
-              input.form-control type="text" /
-          .form-group
-            label.col-sm-2 Last Name
-            .col-sm-4
-              input.form-control type="text" /
-          .form-group.mb-0
-            label.col-sm-2 Gender
-            .col-sm-4
-              .rdio.rdio-theme.inline.mr-10
-                input#male2 checked="checked" name="radio" type="radio" /
-                label for="male2"  Male
-              .rdio.rdio-theme.inline
-                input#female2 name="radio" type="radio" /
-                label for="female2"  Female
+          = render  "usuario_administrador" 
         #tab2-2.tab-pane.fade.inner-all
-          h4.page-header Product details
-          .form-group
-            label.col-sm-2 Product ID
-            .col-sm-4
-              input.form-control type="text" /
-          .form-group
-            label.col-sm-2 Product Name
-            .col-sm-4
-              input.form-control type="text" /
-          .form-group.mb-0
-            label.col-sm-2 Category
-            .col-sm-4
-              select.form-control
-                option value=""  Choose One
-                option value="Iphone"  Iphone
-                option value="Android"  Android
-                option value="Blackberry"  Blackberry
+          = render  "usuario_red" 
         #tab2-3.tab-pane.fade.inner-all
-          h4.page-header Payment
-          .form-group
-            label.col-sm-2 Credit Card Type
-            .col-sm-4
-              select.form-control
-                option value=""  Choose Credit Card
-                option value="amex"  American Express
-                option value="discover"  Discover
-                option value="mastercard"  MasterCard
-                option value="visa"  Visa
-          .form-group
-            label.col-sm-2 Expiration
-            .col-sm-4
-              .row
-                .col-sm-6
-                  select.form-control
-                    option value=""  Date Month
-                    option value="01"  01 - Jan
-                    option value="02"  02 - Feb
-                    option value="03"  03 - Mar
-                    option value="04"  04 - Apr
-                    option value="05"  05 - May
-                    option value="06"  06 - Jun
-                    option value="07"  07 - Jul
-                    option value="08"  08 - Aug
-                    option value="09"  09 - Sep
-                    option value="10"  10 - Oct
-                    option value="11"  11 - Nov
-                    option value="12"  12 - Dec
-                .col-sm-6
-                  select.form-control
-                    option value=""  Year
-                    option value="2007"  2007
-                    option value="2008"  2008
-                    option value="2009"  2009
-                    option value="2010"  2010
-                    option value="2011"  2011
-                    option value="2012"  2012
-                    option value="2013"  2013
-                    option value="2014"  2014
-                    option value="2015"  2015
-                    option value="2016"  2016
-          .form-group.mb-0
-            label.col-sm-2 Credit Card Number
-            .col-sm-4
-              input.form-control type="text" /
+         / = render  "user_load" 
         #tab2-4.tab-pane.fade.inner-all
-          h4.page-header Confirmation
-          .ml-10
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          button.btn.btn-success.ml-10 type="submit"  Submit
+          = render  "user_load" 
+          button.btn.btn-success.ml-10 type="Cargar"  Submit
       /! Start pager
-      .panel-footer.no-bg
-        ul.pager.wizard.no-margin
-          li.previous.disabled
-            a href="javascript:void(0);"  Previous
-          li.next
-            a href="javascript:void(0);"  Next
+      / .panel-footer.no-bg
+      /   ul.pager.wizard.no-margin
+      /     li.previous.disabled
+      /       a href="javascript:void(0);"  Previous
+      /     li.next
+      /       a href="javascript:void(0);"  Next
       /! / End pager
     /! /.panel-body
     /! / End tabs content
