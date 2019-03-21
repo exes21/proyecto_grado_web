@@ -16,11 +16,12 @@ class AccessPointsController < ApplicationController
   # GET /access_points/new
   def new
     @access_point = AccessPoint.new
-    @access_point.build_coordinate
+    @access_point.coordinate.build
   end
 
   # GET /access_points/1/edit
   def edit
+    @access_point.build_coordinate
   end
 
   # POST /access_points
@@ -42,6 +43,7 @@ class AccessPointsController < ApplicationController
   # PATCH/PUT /access_points/1
   # PATCH/PUT /access_points/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @access_point.update(access_point_params)
         format.html { redirect_to @access_point, notice: 'Access point was successfully updated.' }
@@ -71,9 +73,19 @@ class AccessPointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def access_point_params
-      params.require(:access_point).permit(:ssid,:ip_address, :mac_address, :user, :password, :zone_id, locations_attributes: [
-        :latitude, :longitud
-      ])
+      params.require(:access_point).permit( :id,
+                                            :ssid,
+                                            :ip_address,
+                                            :mac_address,
+                                            :user,
+                                            :password,
+                                            :zone_id,
+                                            coordinate_attributes: [
+                                              :latitude,
+                                              :longitude,
+                                              :locatable_id
+                                            ]
+      )
     end
 
 end

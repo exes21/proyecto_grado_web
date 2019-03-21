@@ -1,4 +1,3 @@
-//= require jquery
 //= require jquery.cookie
 //= require bootstrap
 //= require handlebars
@@ -46,7 +45,6 @@
 //= require demo
 
 //= require gmaps
-//= require access_point
 
 
 //= require charts/zone

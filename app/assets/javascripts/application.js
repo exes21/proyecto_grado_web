@@ -12,7 +12,9 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery
 //= require turbolinks
 //= require gmaps
 //= require Chart.bundle
 //= require chartkick
+//= require gmaps

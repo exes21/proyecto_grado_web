@@ -1,5 +1,7 @@
 .row
-  .col-md-12
+  .col-md-8
+    #routers style=("width: 100%; height: 400px;")
+  .col-md-4
     .panel.panel-success.shadow
       .panel-heading
         .pull-left
@@ -9,12 +11,39 @@
         .clearfix
       .panel-body
         ul.list-unstyled.list-real-estate
-         - @access_points.each do |access_point|
+          - @access_points.each do |access_point|
             li
-               = link_to access_point do
-                  .pull-left
-                    h3
-                      = access_point.ip_address
-                  .pull-right
-                    = link_to 'Destroy', access_point, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
-                  .clearfix
+              = link_to access_point do
+                .pull-left
+                  h3
+                    = access_point.ip_address
+                .pull-right
+                  = link_to 'Editar', edit_access_point_path(access_point), class: "btn btn-default"
+                  = link_to 'Borrar', access_point, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                .clearfix
+javascript:
+  var map = new GMaps({
+    el: '#routers',
+    lat:  19.4743005,
+    lng: -70.6653768,
+  });
+  $.ajax({
+      type: "POST",
+      url:  "#{api_data_access_points_path}",
+      success: function(data, textStatus, jqXHR){
+        console.log(data);
+        $.each(data,function(index, value){
+          map.addMarker({
+              lat: data.location.latitude,
+              lng: data.location.longitude,
+              infoWindow: {
+                content:  '<p>Lng:'+ value.longitude +'</p>' +
+                          '<p>Lng:'+ value.longitude +'</p>'
+              }
+            });
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        console.log("no guardo");
+      }
+    })

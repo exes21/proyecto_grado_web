@@ -5,6 +5,7 @@ html
       | JPIR
     = csrf_meta_tags
     = csp_meta_tag
+    script src=("//maps.google.com/maps/api/js?key=#{ENV['GMAPS']}")
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   body.page-session.page-header-fixed.page-sidebar-fixed
@@ -17,6 +18,5 @@ html
       = render "shared/nav/footer"
     #back-top.animated.pulse.circle
       i.fa.fa-angle-up
-    script src=("//maps.google.com/maps/api/js?key=#{ENV['GMAPS']}")
     = javascript_include_tag 'base', 'data-turbolinks-track': 'reload'
     = yield :map_script

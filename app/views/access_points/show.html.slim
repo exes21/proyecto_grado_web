@@ -1,59 +1,39 @@
- .row
+.row
   .col-sm-8
     .row
-      .col-md-8
-        ul.list-inline.heading-issue-chart
-          li
-            span.label.label-circle.label-success &nbsp;
-            | Added
-          li
-            span.label.label-circle.label-warning &nbsp;
-            | Fixed
-          li
-            span.label.label-circle.label-danger &nbsp;
-            | Bug
-        = line_chart AccessPoint.group(:created_at).count
-    .row
       .col-md-12
-        .panel.panel-default.panel-issue-tracker.shadow
-          .panel-heading
-            .pull-left
-              h3.panel-title Usuarios Conectados
-            .clearfix
-          .panel-body
-            .table-responsive
-              table.table.table-issue-tracker.table-middle
-                tbody
-                  - @access_point.datums.each do |dato|
-                    tr
-                      td
-                        span.label.label-danger.rounded
-                      td
-                        = link_to dato.mobile, ap
-                        p.no-margin
-                          | Direccion IP
-                      td
-                        = link_to ap.mac_address, ap
-                        p.no-margin
-                          | Mac Address
-                      td
-                        .label.label-danger.rounded
-                          | Errores:
-                          = ap.issues.count
-                      td
-                        .label.label-success.rounded
-                          | Reportes:
-                          = ap.datums.count
-                      td
-                        .label.label-default.rounded
-                          span Usuarios:
-                          = ap.users
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .mini-stat-type-3.shadow.border-danger
+            span.text-uppercase.text-block.text-center Usuarios
+            h3.text-strong.text-center
+              span.counter> @access_point.users_average
+            .meta-stat
+              span.pull-left.text-uppercase Promedio
+              span.clearfix
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .mini-stat-type-3.shadow.border-danger
+            span.text-uppercase.text-block.text-center Alertas
+            h3.text-strong.text-center
+              span.counter> 2@access_point.issues_this_month
+            .meta-stat
+              span.pull-left.text-uppercase Este mes
+              span.clearfix
+        .col-lg-3.col-md-3.col-sm-6.col-xs-12
+          .mini-stat-type-3.shadow.border-danger
+            span.text-uppercase.text-block.text-center Errores
+            h3.text-strong.text-center
+              span.counter> 24
+            .meta-stat
+              span.pull-left.text-uppercase Total
+              span.clearfix
 
-    //--------------------------------------------------
+    .row
+        #router style=("width: 100%; height: 300px;")
   .col-sm-4
     .col-sm-12
       .mini-stat-type-4.bg-success.shadow
         h4 SSID
+        = fa_icon "user"
         h3 =@access_point.ssid
     .col-sm-12
       .mini-stat-type-4.bg-success.shadow
@@ -63,4 +43,14 @@
       .mini-stat-type-4.bg-success.shadow
         h4 MacAddress
         h3 =@access_point.mac_address
-        
+javascript:
+  var map = new GMaps({
+    el: '#router',
+    lat: "#{@access_point.coordinate.latitude}",
+    lng: "#{@access_point.coordinate.longitude}"
+  });
+  map.addMarker({
+    lat: "#{@access_point.coordinate.latitude}",
+    lng: "#{@access_point.coordinate.longitude}",
+    icon: "#{ asset_path('router-logo.png') }"
+  });

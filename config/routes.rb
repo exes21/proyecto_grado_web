@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :coordinates, only: :index
   namespace :api do
     post 'data/data_gather'
+    post 'data/access_points'
   end
 
   get 'dashboard/home'

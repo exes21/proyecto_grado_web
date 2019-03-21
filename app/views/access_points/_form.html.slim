@@ -1,8 +1,5 @@
 .row
   = form_for(@access_point, html: {class: "form-horizontal form-bordered"}) do |f|
-    =f.fields_for :coordinate do |c|
-      = c.hidden_field(:latitude)
-      = c.hidden_field(:longitude)
     .col-sm-6
       .form-group
         = f.label :zone, class: "col-sm-2 control-label", style: "text-align: left"
@@ -33,4 +30,23 @@
           = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
           = f.submit "Guardar", class: "btn btn-success mr-5"
     .col-sm-6
-      #access_point_map style=("width: 100%; height: 400px;")
+      = f.fields_for :coordinate do |ff|
+        Prueba
+        = ff.hidden_field :latitude, required: true
+        = ff.hidden_field :longitude, required: true
+      #router style=("width: 100%; height: 300px;")
+javascript:
+  var map = new GMaps({
+    el: '#router',
+    lat:  19.4743005,
+    lng: -70.6653768,
+    click: function(e) {
+      $('#access_point_coordinate_attributes_latitude').val(e.latLng.lat());
+      $('#access_point_coordinate_attributes_longitude').val(e.latLng.lng());
+        map.removeMarkers();
+        map.addMarker({
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+      });
+    },
+  });

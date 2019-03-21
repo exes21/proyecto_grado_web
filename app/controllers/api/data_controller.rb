@@ -1,6 +1,6 @@
 class Api::DataController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :set_user, :set_mobile, :set_access_point
+  before_action :set_user, :set_mobile, :set_access_point, only: :data_gather
 
   def data_gather
     data_params.map do |key, value|
@@ -14,6 +14,22 @@ class Api::DataController < ApplicationController
     @mobile.coordinates.create(location_params)
 
     render status: 200, json: @mobile.to_json
+  end
+
+  def access_points
+    ap_list = {}.tap do |list|
+      binding.pry
+      AccessPoint.all.each do |ap|
+        list[:zone] = ap.zone.name
+        list[:ssid] = ap.ssid
+        list[:ip] = ap.ip_address
+        list[:mac] = ap.mac_address
+        list[:latitude] = ap.coordinate.latitude
+        list[:longitude] = ap.coordinate.longitude
+      end
+
+      render json: ap_list.to_json
+    end
   end
 
   private
@@ -46,7 +62,6 @@ class Api::DataController < ApplicationController
   end
 
   def set_access_point
-    # TODO: verificar problema con la busqueda
     @ap = AccessPoint.find_by(
                               ssid: JSON.parse(params["ssid"]),
                               ip_address: (params["DefaultGate"].reverse)

@@ -11,7 +11,7 @@ class CoordinatesController < ApplicationController
     #   end
     # end
 
-    reports = Coordinate.where('coordinates.created_at < ?', 1.minute.ago)
+    reports = Coordinate.where('locatable_type = "Mobile" and coordinates.created_at < ?', 1.minute.ago)
     reports = reports.uniq { |l| l.locatable_id }
 
     result = {}.tap do |result|
