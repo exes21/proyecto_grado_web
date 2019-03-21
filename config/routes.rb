@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :permissions
   resources :roles
   resources :users
+  get "administradores", to: "users#usuario_administrador"
   resources :zones
   resources :devices
   resources :coordinates, only: :index
