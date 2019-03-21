@@ -2,10 +2,15 @@
   .col-md-12
     .panel.panel-success.shadow
       .panel-heading
-        .pull-left
-          h3.panel-title Cargar Usuarios
-      .panel-body
-        .form-group.mb-0
-          label.col-sm-2 Busccar Archivo
-          .col-sm-4
-            input.form-control type="text"
+        h3.panel-title Lista de Usuarios
+      = form_for(@users_import) do |f|
+        .panel-body
+          .form-group.mb-0
+            label.col-sm-2 Buscar Archivo
+            .col-sm-4
+              = f.file_field :file, class: 'form-control'
+        .panel-footer
+          .form-group
+            .col-md-4.col-md-offset-4
+              = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
+              = f.submit "Guardar", class: "btn btn-success mr-5"

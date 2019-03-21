@@ -1,54 +1,33 @@
 #basic-wizard-vertical
   .panel.panel-tab.panel-tab-double.panel-tab-vertical.row.no-margin.rounded.shadow
-    /! Start tabs heading
     .panel-heading.no-padding.col-md-3
       ul.nav.nav-tabs.nav-pills
         li.active
-          a aria-expanded="true" data-toggle="tab" href="#tab2-1" 
+          a aria-expanded="true" data-toggle="tab" href="#tab2-1"
             i.fa.fa-cog
-          div
-            span.text-strong Usuarios Administrativos
+            div
+              span.text-strong Usuarios Administrativos
         li
-          a aria-expanded="false" data-toggle="tab" href="#tab2-2" 
+          a aria-expanded="false" data-toggle="tab" href="#tab2-2"
             i.fa.fa-users
-          div
-            span.text-strong Usuarios de Red
+            div
+              span.text-strong Usuarios de Red
         li
-          a aria-expanded="false" data-toggle="tab" href="#tab2-3" 
+          a aria-expanded="false" data-toggle="tab" href="#tab2-3"
             i.fa.fa-user-times
-          div
-            span.text-strong Desactivar usuarios
+            div
+              span.text-strong Desactivar usuarios
         li
-          a aria-expanded="false" data-toggle="tab" href="#tab2-4" 
+          a aria-expanded="false" data-toggle="tab" href="#tab2-4"
             i.fa.fa-upload
-          div
-            span.text-strong Cargar usuarios
-    /! /.panel-heading
-    /! / End tabs heading
-    /! Start tabs content
+            div
+              span.text-strong Cargar usuarios
     .panel-body.col-md-9
-      form.tab-content.form-horizontal action="#" 
+      .tab-content
         #tab2-1.tab-pane.fade.inner-all.active.in
-          = render  "usuario_administrador" 
+          = render  "usuario_administrador"
         #tab2-2.tab-pane.fade.inner-all
-          = render  "usuario_red" 
+          = render  "usuario_red"
         #tab2-3.tab-pane.fade.inner-all
-         / = render  "user_load" 
         #tab2-4.tab-pane.fade.inner-all
-          = render  "user_load" 
-          button.btn.btn-success.ml-10 type="Cargar"  Submit
-      /! Start pager
-      / .panel-footer.no-bg
-      /   ul.pager.wizard.no-margin
-      /     li.previous.disabled
-      /       a href="javascript:void(0);"  Previous
-      /     li.next
-      /       a href="javascript:void(0);"  Next
-      /! / End pager
-    /! /.panel-body
-    /! / End tabs content
-  /! /.panel
-
-          
-            
-              
+          = render  "user_load"

@@ -1,16 +1,27 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  require 'roo'
 
   def index
     @user = User.new
     @users = User.where(role: Role.first)
     @students = User.where(role: Role.second)
+    @users_import = UserImport.new
   end
 
   def new
   end
 
   def edit
+  end
+
+  def load
+    @user_import = UserImport.new(params[:users_import][:file])
+    if @user_import.save
+      redirect_to users_path
+    else
+      render :new
+    end
   end
 
   def create

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :users
   get "administradores", to: "users#usuario_administrador"
+  post "users/load", to: "users#load", as: 'user_imports'
   resources :zones
   resources :devices
   resources :coordinates, only: :index
