@@ -50,3 +50,4 @@
 
 
 //= require charts/zone
+//= require blankon.form.wizard
