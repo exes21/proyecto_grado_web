@@ -18,7 +18,6 @@ class Api::DataController < ApplicationController
 
   def access_points
     ap_list = {}.tap do |list|
-      binding.pry
       AccessPoint.all.each do |ap|
         list[:zone] = ap.zone.name
         list[:ssid] = ap.ssid

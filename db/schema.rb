@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.bigint "data_id"
+    t.string "reportable_type"
+    t.bigint "reportable_id"
     t.datetime "since"
     t.datetime "until"
     t.integer "status"
@@ -61,7 +62,7 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["access_point_id"], name: "index_issues_on_access_point_id"
-    t.index ["data_id"], name: "index_issues_on_data_id"
+    t.index ["reportable_type", "reportable_id"], name: "index_issues_on_reportable_type_and_reportable_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
@@ -83,13 +84,14 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "issue_id"
+    t.string "notificable_type"
+    t.bigint "notificable_id"
     t.string "text"
     t.bigint "user_id"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["issue_id"], name: "index_notifications_on_issue_id"
+    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -173,11 +175,9 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
   add_foreign_key "data", "access_points"
   add_foreign_key "data", "mobiles"
   add_foreign_key "issues", "access_points"
-  add_foreign_key "issues", "data", column: "data_id"
   add_foreign_key "issues", "users"
   add_foreign_key "location_devices", "access_points"
   add_foreign_key "location_devices", "coordinates"
-  add_foreign_key "notifications", "issues"
   add_foreign_key "notifications", "users"
   add_foreign_key "permission_roles", "permissions"
   add_foreign_key "permission_roles", "roles"

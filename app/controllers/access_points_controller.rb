@@ -31,6 +31,7 @@ class AccessPointsController < ApplicationController
 
     respond_to do |format|
       if @access_point.save
+        update_settings
         format.html { redirect_to @access_point, notice: 'Access point was successfully created.' }
         format.json { render :show, status: :created, location: @access_point }
       else
@@ -43,9 +44,9 @@ class AccessPointsController < ApplicationController
   # PATCH/PUT /access_points/1
   # PATCH/PUT /access_points/1.json
   def update
-    binding.pry
     respond_to do |format|
       if @access_point.update(access_point_params)
+        update_settings
         format.html { redirect_to @access_point, notice: 'Access point was successfully updated.' }
         format.json { render :show, status: :ok, location: @access_point }
       else
@@ -69,6 +70,19 @@ class AccessPointsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_access_point
       @access_point = AccessPoint.find(params[:id])
+    end
+
+    def update_settings
+      @access_point.settings.min_jitter = params[:min_jitter]
+      @access_point.settings.max_jitter = params[:max_jitter]
+      @access_point.settings.min_ping = params[:min_ping]
+      @access_point.settings.max_ping = params[:max_ping]
+      @access_point.settings.min_latency = params[:min_latency]
+      @access_point.settings.max_latency = params[:max_latency]
+      @access_point.settings.min_link_speed = params[:min_link_speed]
+      @access_point.settings.max_link_speed = params[:max_link_speed]
+      @access_point.settings.min_sign_level = params[:min_sign_level]
+      @access_point.settings.max_sign_level = params[:max_sign_level]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

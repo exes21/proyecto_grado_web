@@ -46,6 +46,5 @@
 
 //= require gmaps
 
-
 //= require charts/zone
 //= require blankon.form.wizard

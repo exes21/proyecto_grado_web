@@ -26,9 +26,35 @@
         .col-sm-8
           = f.password_field :password, class: "form-control"
       .form-group
+        = label_tag 'Jitter'
+        .col-sm-8
+          = number_field_tag :min_jitter, class: 'form-control'
+          = number_field_tag :max_jitter, class: 'form-control'
+      .form-group
+        = label_tag 'Jitter'
+        .col-sm-8
+          = number_field_tag :min_ping, class: 'form-control'
+          = number_field_tag :max_ping, class: 'form-control'
+      .form-group
+        = label_tag 'Jitter'
+        .col-sm-8
+          = number_field_tag :min_latency, class: 'form-control'
+          = number_field_tag :max_latency, class: 'form-control'
+      .form-group
+        = label_tag 'Jitter'
+        .col-sm-8
+          = number_field_tag :min_link_speed, class: 'form-control'
+          = number_field_tag :max_link_speed, class: 'form-control'
+      .form-group
+        = label_tag 'Jitter'
+        .col-sm-8
+          = number_field_tag :min_sign_level, class: 'form-control'
+          = number_field_tag :max_sign_level, class: 'form-control'
+      .form-group
         .pull-right
           = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
           = f.submit "Guardar", class: "btn btn-success mr-5"
+
     .col-sm-6
       = f.fields_for :coordinate do |ff|
         Prueba

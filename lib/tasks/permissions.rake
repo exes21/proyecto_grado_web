@@ -37,11 +37,11 @@ end
 def eval_cancan_action(action)
   case action.to_s
   when "index"
-    name = 'list'
+    name = 'Listar'
     cancan_action = "index"
     action_desc = I18n.t(:list)
   when "new", "create"
-    name = 'create and update'
+    name = 'Crear'
     cancan_action = "create"
     action_desc = I18n.t(:create)
   when "show"
@@ -49,11 +49,11 @@ def eval_cancan_action(action)
     cancan_action = "view"
     action_desc = I18n.t(:view)
   when "edit", "update"
-    name = 'create and update'
+    name = 'Modificar'
     cancan_action = "update"
     action_desc = I18n.t(:update)
   when "delete", "destroy"
-    name = 'delete'
+    name = 'Eliminar'
     cancan_action = "destroy"
     action_desc = I18n.t(:destroy)
   else

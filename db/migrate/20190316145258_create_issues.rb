@@ -1,7 +1,7 @@
 class CreateIssues < ActiveRecord::Migration[5.2]
   def change
     create_table :issues do |t|
-      t.references :data, foreign_key: true
+      t.belongs_to :reportable, polymorphic: true
       t.datetime :since
       t.datetime :until
       t.integer :status
