@@ -22,6 +22,7 @@ gem 'aasm' # Gema para manejar estados
 gem 'font-awesome-rails'
 gem "rails-settings-cached"
 gem "chartkick"
+gem "roo", "~> 2.7.0"
 
 # Gemas solo para usar en la maquina local
 group :development, :test do
