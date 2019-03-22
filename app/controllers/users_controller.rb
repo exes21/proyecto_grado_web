@@ -16,11 +16,8 @@ class UsersController < ApplicationController
   end
 
   def load
-    @user_import = UserImport.new(params[:users_import][:file])
-    if @user_import.save
+    if UserImport.import(params[:user_import][:file])
       redirect_to users_path
-    else
-      render :new
     end
   end
 
