@@ -25,3 +25,8 @@
  *= require themes/default.theme
  *= require custom
  */
+
+
+ .dashboard-map{
+     width: 100%
+ }

@@ -2,31 +2,15 @@
   .col-md-12
     .panel.panel-success.shadow
       .panel-heading
-        .pull-left
-          h3.panel-title Lista de Usuarios
-        .pull-right
-          = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
-        .clearfix
+        h3.panel-title Lista de Usuarios
       .panel-body
-        table.table.table-issue-tracker.table-middle
-          tbody
-            - @students.each do |user|
-              tr
-                td
-                  = link_to user do
-                    h3
-                      = user.name
-
-                td
-                  i.fa.fa-male.fg-success
-                  = user.email
-                  = user.phone_number
-                td
-                  = user.role.name
-
-
-
-
+        #users.dashboard-map
+javascript:
+  var map = new GMaps({
+    el: '#users',
+    lat:  19.4743005,
+    lng: -70.6653768,
+  });
 
 / .row
 /   .col-md-12
