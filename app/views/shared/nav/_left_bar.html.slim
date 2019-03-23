@@ -26,6 +26,8 @@ aside#sidebar-left.sidebar-circle
             = link_to  "Equipo", AccessPoint
           li
             = link_to  "Área", Zone
+          li
+            = link_to  "Alerta", alert_setting_path
 
       li.submenu
         a href="javascript:void(0);"
@@ -38,8 +40,7 @@ aside#sidebar-left.sidebar-circle
             li
               = link_to  zone.name, zone
       li
-        a href="javascript:void(0);"
+        = link_to alerts_path do
           span.icon
             i.fa.fa-bell
           span.text Alertas
-          span.arrow

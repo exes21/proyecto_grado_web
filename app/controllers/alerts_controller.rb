@@ -4,7 +4,7 @@ class AlertsController < ApplicationController
   # GET /alert
   # GET /alert.json
   def index
-    @alert = Alert.all
+    @alert = Issue.all
   end
 
   # GET /alert/1
@@ -13,4 +13,10 @@ class AlertsController < ApplicationController
     
   end
   
+  def setting
+
+  end
+
+  def save_setting
+  end
 end

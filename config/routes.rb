@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   post "users/load", to: "users#load", as: 'user_imports'
   resources :zones
   resources :devices
-  resources :alert
+  resources :alerts
+  get "alert/setting", to: "alerts#setting"
+  post "alert/save_setting", to: "alerts#save_setting"
   resources :coordinates, only: :index
   namespace :api do
     post 'data/data_gather'
