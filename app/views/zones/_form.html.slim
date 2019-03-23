@@ -14,4 +14,34 @@
           = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
           = f.submit "Guardar", class: "btn btn-success mr-5"
     .col-sm-6
-      #map style=("width: 100%; height: 400px;")
+      #zone_map style=("width: 100%; height: 400px;")
+javascript:
+  var points = []
+  var map = new GMaps({
+    el: '#zone_map',
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
+    click: function(e) {
+      var point = [e.latLng.lat(),e.latLng.lng()];
+      points.push(point);
+      markMap(e.latLng.lat(),e.latLng.lng());
+    },
+  });
+
+
+  function markMap(lat, lng){
+    map.addMarker({
+      lat: lat,
+      lng: lng,
+      title: "point: "
+    });
+    paintMap()
+  }
+
+  function paintMap(){
+    map.removePolygons();
+    map.drawPolygon({
+      paths: points,
+      strokeColor: 'green'
+    });
+  }
