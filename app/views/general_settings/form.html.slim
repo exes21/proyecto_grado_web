@@ -14,11 +14,11 @@
         .col-sm-4
           ul.list-group.no-margin#points-list
 javascript:
-  var points = #{Setting.limits.map { |lat,lng| [lat.to_f,lng.to_f] }}
+  var points = #{ Setting.limits.present? ? Setting.limits.map { |lat,lng| [lat.to_f,lng.to_f] } : []}
   var map = new GMaps({
     el: '#general_setting',
-    lat:  #{Setting.center[0]},
-    lng:  #{Setting.center[1]},
+    lat:  #{Setting.center.present? ? Setting.center[0] : 19.4743005 },
+    lng:  #{Setting.center.present? ? Setting.center[1] : -70.6653768 },
     click: function(e) {
       var point = [e.latLng.lat(),e.latLng.lng()];
       points.push(point);

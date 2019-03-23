@@ -8,7 +8,9 @@ class AccessPoint < ApplicationRecord
 
   validates_presence_of :zone, message: "can't be blank"
   validates_presence_of :ip_address, message: "can't be blank"
+  validates_presence_of :coordinate
 
+  delegate :latitude, :longitude, to: :coordinate
 
   def users_count
     datums.all.uniq { |p| p.user }.count

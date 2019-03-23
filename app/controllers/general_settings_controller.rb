@@ -1,5 +1,6 @@
 class GeneralSettingsController < ApplicationController
   protect_from_forgery with: :null_session
+  skip_before_action :base_config
 
   def form
   end

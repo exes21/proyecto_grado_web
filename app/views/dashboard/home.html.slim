@@ -1,65 +1,77 @@
 .row
-  .col-md-9
+  .col-md-10
     .panel.panel-success.shadow
-      .panel-heading
-        h3.panel-title Inicio
-    .form-group
-      label.col-sm-5.text-right Zonas
-      .col-sm-7
-        .bootstrap-switch.bootstrap-switch-wrapper.bootstrap-switch-animate.bootstrap-switch-on style=("width: 92px;") 
-          .bootstrap-switch-container style=("width: 138px; margin-left: 0px;") 
-            span.bootstrap-switch-handle-on.bootstrap-switch-default style=("width: 46px;")  ON
-            span.bootstrap-switch-label style=("width: 46px;")  &nbsp;
-            span.bootstrap-switch-handle-off.bootstrap-switch-default style=("width: 45px;")  OFF
-            input.switch checked="" data-off-text="OFF" data-on-color="default" data-on-text="ON" name="switch" type="checkbox" 
       .panel-body
         #zones style=("width: 100%; height: 400px;")
-  .col-md-3
-    
+  .col-md-2
+    .recent-activity
+      .recent-activity-item.recent-activity-success
+        .recent-activity-badge
+          span.recent-activity-badge-userpic
+        .recent-activity-body
+          .recent-activity-body-head
+            .recent-activity-body-head-caption
+              h3.recent-activity-body-title Zonas
+          .recent-activity-body-content
+            p
+              a href="#"  Grace Hudson
+              | ordered 2 items ($34.45)
+              span.text-block.text-muted on 02/12/15
+      .recent-activity-item.recent-activity-default
+        .recent-activity-badge
+          span.recent-activity-badge-userpic
+        .recent-activity-body
+          .recent-activity-body-head
+            .recent-activity-body-head-caption
+              h3.recent-activity-body-title Usuarios activos
+          .recent-activity-body-content
+            p
+              a href="#"  Grace Hudson
+              | ordered 2 items ($34.45)
+              span.text-block.text-muted on 02/12/15
+      .recent-activity-item.recent-activity-default.recent-activity-last
+        .recent-activity-badge
+          span.recent-activity-badge-userpic
+        .recent-activity-body
+          .recent-activity-body-head
+            .recent-activity-body-head-caption
+              h3.recent-activity-body-title Equipos
+          .recent-activity-body-content
+            p
+              a href="#"  Kelly Newman
+              | ordered 4 items ($234.45)
+              span.text-block.text-muted on 02/17/15
+
 javascript:
   var map = new GMaps({
     el: '#zones',
-    lat:  19.4743005,
-    lng: -70.6653768,
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
   });
 
-
-
-
-
-
-/ #map style=("width: 80%; height: 400px;")
-/ javascript:
-/   var home_map = new GMaps({
-/       el: '#map',
-/       lat:  19.4743005,
-/       lng: -70.6653768,
-/   });
-/   $(document).ready(function (){
-/     var start = new Date;
-
-/     setInterval(function() {
-/       $.ajax({
-/         type: "GET",
-/         url: "/coordinates.json",
-/         success: function(data, textStatus, jqXHR){
-/           console.log(data);
-/           $.each(data,function(index, value){
-/             home_map.addMarker({
-/                 lat: data.location.latitude,
-/                 lng: data.location.longitude,
-/                 infoWindow: {
-/                   content:  '<p>usuario:'+ data.user.name +'</p>' +
-/                             '<p>dispositivo:'+ data.mobile.mac_address +'</p>' +
-/                             '<p>Lng:'+ value.longitude +'</p>' +
-/                             '<p>Lng:'+ value.longitude +'</p>'
-/                 }
-/               });
-/           });
-/         },
-/         error: function(jqXHR, textStatus, errorThrown){
-/           console.log("no guardo");
-/         }
-/       })
-/     }, 1000);
-/   })
+  $(document).ready(function (){
+    var start = new Date;
+    var current = 0
+    //setInterval(function() {
+      $.ajax({
+        type: "POST",
+        url:  "#{api_data_access_points_path}",
+        success: function(data, textStatus, jqXHR){
+          console.log(data);
+          $.each(data,function(index, value){
+            map.addMarker({
+                lat: value.latitude,
+                lng: value.longitude,
+                infoWindow: {
+                  content:  '<p>Lng:'+ value.longitude +'</p>' +
+                            '<p>Lng:'+ value.longitude +'</p>'
+                }
+              });
+          });
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          console.log("no guardo");
+        }
+      })
+    //}, 30000);
+  })

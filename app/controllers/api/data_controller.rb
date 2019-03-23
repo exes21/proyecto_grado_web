@@ -17,18 +17,19 @@ class Api::DataController < ApplicationController
   end
 
   def access_points
-    ap_list = {}.tap do |list|
-      AccessPoint.all.each do |ap|
+    ap_list = []
+    AccessPoint.all.each do |ap|
+      {}.tap do |list|
         list[:zone] = ap.zone.name
         list[:ssid] = ap.ssid
         list[:ip] = ap.ip_address
         list[:mac] = ap.mac_address
-        list[:latitude] = ap.coordinate.latitude
-        list[:longitude] = ap.coordinate.longitude
+        list[:latitude] = ap.latitude
+        list[:longitude] = ap.longitude
+        ap_list << list
       end
-
-      render json: ap_list.to_json
     end
+    render json: ap_list.to_json
   end
 
   private

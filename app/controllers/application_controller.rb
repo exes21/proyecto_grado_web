@@ -1,12 +1,26 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_action :notifications
+  before_action :base_config
 
   #layout :layout_by_resource
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = "Access denied. You are not authorized to access the requested page."
     redirect_to root_path and return
   end
+
+
   protected
+
+  def base_config
+    unless Setting.center.present?
+      redirect_to general_settings_form_path
+    end
+  end
+
+  def notifications
+    @notifications = Notification.where(user: current_user)
+  end
 
   #derive the model name from the controller. egs UsersController will return User
   def self.permission
