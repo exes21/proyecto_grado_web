@@ -57,16 +57,42 @@ javascript:
         type: "POST",
         url:  "#{api_data_access_points_path}",
         success: function(data, textStatus, jqXHR){
-          console.log(data);
           $.each(data,function(index, value){
             map.addMarker({
                 lat: value.latitude,
                 lng: value.longitude,
+                icon: "#{ asset_path('router-logo.png') }",
                 infoWindow: {
-                  content:  '<p>Lng:'+ value.longitude +'</p>' +
-                            '<p>Lng:'+ value.longitude +'</p>'
+                  content:  '<p>Zona: '+ value.zone +'</p>' +
+                            '<p>ssid: '+ value.ssid +'</p>' +
+                            '<p>Ip: '+ value.ip +'</p>' +
+                            '<p>Mac: '+ value.mac +'</p>' +
+                            '<p>Lat: '+ value.latitude +'</p>' +
+                            '<p>Lng: '+ value.longitude +'</p>'
                 }
-              });
+            });
+            map.drawCircle({
+              lat: value.latitude,
+              lng: value.longitude,
+              radius: 12
+            })
+          });
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          console.log("no guardo");
+        }
+      });
+
+      $.ajax({
+        type: "POST",
+        url:  "#{api_data_zones_path}",
+        success: function(data, textStatus, jqXHR){
+          map.removePolygons();
+          $.each(data,function(index, value){
+            map.drawPolygon({
+              paths: value.limits,
+              strokeColor: 'green'
+            });
           });
         },
         error: function(jqXHR, textStatus, errorThrown){

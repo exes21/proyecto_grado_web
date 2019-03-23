@@ -16,6 +16,19 @@ class Api::DataController < ApplicationController
     render status: 200, json: @mobile.to_json
   end
 
+  def zones
+    zone_list = []
+    Zone.all.each do |z|
+      {}.tap do |list|
+        list[:zone] = z.name
+        list[:limits] = z.coordinates.map { |z| [z.latitude, z.longitude] }
+        zone_list << list
+      end
+    end
+    render json: zone_list.to_json
+  end
+
+
   def access_points
     ap_list = []
     AccessPoint.all.each do |ap|

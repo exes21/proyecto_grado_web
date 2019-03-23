@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :api do
     post 'data/data_gather'
     post 'data/access_points'
+    post 'data/zones'
   end
 
   get 'dashboard/home'
