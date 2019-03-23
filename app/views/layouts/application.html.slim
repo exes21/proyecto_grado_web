@@ -16,12 +16,7 @@ html
         .header-content
           h2
             i.fa.fa-home
-            | Dashboard
-            span @title
-          .breadcrumb-wrapper.hidden-xs
-            span.label Estas en:
-            ol.breadcrumb
-              li.active @title
+            = @title
         .body-content.animated.fadeIn
           = yield
       = render "shared/nav/footer"

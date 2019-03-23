@@ -6,6 +6,7 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all
+    @title = "Configuración de Roles"
   end
 
   # GET /roles/1
@@ -16,10 +17,12 @@ class RolesController < ApplicationController
   # GET /roles/new
   def new
     @role = Role.new
+    @title = "Nuevo Rol"
   end
 
   # GET /roles/1/edit
   def edit
+    @title = "Editar Rol"
   end
 
   # POST /roles

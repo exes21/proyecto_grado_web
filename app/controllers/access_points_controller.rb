@@ -6,29 +6,32 @@ class AccessPointsController < ApplicationController
   # GET /access_points.json
   def index
     @access_points = AccessPoint.all
+    @title = "Configuración de Equipos"
   end
 
   # GET /access_points/1
   # GET /access_points/1.json
   def show
+    @title = "Vista de Equipos"
   end
 
   # GET /access_points/new
   def new
     @access_point = AccessPoint.new
     @access_point.build_coordinate
+    @title = "Nuevo Equipo"
   end
 
   # GET /access_points/1/edit
   def edit
     @access_point.build_coordinate
+    @title = "Editar Equipo"
   end
 
   # POST /access_points
   # POST /access_points.json
   def create
     @access_point = AccessPoint.new(access_point_params)
-
     respond_to do |format|
       if @access_point.save
         update_settings

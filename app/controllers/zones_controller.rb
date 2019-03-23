@@ -6,20 +6,24 @@ class ZonesController < ApplicationController
   # GET /zones.json
   def index
     @zones = Zone.all
+    @title = "Configuración de Áreas"
   end
 
   # GET /zones/1
   # GET /zones/1.json
   def show
+    @title = "Mostrar Áreas"
   end
 
   # GET /zones/new
   def new
     @zone = Zone.new
+    @title = "Nueva Áreas"
   end
 
   # GET /zones/1/edit
   def edit
+    @title = "Editar Área"
   end
 
   # POST /zones
