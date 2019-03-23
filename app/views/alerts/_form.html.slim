@@ -36,8 +36,8 @@
                 = number_field_tag :max_sign_level,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
           .col-sm-6
             .ckbox.ckbox-theme
-              input#checkbox-checked1 checked="checked" type="checkbox"
-              label for="checkbox-checked1"  Aplicar valores a todas las zonas
+              input#checkbox-unchecked2 type="checkbox"
+              label for="checkbox-unchecked2"  Aplicar valores a todas las zonas
             .form-group
               = fields_for :zones do |p|
                 = p.select :zones_id,

@@ -1,13 +1,13 @@
 .row
-  .col-md-8
+  .col-md-10
     #zones style=("width: 100%; height: 400px;")
-  .col-md-4
+  .col-md-2
     .panel.panel-success.shadow
       .panel-heading
         .pull-left
           h3.panel-title Lista de Áreas
         .pull-right
-          = link_to fa_icon('plus'), new_zone_path, class: 'btn btn-sm'
+          /= link_to fa_icon('plus'), new_zone_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
         ul.list-unstyled.list-real-estate
@@ -17,10 +17,14 @@
                 .pull-left
                   p
                     = zone.name
-                .pull-right
-                  = link_to 'Editar', edit_zone_path(zone), class: "btn btn-default"
-                  = link_to 'Borrar', zone, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                / .pull-right
+                /   = link_to 'Editar', edit_zone_path(zone), class: "btn btn-default"
+                /   = link_to 'Borrar', zone, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
                 .clearfix
+      .col-md-12
+        .ckbox.ckbox-theme
+          input#checkbox-unchecked2 type="checkbox" 
+          label for="checkbox-unchecked2"  Topología de Red
 javascript:
   var map = new GMaps({
     el: '#zones',

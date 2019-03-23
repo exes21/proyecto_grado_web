@@ -8,6 +8,23 @@ aside#sidebar-left.sidebar-circle
             i.fa.fa-home
           span.text Inicio
 
+      li
+        = link_to alerts_path do
+          span.icon
+            i.fa.fa-bell
+          span.text Alertas
+      li
+        = link_to  zone_view_path do
+          span.icon
+            i.fa.fa-sitemap
+          span.text Áreas
+
+      li
+        = link_to  users_map_path do
+          span.icon
+            i.fa.fa-users
+          span.text Usuarios
+
       li.submenu
         a href="javascript:void(0);"
           span.icon
@@ -28,18 +45,10 @@ aside#sidebar-left.sidebar-circle
             = link_to  "Área", Zone
           li
             = link_to  "Alerta", alert_setting_path
-      li
-        = link_to  zone_view_path do
-          span.icon
-            i.fa.fa-sitemap
-          span.text Áreas
+      
         /   span.arrow
         / ul
         /   - Zone.all.each do |zone|
         /     li
         /       = link_to  zone.name, zone
-      li
-        = link_to alerts_path do
-          span.icon
-            i.fa.fa-bell
-          span.text Alertas
+      
