@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "administradores", to: "users#usuario_administrador"
   post "users/load", to: "users#load", as: 'user_imports'
   resources :zones
+  get "zone/view", to: "zones#zone_view"
   resources :devices
   resources :alerts
   get "alert/setting", to: "alerts#setting"

@@ -28,17 +28,16 @@ aside#sidebar-left.sidebar-circle
             = link_to  "Área", Zone
           li
             = link_to  "Alerta", alert_setting_path
-
-      li.submenu
-        a href="javascript:void(0);"
+      li
+        = link_to  zone_view_path do
           span.icon
             i.fa.fa-sitemap
           span.text Áreas
-          span.arrow
-        ul
-          - Zone.all.each do |zone|
-            li
-              = link_to  zone.name, zone
+        /   span.arrow
+        / ul
+        /   - Zone.all.each do |zone|
+        /     li
+        /       = link_to  zone.name, zone
       li
         = link_to alerts_path do
           span.icon

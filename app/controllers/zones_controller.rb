@@ -26,6 +26,11 @@ class ZonesController < ApplicationController
     @title = "Editar Área"
   end
 
+  def zone_view
+    @zones = Zone.all
+    @title = "Vista de las Área"
+  end
+
   # POST /zones
   # POST /zones.json
   def create
@@ -76,4 +81,6 @@ class ZonesController < ApplicationController
     def zone_params
       params.require(:zone).permit(:name, :description)
     end
+
+    
 end
