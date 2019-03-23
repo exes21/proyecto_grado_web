@@ -14,18 +14,18 @@
         .col-sm-4
           ul.list-group.no-margin#points-list
 javascript:
-  var points = []
+  var points = #{Setting.limits.map { |lat,lng| [lat.to_f,lng.to_f] }}
   var map = new GMaps({
     el: '#general_setting',
-    lat:  19.4743005,
-    lng: -70.6653768,
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
     click: function(e) {
       var point = [e.latLng.lat(),e.latLng.lng()];
       points.push(point);
       markMap(e.latLng.lat(),e.latLng.lng(), points.indexOf(point));
     },
   });
-
+  paintMap();
   function listMark(lat, lng, id){
     $('#points-list').append('<li class="list-group-item" id="point-'+ id +'"><div class="list-group-item-text pull-left"><p><b>Lat: </b>'+ lat +'</p><p><b>Lng: </b>'+ lng +'</p></div><div class="pull-right"><button class="badge btn-danger remove-point">Eliminar</button></div><div class="clearfix"></div></li>');
     // TODO: Arreglar borrado, que elimina dos o mas
@@ -41,6 +41,31 @@ javascript:
     });
   }
 
+
+  function polygonCenter() {
+    var lowx,
+        highx,
+        lowy,
+        highy,
+        lats = [],
+        lngs = []
+
+    for(var i=0; i<points.length; i++) {
+      lats.push(points[i][0]);
+      lngs.push(points[i][1]);
+    }
+
+    lats.sort();
+    lngs.sort();
+    lowx = lats[0];
+    highx = lats[points.length - 1];
+    lowy = lngs[0];
+    highy = lngs[points.length - 1];
+    center_x = lowx + ((highx-lowx) / 2);
+    center_y = lowy + ((highy - lowy) / 2);
+    return (new google.maps.LatLng(center_x, center_y));
+  }
+
   function markMap(lat, lng, id){
     map.addMarker({
       lat: lat,
@@ -48,9 +73,11 @@ javascript:
       title: "point: " + id
     });
     listMark(lat, lng, id)
+    paintMap()
   }
 
   function paintMap(){
+    map.removePolygons();
     map.drawPolygon({
       paths: points,
       strokeColor: 'green'
@@ -58,12 +85,24 @@ javascript:
   }
 
   $('#save-setting-map').click(function (){
-    paintMap();
+    map.removeMarkers();
+    map.addMarker({
+      lat: polygonCenter().lat(),
+      lng: polygonCenter().lng(),
+      icon: {
+        url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+      }
+    });
+
     $.ajax({
       type: "POST",
       url: "/general_settings/save",
       data: {
-        points: points
+        points: points,
+        center: {
+          lat: polygonCenter().lat(),
+          lng: polygonCenter().lng()
+        }
       },
       success: function(data, textStatus, jqXHR){
         console.log("guardo");
@@ -79,4 +118,5 @@ javascript:
     $('.list-group-item').remove();
     map.removeMarkers();
     map.removePolygons();
+
   });
