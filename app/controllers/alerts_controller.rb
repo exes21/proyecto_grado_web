@@ -4,7 +4,7 @@ class AlertsController < ApplicationController
   # GET /alert
   # GET /alert.json
   def index
-    @alert = Alert.all
+    @alert = Issue.all
   end
 
   # GET /alert/1
