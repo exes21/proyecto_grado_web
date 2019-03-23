@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :zones
   resources :devices
   resources :alerts
+  get "alert/setting", to: "alerts#setting"
+  post "alert/save_setting", to: "alerts#save_setting"
   resources :coordinates, only: :index
   namespace :api do
     post 'data/data_gather'

@@ -13,4 +13,10 @@ class AlertsController < ApplicationController
     
   end
   
+  def setting
+
+  end
+
+  def save_setting
+  end
 end
