@@ -16,7 +16,7 @@ class AccessPointsController < ApplicationController
   # GET /access_points/new
   def new
     @access_point = AccessPoint.new
-    @access_point.coordinate.build
+    @access_point.build_coordinate
   end
 
   # GET /access_points/1/edit
