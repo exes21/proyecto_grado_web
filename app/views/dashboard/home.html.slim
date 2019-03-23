@@ -1,37 +1,27 @@
-.col-md-12
-  /! Start basic wizard horizontal
-  #basic-wizard-horizontal
-    .panel.panel-tab.rounded.shadow
-      /! Start tabs heading
-      .panel-heading.no-padding
-        ul.nav.nav-tabs.nav-pills
-          li.active
-            a data-toggle="tab" href="#tab1-1" 
-              i.fa.fa-sitemap
-              div
-                span.text-strong Zonas
-          li
-            a data-toggle="tab" href="#tab1-2" 
-              i.fa.fa-server
-              div
-                span.text-strong Equipos
-          li
-            a data-toggle="tab" href="#tab1-3" 
-              i.fa.fa-users
-              div
-                span.text-strong Usuarios
+.row
+  .col-md-9
+    .panel.panel-success.shadow
+      .panel-heading
+        h3.panel-title Inicio
+    .form-group
+      label.col-sm-5.text-right Zonas
+      .col-sm-7
+        .bootstrap-switch.bootstrap-switch-wrapper.bootstrap-switch-animate.bootstrap-switch-on style=("width: 92px;") 
+          .bootstrap-switch-container style=("width: 138px; margin-left: 0px;") 
+            span.bootstrap-switch-handle-on.bootstrap-switch-default style=("width: 46px;")  ON
+            span.bootstrap-switch-label style=("width: 46px;")  &nbsp;
+            span.bootstrap-switch-handle-off.bootstrap-switch-default style=("width: 45px;")  OFF
+            input.switch checked="" data-off-text="OFF" data-on-color="default" data-on-text="ON" name="switch" type="checkbox" 
       .panel-body
-        .tab-content.form-horizontal
-          #tab1-1.tab-pane.fade.in.active.inner-all
-            =render "vista_zona"
-          #tab1-2.tab-pane.fade.inner-all
-            = render "vista_routers"
-          #tab1-3.tab-pane.fade.inner-all
-            =render "vista_usuario"
-          #tab1-4.tab-pane.fade.inner-all
-            h4.page-header Confirmation
-              
-
+        #zones style=("width: 100%; height: 400px;")
+  .col-md-3
+    
+javascript:
+  var map = new GMaps({
+    el: '#zones',
+    lat:  19.4743005,
+    lng: -70.6653768,
+  });
 
 
 
