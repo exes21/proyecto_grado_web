@@ -8,7 +8,11 @@ class AccessPoint < ApplicationRecord
 
   validates_presence_of :zone, message: "can't be blank"
   validates_presence_of :ip_address, message: "can't be blank"
+  validates_presence_of :mac_address, message: "can't be blank"
   validates_presence_of :coordinate
+
+  validates_uniqueness_of :ip_address
+  validates_uniqueness_of :mac_address
 
   delegate :latitude, :longitude, to: :coordinate
 

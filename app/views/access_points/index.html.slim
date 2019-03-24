@@ -15,7 +15,7 @@
             li
               = link_to access_point do
                 .pull-left
-                  h3
+                  p
                     = access_point.ip_address
                 .pull-right
                   = link_to 'Editar', edit_access_point_path(access_point), class: "btn btn-default"
@@ -26,8 +26,8 @@
 javascript:
   var map = new GMaps({
     el: '#routers',
-    lat:  19.445194,
-    lng: -70.683594,
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
   });
   $.ajax({
       type: "POST",
@@ -36,8 +36,9 @@ javascript:
         console.log(data);
         $.each(data,function(index, value){
           map.addMarker({
-              lat: data.location.latitude,
-              lng: data.location.longitude,
+              lat: value.latitude,
+              lng: value.longitude,
+              icon: "#{ asset_path('router-logo.png') }",
               infoWindow: {
                 content:  '<p>Lng:'+ value.longitude +'</p>' +
                           '<p>Lng:'+ value.longitude +'</p>'

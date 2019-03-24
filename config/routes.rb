@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     post 'data/data_gather'
     post 'data/access_points'
     post 'data/zones'
+    get 'data/zone'
   end
 
   get 'dashboard/home'

@@ -16,6 +16,16 @@ class Api::DataController < ApplicationController
     render status: 200, json: @mobile.to_json
   end
 
+  def zone
+    zone = Zone.find(params[:id])
+    if zone.present?
+
+      render json: zone.coordinates.map { |c| [c.latitude, c.longitude] }.to_json, status: :ok
+    else
+      render json: {status: 'error', code: '500'}
+    end
+  end
+
   def zones
     zone_list = []
     Zone.all.each do |z|

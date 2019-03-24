@@ -27,7 +27,6 @@ class AccessPointsController < ApplicationController
 
   # GET /access_points/1/edit
   def edit
-    @access_point.build_coordinate
     @title = "Editar Equipo"
     @icon = "wifi"
   end
