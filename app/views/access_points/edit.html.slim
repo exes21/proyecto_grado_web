@@ -1,4 +1,4 @@
-.row 
+.row
   .col-md-12
     .panel.rounded.shadow
       .panel-heading
@@ -13,3 +13,9 @@
 
       .panel-body.no-padding
         == render 'form'
+javascript:
+  map.addMarker({
+    lat: #{@access_point.coordinate.latitude},
+    lng: #{@access_point.coordinate.longitude},
+    icon: "#{ asset_path('router-logo.png') }"
+  });
