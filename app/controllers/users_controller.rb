@@ -4,11 +4,16 @@ class UsersController < ApplicationController
 
   def index
     @user = User.new
-    @users = User.where(role: Role.first)
-    @students = User.where(role: Role.second)
     @users_import = UserImport.new
     @title = "Configuración de Usuarios"
     @icon = "users"
+    @q = User.ransack(params[:q])
+    @students = @q.result(distinct: true).where(role: Role.second).paginate(page: params[:page], per_page: 10)
+  end
+
+  def usuario_administrador
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).where(role: Role.first).paginate(page: params[:page], per_page: 10)
   end
 
   def users_map

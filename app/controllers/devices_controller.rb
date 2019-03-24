@@ -5,7 +5,7 @@ class DevicesController < ApplicationController
   # GET /devices
   # GET /devices.json
   def index
-    @devices = Device.all
+    @devices = Device.all.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /devices/1

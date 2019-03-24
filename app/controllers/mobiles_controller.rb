@@ -5,7 +5,7 @@ class MobilesController < ApplicationController
   # GET /mobiles
   # GET /mobiles.json
   def index
-    @mobiles = Mobile.all
+    @mobiles = Mobile.all.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /mobiles/1

@@ -8,7 +8,17 @@
           = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
+        = search_form_for @q do |f| 
+          .col-md-5 
+            = f.search_field :name_cont, class: 'form-control', placeholder: 'Nombre Usuario'
+          .col-md-5
+            = f.submit 'Buscar', class: 'btn btn-default'
         table.table.table-issue-tracker.table-middle
+          thead 
+            th Nombre
+            th Correo
+            th Rol
+
           tbody
             - @students.each do |user|
               tr
@@ -23,7 +33,8 @@
                   = user.phone_number
                 td
                   = user.role.name
-
+          .panel-footer
+            = will_paginate(@students)
 
 
 

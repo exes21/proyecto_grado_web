@@ -8,6 +8,11 @@
           = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
+        = search_form_for @q do |f| 
+          .col-md-5 
+            = f.search_field :name_cont, class: 'form-control', placeholder: 'Nombre Usuario'
+          .col-md-5
+            = f.submit 'Buscar', class: 'btn btn-default'
         table.table.table-issue-tracker.table-middle
           tbody
             - @users.each do |user|
@@ -16,13 +21,15 @@
                   = link_to user do
                     h3
                       = user.name
-
+              
                 td
                   i.fa.fa-male.fg-success
                   = user.email
                   = user.phone_number
                 td
                   = user.role.name
+      .panel-footer
+            = will_paginate(@users)
 
 
 

@@ -35,8 +35,21 @@ aside#sidebar-left.sidebar-circle
         ul
           li
             = link_to  "Conf. Geográfica", general_settings_form_path
-          li
-            = link_to  "Usuario", User
+          li.submenu.active
+            a href="javascript:void(0);" 
+              span.icon
+                i.fa.fa-user
+              span.text Usuarios
+              span.arrow
+              span.selected
+            ul
+              li.submenu
+                ul style=("display: block;") 
+                  li
+                    = link_to "Usuarios Administrativos", administradores_path 
+                  li
+                    = link_to "Estudiantes", users_path
+             
           li
             = link_to  "Roles de usuario", Role
           li
