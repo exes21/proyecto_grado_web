@@ -27,3 +27,20 @@ javascript:
     lat:  #{Setting.center[0].to_f},
     lng:  #{Setting.center[1].to_f},
   });
+
+  $.ajax({
+    type: "POST",
+    url:  "#{api_data_zones_path}",
+    success: function(data, textStatus, jqXHR){
+      map.removePolygons();
+      $.each(data,function(index, value){
+        map.drawPolygon({
+          paths: value.limits,
+          strokeColor: 'green'
+        });
+      });
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+      console.log("no guardo");
+    }
+  })
