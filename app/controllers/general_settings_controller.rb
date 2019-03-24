@@ -3,6 +3,8 @@ class GeneralSettingsController < ApplicationController
   skip_before_action :base_config
 
   def form
+    @icon = "cog"
+    @title = "Configuración General"
   end
 
   def save

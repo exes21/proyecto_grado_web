@@ -6,6 +6,7 @@ class AlertsController < ApplicationController
   def index
     @alert = Issue.all
     @title = "Lista de Alarmas"
+    @icon = "bell"
   end
 
   # GET /alert/1
@@ -16,6 +17,7 @@ class AlertsController < ApplicationController
   
   def setting
     @title = "Configuración de Alarmas"
+    @icon = "bell"
   end
 
   def save_setting

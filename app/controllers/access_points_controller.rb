@@ -7,12 +7,14 @@ class AccessPointsController < ApplicationController
   def index
     @access_points = AccessPoint.all
     @title = "Configuración de Equipos"
+    @icon = "wifi"
   end
 
   # GET /access_points/1
   # GET /access_points/1.json
   def show
     @title = "Vista de Equipos"
+    @icon = "wifi"
   end
 
   # GET /access_points/new
@@ -20,11 +22,13 @@ class AccessPointsController < ApplicationController
     @access_point = AccessPoint.new
     @access_point.build_coordinate
     @title = "Nuevo Equipo"
+    @icon = "wifi"
   end
 
   # GET /access_points/1/edit
   def edit
     @title = "Editar Equipo"
+    @icon = "wifi"
   end
 
   # POST /access_points

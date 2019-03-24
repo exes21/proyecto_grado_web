@@ -8,18 +8,28 @@ class UsersController < ApplicationController
     @students = User.where(role: Role.second)
     @users_import = UserImport.new
     @title = "Configuración de Usuarios"
+    @icon = "users"
+  end
+
+  def users_map
+    @title = "Mapa de Usuarios"
+    @icon = "users"
+    @users = User.all
   end
 
   def new
     @title = "NUevo Usuario"
+    @icon = "users"
   end
 
   def edit
     @title = "Editar Usuario"
+    @icon = "users"
   end
 
   def load
     @title = "Cargar Usuarios"
+    @icon = "users"
     if UserImport.import(params[:user_import][:file])
       redirect_to users_path
     end

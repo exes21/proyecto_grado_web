@@ -1,0 +1,38 @@
+.row
+  .col-md-12
+    .panel.panel-success.shadow
+      .panel-body
+        #zones style=("width: 100%; height: 400px;")
+javascript:
+  var map = new GMaps({
+    el: '#zones',
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
+  });
+
+  $(document).ready(function (){
+    var start = new Date;
+    var current = 0
+    //setInterval(function() {
+      $.ajax({
+        type: "POST",
+        url:  "#{api_data_access_points_path}",
+        success: function(data, textStatus, jqXHR){
+          console.log(data);
+          $.each(data,function(index, value){
+            map.addMarker({
+                lat: value.latitude,
+                lng: value.longitude,
+                infoWindow: {
+                  content:  '<p>Lng:'+ value.longitude +'</p>' +
+                            '<p>Lng:'+ value.longitude +'</p>'
+                }
+              });
+          });
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+          console.log("no guardo");
+        }
+      })
+    //}, 30000);
+  })
