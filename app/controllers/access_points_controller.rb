@@ -5,7 +5,7 @@ class AccessPointsController < ApplicationController
   # GET /access_points
   # GET /access_points.json
   def index
-    @access_points = AccessPoint.all
+    @access_points = AccessPoint.all.paginate(page: params[:page], per_page: 10)
     @title = "Configuración de Equipos"
     @icon = "wifi"
   end

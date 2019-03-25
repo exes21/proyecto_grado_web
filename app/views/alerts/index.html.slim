@@ -11,9 +11,11 @@
             th Fecha
             th.text-center Estado
         tbody
-          -@alert.each do |alert|
+          -@alerts.each do |alert|
             td
               tr = alert.reportable_type
               tr = alert.description
               tr = alert.access_point.ip_address
               tr = alert.created_at
+        .panel-footer
+            = will_paginate(@alerts)

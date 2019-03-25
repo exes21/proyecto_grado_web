@@ -4,7 +4,7 @@ class AlertsController < ApplicationController
   # GET /alert
   # GET /alert.json
   def index
-    @alert = Issue.all
+    @alerts = Issue.all.paginate(page: params[:page], per_page: 10)
     @title = "Lista de Alarmas"
     @icon = "bell"
   end

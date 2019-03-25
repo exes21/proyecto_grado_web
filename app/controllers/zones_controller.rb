@@ -5,7 +5,7 @@ class ZonesController < ApplicationController
   # GET /zones
   # GET /zones.json
   def index
-    @zones = Zone.all
+    @zones = Zone.all.paginate(page: params[:page], per_page: 10)
     @title = "Configuración de Áreas"
   end
 

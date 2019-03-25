@@ -3,11 +3,6 @@
     .panel-heading.no-padding.col-md-3
       ul.nav.nav-tabs.nav-pills
         li.active
-          a aria-expanded="true" data-toggle="tab" href="#tab2-1"
-            i.fa.fa-cog
-            div
-              span.text-strong Usuarios Administrativos
-        li
           a aria-expanded="false" data-toggle="tab" href="#tab2-2"
             i.fa.fa-users
             div
@@ -25,10 +20,8 @@
     .panel-body.col-md-9
       .tab-content
         #tab2-1.tab-pane.fade.inner-all.active.in
-          = render  "usuario_administrador"
-        #tab2-2.tab-pane.fade.inner-all
           = render  "usuario_red"
-        #tab2-3.tab-pane.fade.inner-all
+        #tab2-2.tab-pane.fade.inner-all
           = render  "user_deactivate" 
-        #tab2-4.tab-pane.fade.inner-all
+        #tab2-3.tab-pane.fade.inner-all
           = render  "user_load"
