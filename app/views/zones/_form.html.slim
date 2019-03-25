@@ -11,49 +11,91 @@
           = f.text_area :description, class: "form-control"
       .form-group
         .pull-right
+          = link_to fa_icon('history'), '#' ,class: "btn btn-default mr-5", id: 'remove'
+          = link_to fa_icon('minus'), '#' ,class: "btn btn-default mr-5", id: 'clear'
           = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
           = f.submit "Guardar", class: "btn btn-success mr-5"
     .col-sm-6
       #zone_map style=("width: 100%; height: 400px;")
 javascript:
   var points = []
+  var area = []
+  var zone = []
+  var limits = #{ Setting.limits.map { |lat, lng| [lat.to_f, lng.to_f] } }
   var map = new GMaps({
     el: '#zone_map',
     lat:  #{Setting.center[0]},
     lng:  #{Setting.center[1]},
-    click: function(e) {
-      var point = [e.latLng.lat(),e.latLng.lng()];
-      markMap(e.latLng.lat(),e.latLng.lng());
-      points.push(point)
-      console.log(points)
-    },
   });
 
+  $('[submit]').click(function(e){
+    e.preventDefault();
+
+    $.ajax({
+      type: 'POST',
+      url: '#{zone_limits_path}',
+      data: {
+        points: points,
+        id: 1
+      },
+      success: function(data, textStatus, jqXHR){
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        console.log("no guardo");
+      }
+    });
+  })
+
+  $('#remove').click(function(e){
+    e.preventDefault()
+    map.removeMarkers();
+    points.splice(-1,1);
+    for(var n = 0; n <= points.length; n++){
+      markMap(points[n][0],points[n][1])
+    }
+  });
+
+  $('#clear').click(function(e){
+    e.preventDefault();
+    points = []
+    map.removeMarkers();
+    map.removePolygons();
+    paintArea()
+  })
+
+  $(document).ready(function(){
+    paintArea()
+  })
 
   function markMap(lat, lng){
     map.addMarker({
       lat: lat,
       lng: lng,
-      click: function(e){
-        for(var i= 0;i < points.length; i++){
-          if(points[i][0] == this.position.lat() && points[i][1] == this.position.lng()){
-            map.removeMarkers();
-            points.splice(i,1);
-            for(var n = 0; n < points.length; n++){
-              markMap(points[i][0],points[i][1])
-            }
-          }
-        }
-      },
+      fences: [limits],
+      outside: function(){
+        alert('El punto esta fuera del marco')
+      }
     });
-
+    paintArea()
     paintMap()
   }
 
-  function paintMap(){
+  function paintArea(){
     map.removePolygons();
-    map.drawPolygon({
+    area = map.drawPolygon({
+      paths: limits,
+      strokeColor: 'red'
+    });
+
+    area.addListener('click', function(e){
+      points.push([e.latLng.lat(),e.latLng.lng()])
+      markMap(e.latLng.lat(),e.latLng.lng());
+    })
+  }
+
+  function paintMap(){
+    zone = map.drawPolygon({
       paths: points,
-      strokeColor: 'green'
+      strokeColor: 'blue'
     });
   }
