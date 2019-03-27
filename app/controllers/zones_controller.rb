@@ -34,7 +34,7 @@ class ZonesController < ApplicationController
     respond_to do |format|
       if @zone.save
         save_coordinates
-        format.html { redirect_to @zone, notice: 'Zone was successfully created.' }
+        format.html { redirect_to zones_url, notice: 'Zone was successfully created.' }
         format.json { render :show, status: :created, location: @zone }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class ZonesController < ApplicationController
     respond_to do |format|
       if @zone.update(zone_params)
         save_coordinates
-        format.html { redirect_to @zone, notice: 'Zone was successfully updated.' }
+        format.html { redirect_to zones_url, notice: 'Zone was successfully updated.' }
         format.json { render :show, status: :ok, location: @zone }
       else
         format.html { render :edit }
