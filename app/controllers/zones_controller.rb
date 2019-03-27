@@ -33,6 +33,7 @@ class ZonesController < ApplicationController
 
     respond_to do |format|
       if @zone.save
+        save_coordinates
         format.html { redirect_to @zone, notice: 'Zone was successfully created.' }
         format.json { render :show, status: :created, location: @zone }
       else
@@ -47,6 +48,7 @@ class ZonesController < ApplicationController
   def update
     respond_to do |format|
       if @zone.update(zone_params)
+        save_coordinates
         format.html { redirect_to @zone, notice: 'Zone was successfully updated.' }
         format.json { render :show, status: :ok, location: @zone }
       else
@@ -67,6 +69,16 @@ class ZonesController < ApplicationController
   end
 
   private
+    def save_coordinates
+      @zone.coordinates.destroy_all
+      JSON.parse(params[:coordinates]).each do |lat, lng|
+        @zone.coordinates.create(
+          latitude: lat,
+          longitude: lng
+        )
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_zone
       @zone = Zone.find(params[:id])
@@ -74,6 +86,13 @@ class ZonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def zone_params
-      params.require(:zone).permit(:name, :description)
+      params.require(:zone).permit( :id,
+                                    :name,
+                                    :description,
+                                    coordinates_attributes:[
+                                      :latitude,
+                                      :longitude
+                                    ]
+                                  )
     end
 end

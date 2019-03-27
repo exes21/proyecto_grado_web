@@ -17,6 +17,7 @@
           = f.submit "Guardar", class: "btn btn-success mr-5", id: "enviar"
     .col-sm-6
       #zone_map style=("width: 100%; height: 400px;")
+      = hidden_field_tag(:coordinates, "")
 javascript:
   var points = #{ @zone.coordinates.map { |c| [c.latitude.to_f, c.longitude.to_f] } || [] }
   var area = []
@@ -28,24 +29,10 @@ javascript:
     lng:  #{Setting.center[1]},
   });
 
-  $('#enviar').click(function(e){
-    e.preventDefault();
+  $('form.form-horizontal').submit(function(e){
+    $('#coordinates').val(JSON.stringify(points))
 
-    $.ajax({
-      type: 'POST',
-      url: '#{api_data_zone_save_limits_path}',
-      data: {
-        points: points,
-        id: #{params[:id]}
-      },
-      success: function(data, textStatus, jqXHR){
-      },
-      error: function(jqXHR, textStatus, errorThrown){
-        console.log("no guardo");
-      }
-    });
-
-    $('form').submit();
+    return true;
   })
 
   $('#remove').click(function(e){
