@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   post "users/load", to: "users#load", as: 'user_imports'
   resources :zones
   get "zone/view", to: "zones#zone_view"
-  post "zone/limits", to: 'zones#zone_limits'
   resources :devices
   resources :alerts
   get "alert/setting", to: "alerts#setting"
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
     post 'data/access_points'
     post 'data/zones'
     get 'data/zone'
+    post "data/zone_save_limits"
   end
 
   get 'dashboard/home'

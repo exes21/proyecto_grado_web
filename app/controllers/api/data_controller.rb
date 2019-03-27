@@ -16,6 +16,19 @@ class Api::DataController < ApplicationController
     render status: 200, json: @mobile.to_json
   end
 
+  def zone_save_limits
+    zone = Zone.find(params[:id])
+    zone.coordinates.destroy_all
+    params[:points].each do |k,v|
+      Coordinate.create(
+        latitude: v[0],
+        longitude: v[1],
+        locatable_type: 'Zone',
+        locatable_id: zone.id
+      )
+    end
+  end
+
   def zone
     zone = Zone.find(params[:id])
     if zone.present?

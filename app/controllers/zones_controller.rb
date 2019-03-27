@@ -26,11 +26,6 @@ class ZonesController < ApplicationController
     @title = "Editar Área"
   end
 
-  def zone_view
-    @zones = Zone.all
-    @title = "Vista de las Área"
-  end
-
   # POST /zones
   # POST /zones.json
   def create
@@ -69,10 +64,6 @@ class ZonesController < ApplicationController
       format.html { redirect_to zones_url, notice: 'Zone was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def zone_limits
-    binding.pry
   end
 
   private
