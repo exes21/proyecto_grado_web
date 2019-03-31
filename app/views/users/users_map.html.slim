@@ -13,18 +13,22 @@ javascript:
   $(document).ready(function (){
     var start = new Date;
     var current = 0
-    //setInterval(function() {
+    setInterval(function() {
       $.ajax({
         type: "POST",
         url:  "#{api_data_access_points_path}",
         success: function(data, textStatus, jqXHR){
           console.log(data);
           $.each(data,function(index, value){
+            debugger
             map.addMarker({
                 lat: value.latitude,
                 lng: value.longitude,
                 infoWindow: {
-                  content:  '<p>Lng:'+ value.longitude +'</p>' +
+                  content:  '<p>Lng:'+ value.ssid +'</p>' +
+                            '<p>Lng:'+ value.ip +'</p>' +
+                            '<p>Lng:'+ value.mac +'</p>' +
+                            '<p>Lng:'+ value.latitude +'</p>' +
                             '<p>Lng:'+ value.longitude +'</p>'
                 }
               });
@@ -34,5 +38,5 @@ javascript:
           console.log("no guardo");
         }
       })
-    //}, 30000);
+    }, 30000);
   })

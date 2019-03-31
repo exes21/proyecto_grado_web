@@ -1,18 +1,10 @@
 .row
-  .col-md-12
-    ul.list-inline.heading-issue-chart
-      li
-        span.label.label-circle.label-success &nbsp;
-        | Added
-      li
-        span.label.label-circle.label-warning &nbsp;
-        | Fixed
-      li
-        span.label.label-circle.label-danger &nbsp;
-        | Bug
-    = line_chart Zone.group(:created_at).count
+  .col-md-6
+    #zone_map style=("width: 100%; height: 250px;")
+  .col-md-6
+    = line_chart @zone.access_points.map { |ap| { name: ap.ssid, data: ap.issues.group(:created_at).count } }
 .row
-  .col-md-12
+  .col-md-6
     .panel.panel-default.panel-issue-tracker.shadow
       .panel-heading
         .pull-left
@@ -46,3 +38,90 @@
                     .label.label-default.rounded
                       span Usuarios:
                       = ap.user
+  .col-md-6
+    .panel.panel-default.panel-issue-tracker.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title Datos
+        .clearfix
+      .panel-body
+        .table-responsive
+          table.table.table-issue-tracker.table-middle
+            tbody
+              - @zone.access_points.each do |ap|
+                tr
+                  td
+                    span.label.label-danger.rounded
+                  td
+                    = link_to ap.ip_address, ap
+                    p.no-margin
+                      | Direccion IP
+                  td
+                    = link_to ap.mac_address, ap
+                    p.no-margin
+                      | Mac Address
+                  td
+                    .label.label-danger.rounded
+                      | Errores:
+                      = ap.issues.count
+                  td
+                    .label.label-success.rounded
+                      | Reportes:
+                      = ap.datums.count
+                  td
+                    .label.label-default.rounded
+                      span Usuarios:
+                      = ap.user
+javascript:
+  var map = new GMaps({
+    el: '#zone_map',
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
+    zoom: 18
+  });
+
+
+  function markArea(){
+    map.removePolygons();
+    map.drawPolygon({
+      paths: #{ @zone.coordinates.map { |c| [c.latitude.to_f, c.longitude.to_f] } || [] },
+      strokeColor: 'red'
+    });
+  }
+
+  function markAp(){
+    $.ajax({
+      type: "POST",
+      url:  "#{api_data_access_points_path}",
+      success: function(data, textStatus, jqXHR){
+        $.each(data,function(index, value){
+          map.addMarker({
+              lat: value.latitude,
+              lng: value.longitude,
+              icon: "#{ asset_path('router-logo.png') }",
+              infoWindow: {
+                content:  '<p>ssid: '+ value.ssid +'</p>' +
+                          '<p>Ip: '+ value.ip +'</p>' +
+                          '<p>Mac: '+ value.mac +'</p>' +
+                          '<p>Lat: '+ value.latitude +'</p>' +
+                          '<p>Lng: '+ value.longitude +'</p>'
+              }
+          });
+          map.drawCircle({
+            lat: value.latitude,
+            lng: value.longitude,
+            radius: 12
+          })
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        console.log("no guardo");
+      }
+    });
+
+  }
+
+  $(document).ready(function(){
+    markArea()
+    markAp()
+  })

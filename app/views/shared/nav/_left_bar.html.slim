@@ -13,12 +13,16 @@ aside#sidebar-left.sidebar-circle
           span.icon
             i.fa.fa-bell
           span.text Alertas
-      li
-        = link_to  zone_view_path do
+      li.submenu
+        a href="javascript:void(0);"
           span.icon
-            i.fa.fa-sitemap
-          span.text Áreas
-
+            i.fa.fa-cog
+          span.text Areas
+          span.arrow
+        ul
+          -Zone.all.each do |z|
+            li
+              = link_to  z.name, z
       li
         = link_to  users_map_path do
           span.icon
@@ -36,7 +40,7 @@ aside#sidebar-left.sidebar-circle
           li
             = link_to  "Conf. Geográfica", general_settings_form_path
           li.submenu.active
-            a href="javascript:void(0);" 
+            a href="javascript:void(0);"
               span.icon
                 i.fa.fa-user
               span.text Usuarios
@@ -44,12 +48,12 @@ aside#sidebar-left.sidebar-circle
               span.selected
             ul
               li.submenu
-                ul style=("display: block;") 
+                ul style=("display: block;")
                   li
-                    = link_to "Usuarios Administrativos", administradores_path 
+                    = link_to "Usuarios Administrativos", administradores_path
                   li
                     = link_to "Estudiantes", users_path
-             
+
           li
             = link_to  "Roles de usuario", Role
           li
@@ -58,10 +62,3 @@ aside#sidebar-left.sidebar-circle
             = link_to  "Área", Zone
           li
             = link_to  "Alerta", alert_setting_path
-      
-        /   span.arrow
-        / ul
-        /   - Zone.all.each do |zone|
-        /     li
-        /       = link_to  zone.name, zone
-      

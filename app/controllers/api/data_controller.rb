@@ -56,7 +56,6 @@ class Api::DataController < ApplicationController
     ap_list = []
     AccessPoint.all.each do |ap|
       {}.tap do |list|
-        list[:zone] = ap.zone.name
         list[:ssid] = ap.ssid
         list[:ip] = ap.ip_address
         list[:mac] = ap.mac_address
@@ -66,6 +65,30 @@ class Api::DataController < ApplicationController
       end
     end
     render json: ap_list.to_json
+  end
+
+  def last_connected_users
+    list = []
+    Coordinate.where('locatable_type = ? AND created_at < ?','Mobile', 2.minute.ago).uniq { |c| c.locatable_id }.each do |u|
+      {}.tap do |user|
+        mobile = Mobile.find(u.locatable_id)
+        datos = mobile.datums.last(5)
+        binding.pry
+        
+        user[:ssid] = 
+        user[:ip] = u.ip_address
+        user[:mac] = mobile..mac_address
+        user[:latitude] = u.latitude
+        user[:longitude] = u.longitude
+        user[:ping]
+        user[:latency]
+        user[:jitter]
+        user[:link_speed]
+        user[:sign_level]
+        list << user
+      end
+    end
+    render json: list.to_json
   end
 
   private

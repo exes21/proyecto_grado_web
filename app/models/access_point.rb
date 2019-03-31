@@ -15,6 +15,9 @@ class AccessPoint < ApplicationRecord
   validates_uniqueness_of :mac_address
 
   delegate :latitude, :longitude, to: :coordinate
+  delegate :name, to: :zone, prefix: true
+
+  default_scope { where.not(zone_id: nil) }
 
   def users_count
     datums.all.uniq { |p| p.user }.count

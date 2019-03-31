@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = "NUevo Usuario"
+    @title = "Nuevo Usuario"
     @icon = "users"
   end
 
