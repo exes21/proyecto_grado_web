@@ -69,25 +69,28 @@ class Api::DataController < ApplicationController
 
   def last_connected_users
     list = []
-    Coordinate.where('locatable_type = ? AND created_at < ?','Mobile', 2.minute.ago).uniq { |c| c.locatable_id }.each do |u|
+
+    Coordinate.where('locatable_type = ? AND created_at > ?','Mobile', 30.seconds.ago).uniq { |c| c.locatable_id }.each do |u|
       {}.tap do |user|
         mobile = Mobile.find(u.locatable_id)
         datos = mobile.datums.last(5)
-        binding.pry
-        
-        user[:ssid] = 
-        user[:ip] = u.ip_address
-        user[:mac] = mobile..mac_address
+
+        user[:ssid] = datos.first.access_point.ssid
+        user[:ip] = datos.first.access_point.ip_address
+        user[:mac] = mobile.mac_address
         user[:latitude] = u.latitude
         user[:longitude] = u.longitude
-        user[:ping]
-        user[:latency]
-        user[:jitter]
-        user[:link_speed]
-        user[:sign_level]
+        ping = datos.select { |d| d.type == 'Ping' }.first
+        user[:ping] = ping.try(:status)
+        user[:rtt] = ping.try(:rtt)
+        user[:latency] = datos.select { |d| d.type == 'Latency' }.first.value
+        user[:jitter] = datos.select { |d| d.type == 'Jitter' }.first.value
+        user[:link_speed] = datos.select { |d| d.type == 'LinkSpeed' }.first.value
+        user[:sign_level] = datos.select { |d| d.type == 'SignLevel' }.first.value
         list << user
       end
     end
+
     render json: list.to_json
   end
 
@@ -102,8 +105,12 @@ class Api::DataController < ApplicationController
 
   def data_params
     {
-      ping: params["xPing"],
-      latency: params["latency"],
+      ping: {
+        status: params['status'],
+        rtt: params['RTT'],
+        address: params['address']
+      }.to_json,
+      latency: params["lantency"],
       jitter: params["jitter"],
       link_speed: params["LinkSpeed"],
       sign_level: params["SignLevel"]

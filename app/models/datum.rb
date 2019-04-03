@@ -5,6 +5,26 @@ class Datum < ApplicationRecord
 end
 
 class Ping < Datum
+
+  def percent
+    status = ActiveSupport::JSON.decode(value)['status']
+    completed = status.select { |s| s == 'Success' }.count
+    return (status.count / completed) * 100
+  end
+
+  def average
+    rtt = ActiveSupport::JSON.decode(value)['rtt']
+    rtt.inject(0.0) { |sum, el| sum + el } / rtt.size
+  end
+
+  def status
+    ActiveSupport::JSON.decode(value)['status'].uniq.first
+  end
+
+  def rtt
+    ActiveSupport::JSON.decode(value)['rtt']
+  end
+
   after_save do
     unless [access_point.settings.min_ping..access_point.settings.max_ping].include?(value)
       issues.create(

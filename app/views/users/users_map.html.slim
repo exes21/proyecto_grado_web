@@ -6,30 +6,32 @@
 javascript:
   var map = new GMaps({
     el: '#zones',
-    lat:  #{Setting.center[0]},
-    lng:  #{Setting.center[1]},
+    lat:  #{ Setting.center[0] },
+    lng:  #{ Setting.center[1] }
   });
 
   $(document).ready(function (){
-    var start = new Date;
-    var current = 0
     setInterval(function() {
       $.ajax({
-        type: "POST",
-        url:  "#{api_data_access_points_path}",
+        type: "GET",
+        url:  "#{api_data_last_connected_users_path}",
         success: function(data, textStatus, jqXHR){
           console.log(data);
+          map.removeMarkers()
           $.each(data,function(index, value){
-            debugger
             map.addMarker({
                 lat: value.latitude,
                 lng: value.longitude,
                 infoWindow: {
-                  content:  '<p>Lng:'+ value.ssid +'</p>' +
-                            '<p>Lng:'+ value.ip +'</p>' +
-                            '<p>Lng:'+ value.mac +'</p>' +
-                            '<p>Lng:'+ value.latitude +'</p>' +
-                            '<p>Lng:'+ value.longitude +'</p>'
+                  content:  '<p>ssid: '+ value.ssid +'</p>' +
+                            '<p>Ip: '+ value.ip +'</p>' +
+                            '<p>Mac: '+ value.mac +'</p>' +
+                            '<p>Link Speed: '+ value.link_speed +'</p>' +
+                            '<p>Sign level: '+ value.sign_level +'</p>' +
+                            '<p>ping: '+ value.ping +'</p>' +
+                            '<p>RTT: '+ value.rtt +'</p>' +
+                            '<p>Lat: '+ value.latitude +'</p>' +
+                            '<p>Lng: '+ value.longitude +'</p>'
                 }
               });
           });
@@ -38,5 +40,5 @@ javascript:
           console.log("no guardo");
         }
       })
-    }, 30000);
+    }, 10000);
   })
