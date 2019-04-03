@@ -1,9 +1,9 @@
 # Change these
 server "157.230.230.88", port: 22, roles: [:web, :app, :db], primary: true
 
-set :repo_url,        'git@github.com:exes21/proyecto_grado_web.git'
+set :repo_url,        'https://github.com/exes21/proyecto_grado_web.git'
 set :application,     'IARW'
-set :user,            'root'
+set :user,            'deployer'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
@@ -23,7 +23,6 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-# config/deploy.rb
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.5.3'
 

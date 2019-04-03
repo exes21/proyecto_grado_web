@@ -40,7 +40,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'erd' # Permite generar un diagrama de la base de datos
 
- 
   gem 'capistrano',         require: false
   gem 'capistrano-rbenv', '~> 2.1',     require: false
   gem 'capistrano-rails',   require: false
@@ -48,4 +47,3 @@ group :development do
   gem 'capistrano3-puma',   require: false
 
 end
-
