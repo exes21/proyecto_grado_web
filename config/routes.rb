@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     post 'data/zones'
     get 'data/zone'
     post "data/zone_save_limits"
+    get 'data/last_connected_users'
   end
 
   get 'dashboard/home'
