@@ -24,7 +24,7 @@ module JpirWeb
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.assets.precompile += %w( dashboard.js general_settings )
-    config.secret_key = 'b73239cf32bdd6a4926a56df89adb779bd727b6131bda4d011252f7e4eb038e9f0968624dd4d3616eab86fe64c3cbb69196396194e29f6d9a816063ade573557'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
