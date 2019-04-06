@@ -76,6 +76,17 @@ class AccessPointsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_access_point
       @access_point = AccessPoint.find(params[:id])
+
+      @min_jitter = @access_point.settings.min_jitter
+      @max_jitter = @access_point.settings.max_jitter
+      @min_ping = @access_point.settings.min_ping
+      @max_ping = @access_point.settings.max_ping
+      @min_latency = @access_point.settings.min_latency
+      @max_latency = @access_point.settings.max_latency
+      @min_link_speed = @access_point.settings.min_link_speed
+      @max_link_speed = @access_point.settings.max_link_speed
+      @min_sign_level = @access_point.settings.min_sign_level
+      @max_sign_level = @access_point.settings.max_sign_level
     end
 
     def update_settings

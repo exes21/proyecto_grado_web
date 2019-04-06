@@ -29,32 +29,32 @@
         .col-sm-2
           | Jitter
         .col-sm-8
-          = number_field_tag :min_jitter,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_jitter,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+          = number_field_tag :min_jitter,@min_jitter, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+          = number_field_tag :max_jitter,@max_jitter, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
       .input-group.mb-15
         .col-sm-2
           | Ping
         .col-sm-8
-          = number_field_tag :min_ping,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_ping,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+          = number_field_tag :min_ping,@min_ping, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+          = number_field_tag :max_ping,@max_ping, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
       .input-group.mb-15
         .col-sm-2
           | Latencia
         .col-sm-8
-          = number_field_tag :min_latency,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_latency,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+          = number_field_tag :min_latency,@min_latency, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+          = number_field_tag :max_latency,@max_latency, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
       .input-group.mb-15
         .col-sm-2
           | Velocidad de enlace
         .col-sm-8
-          = number_field_tag :min_link_speed,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_link_speed,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+          = number_field_tag :min_link_speed,@min_link_speed, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+          = number_field_tag :max_link_speed,@max_link_speed, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
       .input-group.mb-15
         .col-sm-2
           | Nivel de senal
         .col-sm-8
-          = number_field_tag :min_sign_level,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_sign_level,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+          = number_field_tag :min_sign_level,@min_sign_level, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+          = number_field_tag :max_sign_level,@max_sign_level, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
 
       .form-group
         .pull-right

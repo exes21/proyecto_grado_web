@@ -2,46 +2,46 @@
   .col-md-12
     .panel.panel-default.panel-issue-tracker.shadow
       .panel-body
-        = form_for(:setting, html: {class: "form-horizontal form-bordered"}) do |f|
+        = form_for(:save_setting, html: {class: "form-horizontal form-bordered"}) do |f|
           .col-sm-6
             .input-group.mb-15
-              .col-sm-2
+              .col-sm-3
                 | Jitter
-              .col-sm-8
-                = number_field_tag :min_jitter,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_jitter,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+              .col-sm-7
+                = number_field_tag :min_jitter,@min_jitter, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+                = number_field_tag :max_jitter,@max_jitter, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
             .input-group.mb-15
-              .col-sm-2
+              .col-sm-3
                 | Ping
-              .col-sm-8
-                = number_field_tag :min_ping,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_ping,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+              .col-sm-7
+                = number_field_tag :min_ping, @min_ping, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+                = number_field_tag :max_ping, @max_ping, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
             .input-group.mb-15
-              .col-sm-2
+              .col-sm-3
                 | Latencia
-              .col-sm-8
-                = number_field_tag :min_latency,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_latency,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+              .col-sm-7
+                = number_field_tag :min_latency, @min_latency, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+                = number_field_tag :max_latency, @max_latency, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
             .input-group.mb-15
-              .col-sm-2
-                | Velocidad de enlace
-              .col-sm-8
-                = number_field_tag :min_link_speed,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_link_speed,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+              .col-sm-3
+                | Velocidad de enlace (mb/s)
+              .col-sm-7
+                = number_field_tag :min_link_speed, @min_link_speed, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+                = number_field_tag :max_link_speed, @max_link_speed, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
             .input-group.mb-15
-              .col-sm-2
+              .col-sm-3
                 | Nivel de senal
-              .col-sm-8
-                = number_field_tag :min_sign_level,nil, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_sign_level,nil, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+              .col-sm-7
+                = number_field_tag :min_sign_level, @min_sign_level, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
+                = number_field_tag :max_sign_level, @max_sign_level, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
           .col-sm-6
             .ckbox.ckbox-theme
-              input#checkbox-unchecked2 type="checkbox"
-              label for="checkbox-unchecked2"  Aplicar valores a todas las zonas
+              input#select-all type="checkbox"
+              label for="select-all"  Aplicar valores a todas las zonas
             .form-group
               = fields_for :zones do |p|
                 = p.select :zones_id,
-                            options_for_select(Zone.all.map { |p| ["#{p.name} ", p.id] }),
+                            options_for_select(AccessPoint.all.map { |p| ["#{p.ip_address} ", p.id] }),
                             {},
                             {multiple: true, class: "col-sm-12 form-control", style: "height: 20vw"}
           .col-md-3.col-md-offset-4
@@ -49,3 +49,17 @@
               .pull-right
                 = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
                 = f.submit "Guardar", class: "btn btn-success mr-5"
+javascript:
+  $('#select-all').click(function(){
+    var opt = $('#zones_zones_id option')
+    if ($(this).is(':checked')) {
+      $.each(opt, function(index, value){
+        $(value).prop('selected','selected')
+      })
+    }
+    else{
+      $.each(opt, function(index, value){
+        $(value).removeAttr('selected')
+      })
+    }
+  })

@@ -1,7 +1,15 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
-  foo: "Foo"
-  bar: 123
+  min_jitter: 0
+  max_jitter: 140
+  min_ping: 300
+  max_ping: 800
+  min_latency: 30
+  max_latency: 70
+  min_link_speed: 50
+  max_link_speed: 5000
+  min_sign_level: -70
+  max_sign_level: -95
 
 development:
   <<: *defaults

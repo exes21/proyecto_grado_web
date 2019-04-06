@@ -1,14 +1,10 @@
 require 'sendgrid-ruby'
-
-class Notification < ApplicationRecord
-  belongs_to :notificable, polymorphic: true
-  belongs_to :user
-
+class NotificationMailer < ApplicationMailer
   include SendGrid
-
-  def mail
-    from = Email.new(email: 'exes.itt@gmail.com')
-    to = Email.new(email: user.email)
+  default from: "exes.itt@gmail.com"
+  def notify(user)
+    from = Email.new(email: 'robert.marcelino@itsolutions.com.do')
+    to = Email.new(email: 'robert.marcelino@outlook.com')
     subject = 'Sending with SendGrid is Fun'
     content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
     mail = Mail.new(from, subject, to, content)
@@ -19,6 +15,4 @@ class Notification < ApplicationRecord
     puts response.body
     puts response.headers
   end
-
-
 end

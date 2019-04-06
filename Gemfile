@@ -25,7 +25,9 @@ gem "chartkick"
 gem 'will_paginate', '~> 3.1.0'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem "roo", "~> 2.7.0"
-
+gem 'httparty'
+gem 'sendgrid-ruby'
+gem 'unifi-api'
 # Gemas solo para usar en la maquina local
 group :development, :test do
   gem 'pry-rails' # Debug permite hacer paradas en el codigo y correr lineas de comando
