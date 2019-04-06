@@ -35,7 +35,7 @@ class Api::DataController < ApplicationController
 
       render json: zone.coordinates.map { |c| [c.latitude, c.longitude] }.to_json, status: :ok
     else
-      render json: {status: 'error', code: '500'}
+      render json: {status: 'error'}, status: 404
     end
   end
 
@@ -119,6 +119,11 @@ class Api::DataController < ApplicationController
 
   def set_user
     @user = User.find_by(email: params["mail"])
+    if @user.present? && @user.valid_password?(params['pass'])
+      ApConnect.new.autorize(params["MacAddress"])
+    else
+      render json: { message: 'Usuario invalido' }, status: 403
+    end
   end
 
   def set_mobile
@@ -132,5 +137,9 @@ class Api::DataController < ApplicationController
                               ssid: JSON.parse(params["ssid"]),
                               ip_address: params["DefaultGate"].split('.').reverse.join('.')
                             )
+
+    unless @ap.present?
+      render json: { message: 'Usuario invalido' }, status: 404
+    end
   end
 end

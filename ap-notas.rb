@@ -36,11 +36,11 @@ HTTParty.get(
 #Paso 2 real - Autorizar dispositivo
 #endpoint - /api/s/default/cmd/stamgr
 #body:{
-#cmd:"authorize-guest" 
+#cmd:"authorize-guest"
 #mac: string
 #}
 
-Mac = 'b8:d7:af:1c:93:55' 
+Mac = 'b8:d7:af:1c:93:55'
 body_auth = {
   cmd:"authorize-guest" ,
   mac: Mac
