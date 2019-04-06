@@ -1,7 +1,7 @@
 class Datum < ApplicationRecord
   belongs_to :mobile
   belongs_to :access_point
-  has_many :issues, as: :reportable
+  has_one :issues_report
 end
 
 class Ping < Datum
@@ -26,12 +26,10 @@ class Ping < Datum
   end
 
   after_save do
+    binding.pry
     unless [access_point.settings.min_ping..access_point.settings.max_ping].include?(value)
-      issues.create(
-        description: 'El ping esta fuera de los parametros',
-        since: Time.now,
-        access_point: access_point,
-      )
+      issue = Issue.find_or_create_by(access_point: access_point, status: :inactivo)
+      issue.issues_report.find_or_create_by(data_id: id)
     end
   end
 end

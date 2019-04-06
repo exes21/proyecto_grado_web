@@ -130,7 +130,7 @@ class Api::DataController < ApplicationController
   def set_access_point
     @ap = AccessPoint.find_by(
                               ssid: JSON.parse(params["ssid"]),
-                              ip_address: (params["DefaultGate"].reverse)
+                              ip_address: params["DefaultGate"].split('.').reverse.join('.')
                             )
   end
 end

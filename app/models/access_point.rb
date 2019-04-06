@@ -36,15 +36,15 @@ class AccessPoint < ApplicationRecord
   private
 
   def default_values
-    settings.min_jitter = Settings.min_jitter
-    settings.max_jitter = Settings.max_jitter
-    settings.min_ping = Settings.min_ping
-    settings.max_ping = Settings.max_ping
-    settings.min_latency = Settings.min_latency
-    settings.max_latency = Settings.max_latency
-    settings.min_link_speed = Settings.min_link_speed
-    settings.max_link_speed = Settings.max_link_speed
-    settings.min_sign_level = Settings.min_sign_level
-    settings.max_sign_level = Settings.max_sign_level
+    settings.min_jitter = Setting.min_jitter
+    settings.max_jitter = Setting.max_jitter
+    settings.min_ping = Setting.min_ping
+    settings.max_ping = Setting.max_ping
+    settings.min_latency = Setting.min_latency
+    settings.max_latency = Setting.max_latency
+    settings.min_link_speed = Setting.min_link_speed
+    settings.max_link_speed = Setting.max_link_speed
+    settings.min_sign_level = Setting.min_sign_level
+    settings.max_sign_level = Setting.max_sign_level
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_145416) do
+ActiveRecord::Schema.define(version: 2019_04_06_151550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.string "reportable_type"
-    t.bigint "reportable_id"
     t.datetime "since"
     t.datetime "until"
     t.integer "status"
@@ -62,8 +60,16 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["access_point_id"], name: "index_issues_on_access_point_id"
-    t.index ["reportable_type", "reportable_id"], name: "index_issues_on_reportable_type_and_reportable_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
+  end
+
+  create_table "issues_reports", force: :cascade do |t|
+    t.bigint "issue_id"
+    t.bigint "data_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_id"], name: "index_issues_reports_on_data_id"
+    t.index ["issue_id"], name: "index_issues_reports_on_issue_id"
   end
 
   create_table "location_devices", force: :cascade do |t|
@@ -176,6 +182,8 @@ ActiveRecord::Schema.define(version: 2019_03_16_145416) do
   add_foreign_key "data", "mobiles"
   add_foreign_key "issues", "access_points"
   add_foreign_key "issues", "users"
+  add_foreign_key "issues_reports", "data", column: "data_id"
+  add_foreign_key "issues_reports", "issues"
   add_foreign_key "location_devices", "access_points"
   add_foreign_key "location_devices", "coordinates"
   add_foreign_key "notifications", "users"
