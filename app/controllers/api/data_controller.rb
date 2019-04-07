@@ -134,10 +134,9 @@ class Api::DataController < ApplicationController
 
   def set_access_point
     @ap = AccessPoint.find_by(
-                              ssid: JSON.parse(params["ssid"]),
-                              ip_address: params["DefaultGate"].split('.').reverse.join('.')
-                            )
-
+      mac_address: params['MacDelRouter']
+    )
+    #ip_address: params["DefaultGate"].split('.').reverse.join('.')
     unless @ap.present?
       render json: { message: 'Usuario invalido' }, status: 404
     end

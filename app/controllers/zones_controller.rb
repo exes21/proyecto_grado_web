@@ -13,6 +13,7 @@ class ZonesController < ApplicationController
   # GET /zones/1.json
   def show
     @title = "Mostrar Áreas"
+    @datos = Datum.where(access_point_id: @zone.access_points.pluck(:id))
   end
 
   # GET /zones/new

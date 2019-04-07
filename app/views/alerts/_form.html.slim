@@ -34,6 +34,11 @@
               .col-sm-7
                 = number_field_tag :min_sign_level, @min_sign_level, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
                 = number_field_tag :max_sign_level, @max_sign_level, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
+            .input-group.mb-15
+              .col-sm-3
+                | Tolerancia
+              .col-sm-7
+                = number_field_tag :tolerancia, @tolerancia, class: 'form-control no-border-right', placeholder: 'Grado de tolerancia'
           .col-sm-6
             .ckbox.ckbox-theme
               input#select-all type="checkbox"

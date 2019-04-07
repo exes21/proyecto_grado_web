@@ -28,6 +28,8 @@ gem "roo", "~> 2.7.0"
 gem 'httparty'
 gem 'sendgrid-ruby'
 gem 'unifi-api'
+gem 'acts_as_commentable'
+
 # Gemas solo para usar en la maquina local
 group :development, :test do
   gem 'pry-rails' # Debug permite hacer paradas en el codigo y correr lineas de comando

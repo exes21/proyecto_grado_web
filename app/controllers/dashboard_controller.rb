@@ -5,5 +5,7 @@ class DashboardController < ApplicationController
     @mobile_points = Coordinate.where(locatable_type: "Mobile")
     @title = "Bienvenido"
     @icon = "home"
+
+    @datos = Issue.where(status: 'activo').last(10)
   end
 end

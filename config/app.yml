@@ -10,7 +10,7 @@ defaults: &defaults
   max_link_speed: 5000
   min_sign_level: -70
   max_sign_level: -95
-
+  tolerancia: 10
 development:
   <<: *defaults
 

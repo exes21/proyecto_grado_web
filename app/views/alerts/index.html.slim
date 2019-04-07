@@ -1,21 +1,48 @@
+
+.row
+  .panel
+    .panel-heading Buscar
+    .panel-body
+      = search_form_for @q, url: alerts_path do |f|
+        .col-md-5
+          = f.select :access_point_id_eq, options_from_collection_for_select(AccessPoint.all, 'id', 'mac_address'), class: 'form-control'
+          = f.select :status_eq, Issue.statuses.map { |k,v| [k,v]}, class: 'form-control'
+          = f.date_field :created_at_cont
+        .col-md-5
+          = f.submit 'Buscar', class: 'btn btn-default'
+
 .row
   .col-md-12
-    .table-responsive.rounded.mb-20
-      table#tour-16.table.table-striped.table-theme
+    .table-responsive.mb-20
+      table.table
+        tfoot
+          = will_paginate(@alerts)
         thead
           tr
             th.text-center.border-right No.
-            th Nombre
-            th Descripción
-            th Equipo
-            th Fecha
+            th.text-center Equipo
+            th.text-center SSID
+            th.text-center Ip del Equipo
+            th.text-center Errores
+            th.text-center Fecha
             th.text-center Estado
+            th.text-center Acciones
         tbody
           -@alerts.each do |alert|
-            td
-              tr = alert.reportable_type
-              tr = alert.description
-              tr = alert.access_point.ip_address
-              tr = alert.created_at
-        .panel-footer
-            = will_paginate(@alerts)
+            tr class="#{status_color(alert.status)}"
+              td.text-center
+                = link_to alert_path(alert) do
+                  = alert.id
+              td.text-center
+                = link_to alert.access_point do
+                  = alert.access_point.mac_address
+              td.text-center
+                = link_to alert.access_point do
+                  = alert.access_point.ssid
+              td.text-center
+                = link_to alert.access_point do
+                  = alert.access_point.ip_address
+              td.text-center = alert.issues_reports.count
+              td.text-center = alert.created_at.strftime("%m/%d/%Y a las %I:%M%p")
+              td.text-center = alert.status.capitalize
+              td

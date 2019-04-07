@@ -4,43 +4,14 @@
       .panel-body
         #zones style=("width: 100%; height: 400px;")
   .col-md-2
-    .recent-activity
-      .recent-activity-item.recent-activity-success
-        .recent-activity-badge
-          span.recent-activity-badge-userpic
-        .recent-activity-body
-          .recent-activity-body-head
-            .recent-activity-body-head-caption
-              h3.recent-activity-body-title Zonas
-          .recent-activity-body-content
-            p
-              a href="#"  Grace Hudson
-              | ordered 2 items ($34.45)
-              span.text-block.text-muted on 02/12/15
-      .recent-activity-item.recent-activity-default
-        .recent-activity-badge
-          span.recent-activity-badge-userpic
-        .recent-activity-body
-          .recent-activity-body-head
-            .recent-activity-body-head-caption
-              h3.recent-activity-body-title Usuarios activos
-          .recent-activity-body-content
-            p
-              a href="#"  Grace Hudson
-              | ordered 2 items ($34.45)
-              span.text-block.text-muted on 02/12/15
-      .recent-activity-item.recent-activity-default.recent-activity-last
-        .recent-activity-badge
-          span.recent-activity-badge-userpic
-        .recent-activity-body
-          .recent-activity-body-head
-            .recent-activity-body-head-caption
-              h3.recent-activity-body-title Equipos
-          .recent-activity-body-content
-            p
-              a href="#"  Kelly Newman
-              | ordered 4 items ($234.45)
-              span.text-block.text-muted on 02/17/15
+    .panel.panel-success.shadow
+      .panel-heading
+        h3.panel-title Errores
+      .panel-body.no-padding
+        ul.list-group.no-margin
+          - @datos.each do |dato|
+            li.list-group-item
+              = dato.access_point.ssid
 
 javascript:
   var map = new GMaps({

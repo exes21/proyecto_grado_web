@@ -4,9 +4,11 @@ class AlertsController < ApplicationController
   # GET /alert
   # GET /alert.json
   def index
-    @alerts = Issue.all.paginate(page: params[:page], per_page: 10)
     @title = "Lista de Alarmas"
     @icon = "bell"
+
+    @q = Issue.ransack(params[:q])
+    @alerts = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /alert/1
@@ -30,6 +32,7 @@ class AlertsController < ApplicationController
     Setting.max_link_speed = params["max_link_speed"]
     Setting.min_sign_level = params["min_sign_level"]
     Setting.max_sign_level = params["max_sign_level"]
+    Setting.tolerancia = params["tolerancia"]
 
     update_access_point_settings
 
@@ -68,5 +71,6 @@ class AlertsController < ApplicationController
     @max_link_speed = Setting.max_link_speed
     @min_sign_level = Setting.min_sign_level
     @max_sign_level = Setting.max_sign_level
+    @tolerancia = Setting.tolerancia
   end
 end
