@@ -21,6 +21,7 @@ class AccessPointsController < ApplicationController
   def new
     @access_point = AccessPoint.new
     @access_point.build_coordinate
+    @access_point.channels.new
     @title = "Nuevo Equipo"
     @icon = "wifi"
   end
@@ -35,6 +36,7 @@ class AccessPointsController < ApplicationController
   # POST /access_points.json
   def create
     @access_point = AccessPoint.new(access_point_params)
+    @access_point.channels.new(bssid: @access_point.mac_address)
     respond_to do |format|
       if @access_point.save
         update_settings
@@ -87,6 +89,7 @@ class AccessPointsController < ApplicationController
       @max_link_speed = @access_point.settings.max_link_speed
       @min_sign_level = @access_point.settings.min_sign_level
       @max_sign_level = @access_point.settings.max_sign_level
+      @distance = @access_point.settings.distance
     end
 
     def update_settings
@@ -100,6 +103,7 @@ class AccessPointsController < ApplicationController
       @access_point.settings.max_link_speed = params[:max_link_speed]
       @access_point.settings.min_sign_level = params[:min_sign_level]
       @access_point.settings.max_sign_level = params[:max_sign_level]
+      @access_point.settings.distance = params[:distance]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -115,6 +119,9 @@ class AccessPointsController < ApplicationController
                                               :latitude,
                                               :longitude,
                                               :locatable_id
+                                            ],
+                                            channels_attributes: [
+                                              :bssid
                                             ]
       )
     end

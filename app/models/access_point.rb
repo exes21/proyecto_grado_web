@@ -4,12 +4,15 @@ class AccessPoint < ApplicationRecord
   belongs_to :zone
   has_many :issues
   has_many :datums
+  has_many :channels, class_name: "ApChannel"
+  accepts_nested_attributes_for :channels, allow_destroy: true
   accepts_nested_attributes_for :coordinate
 
   validates_presence_of :zone, message: "can't be blank"
   validates_presence_of :ip_address, message: "can't be blank"
   validates_presence_of :mac_address, message: "can't be blank"
   validates_presence_of :coordinate
+  validates_presence_of :channels
 
   delegate :latitude, :longitude, to: :coordinate
   delegate :name, to: :zone, prefix: true
@@ -43,5 +46,6 @@ class AccessPoint < ApplicationRecord
     settings.max_link_speed = Setting.max_link_speed
     settings.min_sign_level = Setting.min_sign_level
     settings.max_sign_level = Setting.max_sign_level
+    settings.distance = Setting.distance
   end
 end

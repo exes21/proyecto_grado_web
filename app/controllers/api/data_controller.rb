@@ -120,7 +120,11 @@ class Api::DataController < ApplicationController
   def set_user
     @user = User.find_by(email: params["mail"])
     if @user.present? && @user.valid_password?(params['pass'])
-      ApConnect.new.autorize(params["MacAddress"])
+      begin
+        ApConnect.new.autorize(params["MacAddress"])
+      rescue => ex
+        logger.error ex.message
+      end
     else
       render json: { message: 'Usuario invalido' }, status: 403
     end
@@ -137,8 +141,9 @@ class Api::DataController < ApplicationController
       mac_address: params['MacDelRouter']
     )
     #ip_address: params["DefaultGate"].split('.').reverse.join('.')
+
     unless @ap.present?
-      render json: { message: 'Usuario invalido' }, status: 404
+      render json: { message: 'AP no encontrado' }, status: 404
     end
   end
 end

@@ -11,6 +11,7 @@ defaults: &defaults
   min_sign_level: -70
   max_sign_level: -95
   tolerancia: 10
+  distance: 90
 development:
   <<: *defaults
 

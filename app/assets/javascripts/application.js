@@ -18,3 +18,4 @@
 //= require Chart.bundle
 //= require chartkick
 //= require gmaps
+//= require jquery_nested_form

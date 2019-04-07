@@ -1,5 +1,5 @@
-.row
-  = form_for(@access_point, html: {class: "form-horizontal form-bordered"}) do |f|
+= nested_form_for(@access_point, html: {class: "form-horizontal form-bordered"}) do |f|
+  .row
     .col-sm-6
       .form-group
         = f.label :zone, class: "col-sm-2 control-label", style: "text-align: left"
@@ -17,14 +17,14 @@
         = f.label :mac_address, class: "col-sm-2 control-label", style: "text-align: left"
         .col-sm-8
           = f.text_field :mac_address, class: "form-control"
-      .form-group
-        = f.label :user, class: "col-sm-2 control-label", style: "text-align: left"
-        .col-sm-8
-          = f.text_field :user, class: "form-control"
-      .form-group
-        = f.label :password, class: "col-sm-2 control-label", style: "text-align: left"
-        .col-sm-8
-          = f.password_field :password, class: "form-control"
+
+    .col-sm-6
+      = f.fields_for :coordinate do |ff|
+        = ff.hidden_field :latitude, required: true
+        = ff.hidden_field :longitude, required: true
+      #router style=("width: 100%; height: 300px;")
+  .row
+    .col-sm-6
       .input-group.mb-15
         .col-sm-2
           | Jitter
@@ -55,17 +55,25 @@
         .col-sm-8
           = number_field_tag :min_sign_level,@min_sign_level, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
           = number_field_tag :max_sign_level,@max_sign_level, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-
+      .input-group.mb-15
+        .col-sm-4
+          | Distancia
+        .col-sm-8
+          = number_field_tag :distance, @distance, class: 'form-control', min: 0
+    .col-sm-6
+      = f.link_to_add "Agregar canal", :channels
+      = f.fields_for :channels do |channel|
+        .form-group
+          = channel.label :bssid, class: "col-sm-2 control-label", style: "text-align: left"
+          .col-sm-6
+            = channel.text_field :bssid, class: "form-control"
+          .col-sm-2
+            = channel.link_to_remove "quitar", class: 'btn btn-danger'
       .form-group
         .pull-right
           = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
           = f.submit "Guardar", class: "btn btn-success mr-5"
 
-    .col-sm-6
-      = f.fields_for :coordinate do |ff|
-        = ff.hidden_field :latitude, required: true
-        = ff.hidden_field :longitude, required: true
-      #router style=("width: 100%; height: 300px;")
 javascript:
   var limits = []
   var points = []

@@ -29,7 +29,7 @@ gem 'httparty'
 gem 'sendgrid-ruby'
 gem 'unifi-api'
 gem 'acts_as_commentable'
-
+gem "nested_form"
 # Gemas solo para usar en la maquina local
 group :development, :test do
   gem 'pry-rails' # Debug permite hacer paradas en el codigo y correr lineas de comando

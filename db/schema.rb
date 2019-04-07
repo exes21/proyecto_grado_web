@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_162528) do
+ActiveRecord::Schema.define(version: 2019_04_07_225850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 2019_04_07_162528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["zone_id"], name: "index_access_points_on_zone_id"
+  end
+
+  create_table "ap_channels", force: :cascade do |t|
+    t.bigint "access_point_id"
+    t.string "bssid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["access_point_id"], name: "index_ap_channels_on_access_point_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -192,6 +200,7 @@ ActiveRecord::Schema.define(version: 2019_04_07_162528) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "ap_channels", "access_points"
   add_foreign_key "data", "access_points"
   add_foreign_key "data", "mobiles"
   add_foreign_key "issues", "access_points"

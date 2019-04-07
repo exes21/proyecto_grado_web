@@ -154,19 +154,19 @@ zone = Zone.find_or_create_by(
 zone.coordinates.new(
     latitude: 19.44182246 ,
     longitude: -70.68333954
-)
+).save
 zone.coordinates.new(
     latitude: 19.44183258 ,
     longitude: -70.68274945
-)
+).save
 zone.coordinates.new(
     latitude: 19.44171117,
     longitude: -70.68273872
-)
+).save
 zone.coordinates.new(
     latitude: 19.44171117,
     longitude: -70.68333417
-)
+).save
 
 ap = AccessPoint.new(
     ip_address: "10.0.0.2",
@@ -190,19 +190,19 @@ zona= Zone.find_or_create_by(
 zona.coordinates.new(
     latitude: 19.44159988 ,
     longitude: -70.68367213
-)
+).save
 zona.coordinates.new(
     latitude: 19.44159482 ,
     longitude: -70.68314642
-)
+).save
 zona.coordinates.new(
     latitude: 19.44120532,
     longitude: -70.68311423
-)
+).save
 zona.coordinates.new(
     latitude: 19.44124073,
     longitude: -70.68365067
-)
+).save
 
 ap = AccessPoint.new(
     ip_address: "10.0.0.13",
@@ -226,19 +226,19 @@ zone= Zone.find_or_create_by(
 zone.coordinates.new(
     latitude: 19.4411345 ,
     longitude: -70.68308204
-)
+).save
 zone.coordinates.new(
     latitude: 19.4411092,
     longitude: -70.6824705
-)
+).save
 zone.coordinates.new(
     latitude: 19.44097262,
     longitude: -70.68247586
-)
+).save
 zone.coordinates.new(
     latitude: 19.4409878,
     longitude: -70.68311423
-)
+).save
 
 ap = AccessPoint.new(
     ip_address: "10.0.0.13",

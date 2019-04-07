@@ -13,9 +13,3 @@
 
       .panel-body.no-padding
         == render 'form'
-javascript:
-  map.addMarker({
-    lat: #{@access_point.coordinate.latitude},
-    lng: #{@access_point.coordinate.longitude},
-    icon: "#{ asset_path('router-logo.png') }"
-  });
