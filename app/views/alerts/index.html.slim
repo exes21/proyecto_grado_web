@@ -5,8 +5,8 @@
     .panel-body
       = search_form_for @q, url: alerts_path do |f|
         .col-md-5
-          = f.select :access_point_id_eq, options_from_collection_for_select(AccessPoint.all, 'id', 'mac_address'), class: 'form-control'
-          = f.select :status_eq, Issue.statuses.map { |k,v| [k,v]}, class: 'form-control'
+          = f.select :access_point_id_eq, options_from_collection_for_select(AccessPoint.all, 'id', 'mac_address'), include_blank: true, class: 'form-control'
+          = f.select :status_eq, Issue.statuses.map { |k,v| [k,v]}, include_blank: true, class: 'form-control'
           = f.date_field :created_at_cont
         .col-md-5
           = f.submit 'Buscar', class: 'btn btn-default'

@@ -14,6 +14,8 @@ class AlertsController < ApplicationController
   # GET /alert/1
   # GET /alert/1.json
   def show
+    @issue = Issue.find(params[:id])
+    @mobiles = @issue.issues_reports.map { |report| Datum.find(report.data_id).mobile }.uniq
   end
 
   def edit

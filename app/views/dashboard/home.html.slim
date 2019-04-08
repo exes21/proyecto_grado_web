@@ -11,13 +11,23 @@
         ul.list-group.no-margin
           - @datos.each do |dato|
             li.list-group-item
-              = dato.access_point.ssid
+              = link_to alert_path(dato)
+                = dato.access_point.ssid
 
 javascript:
   var map = new GMaps({
     el: '#zones',
     lat:  #{Setting.center[0]},
     lng:  #{Setting.center[1]},
+    disableDefaultUI: true,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      }
+    ],
   });
 
   $(document).ready(function (){

@@ -61,7 +61,16 @@ javascript:
     el: '#zone_map',
     lat:  #{Setting.center[0]},
     lng:  #{Setting.center[1]},
-    zoom: 18
+    zoom: 18,
+    disableDefaultUI: true,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      }
+    ],
   });
 
 

@@ -28,6 +28,15 @@ javascript:
     el: '#zones',
     lat:  #{Setting.center[0].to_f},
     lng:  #{Setting.center[1].to_f},
+    disableDefaultUI: true,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      }
+    ],
   });
 
   $.ajax({

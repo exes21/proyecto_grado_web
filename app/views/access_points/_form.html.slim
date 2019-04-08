@@ -134,6 +134,15 @@ javascript:
     el: '#router',
     lat:  #{Setting.center[0]},
     lng:  #{Setting.center[1]},
+    disableDefaultUI: true,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      }
+    ],
   });
 
   $(document).ready(function(){

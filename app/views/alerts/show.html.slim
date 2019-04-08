@@ -2,5 +2,69 @@
   .col-md-12
     .panel.panel-default.panel-issue-tracker.shadow
       .panel-heading
-        .pull-left
-          h3.panel-title Equipos
+        h3.panel-title
+          | Error:
+          = @issue.id
+      .panel-body
+        .row
+          .col-sm-4
+            .map#map style="width: 100%; heigth: 400px"
+          .col-sm-4
+            .panel.panel-scrollable style="overflow: hidden; outline: none;"
+              .panel-heading
+                .pull-left
+                  h3.panel-title
+                    i.fa.fa-user
+                    | Datos recibidos
+                .clearfix
+              .panel-body
+                ul.list-group.no-margin
+                  -@issue.issues_reports.map { |r| Datum.find(r.data_id) }.group_by { |dato| [dato.created_at.sec, dato.access_point_id ] }.each do |m, datos|
+                    li.list-group-item
+                      p = "Dispositivo: #{ Mobile.find(m[1]).mac_address }"
+                      p = "Recibido: #{ datos.first.created_at.strftime("%d/%m/%Y a las %I:%M%p") }"
+                      - datos.each do |dato|
+                        p = "#{dato.type}:#{dato.type != 'Ping' ? dato.value : dato.status }"
+
+          .col-sm-4
+            .panel
+              .panel-heading
+                .pull-left
+                  h3.panel-title
+                    i.fa.fa-user
+                    | Resumen
+                .clearfix
+              .panel-body
+                p = "Zona: #{@issue.access_point.zone.name}"
+                p = "Equipo: #{@issue.access_point.ssid}"
+                p = "Mac Address: #{@issue.access_point.mac_address}"
+                p = "Usuarios afectados: #{@mobiles.count} "
+                p = "Estado: #{@issue.status}"
+                p = "Resuelto en: #{@issue.solved_at}"
+
+javascript:
+  var map = new GMaps({
+    el: '#map',
+    lat:  #{Setting.center[0]},
+    lng:  #{Setting.center[1]},
+    disableDefaultUI: true,
+    zoom: 18,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      }
+    ]
+  });
+  var puntos = #{ @mobiles.map { |m| m.coordinates.map { |c| [c.latitude.to_f, c.longitude.to_f] } } || [] }
+
+  $(document).ready(function(){
+    $.each(puntos, function(index, value){
+      map.addMarker({
+                lat: value[0],
+                lng: value[1]
+            });
+    })
+  });
