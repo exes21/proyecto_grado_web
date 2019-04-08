@@ -42,20 +42,23 @@
     .panel.panel-default.panel-issue-tracker.shadow
       .panel-heading
         .pull-left
-          h3.panel-title Datos
+          h3.panel-title Promedio
         .clearfix
       .panel-body
         .table-responsive
           table.table.table-issue-tracker.table-middle
             tbody
-              - @datos.each do |dato|
+              - @datos.each do |type, datos|
                 tr
                   td
                     span.label.label-danger.rounded
                   td
-                    = link_to dato.type, dato
+                    = type
                   td
-                    = link_to dato.mac_address, dato
+                    = (datos.pluck(:value).reduce(:+).to_f / datos.pluck(:value).count ) unless type == "Ping"
+                    - if type == "Ping"
+                      - percent = datos.map { |d| d.percent }
+                      p = percent.reduce(:+).to_f / percent.size.to_f
 javascript:
   var map = new GMaps({
     el: '#zone_map',

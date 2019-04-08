@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   resources :zones
   get "zone/view", to: "zones#zone_view"
   resources :devices
-  resources :alerts
+  resources :alerts do
+    post 'cancelar'
+    post 'cerrar'
+  end
   get "alert/setting", to: "alerts#edit"
   post "alert/setting", to: "alerts#save_setting"
   resources :coordinates, only: :index

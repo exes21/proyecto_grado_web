@@ -41,6 +41,20 @@ class AlertsController < ApplicationController
     redirect_to alert_setting_path
   end
 
+  def cerrar
+    @issue = Issue.find(params[:alert_id])
+    @issue.update_attribute(:status, :resuelto)
+
+    redirect_to alerts_path
+  end
+
+  def cancelar
+    @issue = Issue.find(params[:alert_id])
+    @issue.update_attribute(:status, :cancelado)
+
+    redirect_to alerts_path
+  end
+
   private
 
   def update_access_point_settings

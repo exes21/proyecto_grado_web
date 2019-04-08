@@ -8,8 +8,8 @@
           = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
-        = search_form_for @q do |f| 
-          .col-md-5 
+        = search_form_for @q, url: administradores_path  do |f|
+          .col-md-5
             = f.search_field :name_cont, class: 'form-control', placeholder: 'Nombre Usuario'
           .col-md-5
             = f.submit 'Buscar', class: 'btn btn-default'
@@ -18,10 +18,8 @@
             - @users.each do |user|
               tr
                 td
-                  = link_to user do
-                    h3
-                      = user.name
-              
+                  h3
+                    = user.name
                 td
                   i.fa.fa-male.fg-success
                   = user.email

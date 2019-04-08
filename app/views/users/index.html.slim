@@ -3,17 +3,12 @@
     .panel-heading.no-padding.col-md-3
       ul.nav.nav-tabs.nav-pills
         li.active
-          a aria-expanded="false" data-toggle="tab" href="#tab2-2"
+          a aria-expanded="false" data-toggle="tab" href="#tab2-1"
             i.fa.fa-users
             div
               span.text-strong Usuarios de Red
         li
-          a aria-expanded="false" data-toggle="tab" href="#tab2-3"
-            i.fa.fa-user-times
-            div
-              span.text-strong Desactivar usuarios
-        li
-          a aria-expanded="false" data-toggle="tab" href="#tab2-4"
+          a aria-expanded="false" data-toggle="tab" href="#tab2-2"
             i.fa.fa-upload
             div
               span.text-strong Cargar usuarios
@@ -22,6 +17,4 @@
         #tab2-1.tab-pane.fade.inner-all.active.in
           = render  "usuario_red"
         #tab2-2.tab-pane.fade.inner-all
-          = render  "user_deactivate" 
-        #tab2-3.tab-pane.fade.inner-all
           = render  "user_load"

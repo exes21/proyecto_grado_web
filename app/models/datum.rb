@@ -15,7 +15,7 @@ class Ping < Datum
   def percent
     status = ActiveSupport::JSON.decode(value)['status']
     completed = status.select { |s| s == 'Success' }.count
-    return (status.count / completed) * 100
+    return (completed / status.count) * 100
   end
 
   def average
