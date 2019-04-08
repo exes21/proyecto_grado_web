@@ -1,25 +1,18 @@
-h1 Listing data
-
-table
+table.table.table-bordered
   thead
     tr
-      th Mobile
-      th Type
-      th Value
-      th
-      th
-      th
-
+      th Dispositivo
+      th Ping
+      th Jitter
+      th Latencia
+      th Nivel de senal
+      th Velocidad de enlace
   tbody
-    - @data.each do |datum|
+    - @income.each do |datos|
       tr
-        td = datum.mobile
-        td = datum.type
-        td = datum.value
-        td = link_to 'Show', datum
-        td = link_to 'Edit', edit_datum_path(datum)
-        td = link_to 'Destroy', datum, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Datum', new_datum_path
+        td = datos['mobile']
+        td = datos['Ping']
+        td = datos['Jitter']
+        td = datos['Latency']
+        td = datos['LinkSpeed']
+        td = datos['SignLevel']

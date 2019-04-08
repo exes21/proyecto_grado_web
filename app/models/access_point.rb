@@ -26,7 +26,7 @@ class AccessPoint < ApplicationRecord
   end
 
   def users_average
-    datums.where('created_at > ?',30.days.ago).uniq { |p| p.mobile }.count
+    datums.where('created_at > ?',30.days.ago).uniq { |p| p.mobile.user }.count
   end
 
   def issues_this_month
