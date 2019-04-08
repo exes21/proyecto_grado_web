@@ -15,9 +15,8 @@ li.dropdown.navbar-notification
             .media-object.pull-left
               i.fa.fa-share-alt.fg-info
             .media-body
-              span.media-text
-                strong Dolanan Remi :
-              span.media-meta 3 minutes
+              span.media-text = notification.id
+              span.media-meta = time_ago_in_words(notification.updated_at)
 
     .dropdown-footer
       a href="#"  Ver mas

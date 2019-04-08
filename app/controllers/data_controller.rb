@@ -5,21 +5,9 @@ class DataController < ApplicationController
   # GET /data
   # GET /data.json
   def index
-    @income =[]
-    {}.tap do |result|
-      Datum.last(50).group_by { |d| d.created_at.sec }.each do|t,datos|
-        result['mobile'] = datos.first.mobile.mac_address
-        datos.each do |dato|
-          result[dato.type] = dato.value unless dato.type == "Ping"
-          if dato.type == "Ping"
-            result[dato.type] = "#{dato.percent}%"
-            result['RTT'] = dato.rtt
-          end
-        end
-        @income << result
-      end
-    end
-    @income
+    @q = Datum.ransack(params[:q])
+    @q.sorts = "created_at desc"
+    @income = @q.result(distinct: true).paginate(page: params[:page], per_page: 50)
   end
 
   # GET /data/1

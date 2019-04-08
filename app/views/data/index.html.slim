@@ -1,18 +1,36 @@
-table.table.table-bordered
-  thead
-    tr
-      th Dispositivo
-      th Ping
-      th Jitter
-      th Latencia
-      th Nivel de senal
-      th Velocidad de enlace
-  tbody
-    - @income.each do |datos|
-      tr
-        td = datos['mobile']
-        td = datos['Ping']
-        td = datos['Jitter']
-        td = datos['Latency']
-        td = datos['LinkSpeed']
-        td = datos['SignLevel']
+
+.row
+  .panel
+    .panel-heading Buscar
+    .panel-body
+      = search_form_for @q, url: data_path do |f|
+        .col-md-5
+          = f.select :access_point_id, AccessPoint.all.map {|ap| [ap.mac_address, ap.id]}, include_blank: true, class: 'form-control'
+          = f.select :type_eq, ["Ping", "Jitter", "LinkSpeed", "SignLevel"], include_blank: true, class: 'form-control'
+          = f.date_field :created_at_cont
+        .col-md-5
+          = f.submit 'Buscar', class: 'btn btn-default'
+          = will_paginate(@income)
+
+.row
+  .col-md-12
+    table.table.table-bordered
+      thead
+        tr
+          th Id
+          th Equipo
+          th Mobile
+          th Dato
+          th Valor
+          th
+      tbody
+        - @income.each do |datos|
+          tr
+            td =  datos.id
+            td.text-center = datos.access_point.mac_address
+            td.text-center = datos.mobile.mac_address
+            td = datos.type
+            td
+              = datos.value unless datos.type == "Ping"
+              = datos.rtt unless datos.type != "Ping"
+            td = time_ago_in_words(datos.updated_at)
