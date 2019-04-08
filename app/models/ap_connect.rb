@@ -43,7 +43,7 @@ class ApConnect
   end
 
   def default_url
-    'https://10.0.0.3:8443'
+    'https://10.0.0.11:8443'
   end
 
   def auth_headers

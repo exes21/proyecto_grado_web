@@ -29,7 +29,11 @@
             td =  datos.id
             td.text-center = datos.access_point.mac_address
             td.text-center = datos.mobile.mac_address
-            td = datos.type
+            td 
+              -unless datos.type == "Ping"
+                = datos.type
+              -else
+                ="RTT"
             td
               = datos.value unless datos.type == "Ping"
               = datos.rtt unless datos.type != "Ping"
