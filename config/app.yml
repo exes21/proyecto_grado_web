@@ -12,6 +12,8 @@ defaults: &defaults
   max_sign_level: -95
   tolerancia: 10
   distance: 90
+  portal_url: localhost
+  portal_port: 8443
 development:
   <<: *defaults
 

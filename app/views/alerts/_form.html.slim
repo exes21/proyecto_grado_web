@@ -39,6 +39,16 @@
                 | Tolerancia
               .col-sm-7
                 = number_field_tag :tolerancia, @tolerancia, class: 'form-control no-border-right', placeholder: 'Grado de tolerancia'
+            .input-group.mb-15
+              .col-sm-3
+                | Ip Portal
+              .col-sm-7
+                = text_field_tag :portal_url, @portal_url, class: 'form-control no-border-right'
+            .input-group.mb-15
+              .col-sm-3
+                | Puerto portal
+              .col-sm-7
+                = number_field_tag :portal_port, @portal_port, class: 'form-control no-border-right'
           .col-sm-6
             .ckbox.ckbox-theme
               input#select-all type="checkbox"

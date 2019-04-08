@@ -35,7 +35,8 @@ class AlertsController < ApplicationController
     Setting.min_sign_level = params["min_sign_level"]
     Setting.max_sign_level = params["max_sign_level"]
     Setting.tolerancia = params["tolerancia"]
-
+    Setting.portal_url = params["portal_url"]
+    Setting.portal_port = params["portal_port"]
     update_access_point_settings
 
     redirect_to alert_setting_path
@@ -88,5 +89,7 @@ class AlertsController < ApplicationController
     @min_sign_level = Setting.min_sign_level
     @max_sign_level = Setting.max_sign_level
     @tolerancia = Setting.tolerancia
+    @portal_url = Setting.portal_url
+    @portal_port = Setting.portal_port
   end
 end
