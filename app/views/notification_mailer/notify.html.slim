@@ -1,36 +1,10 @@
-table#bodyTable align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%"
-  tbody
-    tr
-      td#bodyCell align="center" valign="top"
-        table#templateContainer border="0" cellpadding="0" cellspacing="0"
-          tbody
-            tr
-              td align="center" valign="top"
-                table#templatePreheader border="0" cellpadding="0" cellspacing="0" width="100%" 
-                  tbody
-                    tr
-                      td.preheaderContent mc:edit="preheader_content00" style=("padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px;") valign="top" 
-                        | Use this area to offer a short teaser of your email's content. Text here will show in the preview area of some email clients.
-                      td.preheaderContent mc:edit="preheader_content01" style=("padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:0;") valign="top" width="180" 
-                        | Email not displaying correctly?
-                        br/
-                        = succeed "." do
-                          a href="#" target="_blank"  View it in your browser
-            tr
-              td align="center" valign="top"
-                table#templateHeader border="0" cellpadding="0" cellspacing="0" width="100%"
-                  tbody
-                    tr
-                      td.headerContent valign="top"
-                        img#headerImage mc:allowdesigner="" mc:allowtext="" mc:edit="header_image" mc:label="header_image" src="http://img.djavaui.com/?create=600x150,81B71A?l=600 x any height" style="max-width:600px;" /
-            tr
-              td align="center" valign="top"
-                table#templateBody border="0" cellpadding="0" cellspacing="0" width="100%"
-                  tbody
-                    tr
-                      td.bodyContent mc:edit="body_content00" valign="top"
-                        h1
-                          | Caso
-                          = @error.id
-                        h3 Algo requiere tu atencion:
-                        p = @error.description
+H1 = "Caso: #{@error.id}"
+
+p = "Zona: #{@error.access_point.zone.name}"
+p = "Equipo: #{@error.access_point.ssid}"
+p = "Mac Address: #{@error.access_point.mac_address}"
+p = "Errores: #{@error.issues_reports.count}"
+p = "Fecha: #{@error.created_at}"
+p = "Estado: #{@error.status}"
+
+= link_to  "Ver aqui", @url

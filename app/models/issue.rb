@@ -6,12 +6,14 @@ class Issue < ApplicationRecord
   acts_as_commentable
 
   after_save do
-    if issues_reports.count > Setting.tolerancia
-      update_attribute(status: :activo)
-    end
-
-    if status == 'activo'
-      
+    if status == 'inactivo' && issues_reports.count > Setting.tolerancia
+      User.where(role: Role.first).each do |user|
+        notification = Notification.new
+        notification.user = user
+        notification.notificable_id = id
+        notification.notificable_type = "Issue"
+        notification.save
+      end
     end
   end
 

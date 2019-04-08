@@ -11,14 +11,7 @@
           .mini-stat-type-3.shadow.border-danger
             span.text-uppercase.text-block.text-center Alertas
             h3.text-strong.text-center
-              span = IssuesReport.where(issue_id: @access_point.issues.pluck(:id)).count
-            .meta-stat
-        .col-lg-3.col-md-3.col-sm-6.col-xs-12
-          .mini-stat-type-3.shadow.border-danger
-            span.text-uppercase.text-block.text-center Errores
-            h3.text-strong.text-center
               span = @access_point.issues.count
-            .meta-stat
 
     .row
         #router style=("width: 100%; height: 300px;")
