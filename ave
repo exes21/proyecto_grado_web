@@ -1,0 +1,11 @@
+=> [32m#<AccessPoint:0x000055fc2ed730e0[0m
+ id: [1;36mnil[0m,
+ ssid: [31m[1;31m"[0m[31mFlia.Marcelino Camilo[1;31m"[0m[31m[0m,
+ ip_address: [31m[1;31m"[0m[31m10.0.0.2[1;31m"[0m[31m[0m,
+ mac_address: [31m[1;31m"[0m[31mBA:BA:BA:BA[1;31m"[0m[31m[0m,
+ zone_id: [1;34m1[0m,
+ user: [1;36mnil[0m,
+ password: [1;36mnil[0m,
+ status: [1;36mnil[0m,
+ created_at: [1;36mnil[0m,
+ updated_at: [1;36mnil[0m[32m>[0m
