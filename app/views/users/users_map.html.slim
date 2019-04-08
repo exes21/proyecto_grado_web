@@ -7,7 +7,16 @@ javascript:
   var map = new GMaps({
     el: '#zones',
     lat:  #{ Setting.center[0] },
-    lng:  #{ Setting.center[1] }
+    lng:  #{ Setting.center[1] },
+    disableDefaultUI: true,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          { "visibility": "off" }
+        ]
+      }
+    ],
   });
 
   $(document).ready(function (){
@@ -22,8 +31,10 @@ javascript:
             map.addMarker({
                 lat: value.latitude,
                 lng: value.longitude,
+                icon: "#{ asset_path('user-logo.png') }",
                 infoWindow: {
-                  content:  '<p>ssid: '+ value.ssid +'</p>' +
+                  content:  '<p>email: '+ value.user +'</p>' +
+                            '<p>ssid: '+ value.ssid +'</p>' +
                             '<p>Ip: '+ value.ip +'</p>' +
                             '<p>Mac: '+ value.mac +'</p>' +
                             '<p>Link Speed: '+ value.link_speed +'</p>' +

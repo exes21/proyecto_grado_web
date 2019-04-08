@@ -69,12 +69,11 @@ class Api::DataController < ApplicationController
 
   def last_connected_users
     list = []
-
-    Coordinate.where('locatable_type = ? AND created_at > ?','Mobile', 30.seconds.ago).uniq { |c| c.locatable_id }.each do |u|
+    Coordinate.where('locatable_type = ? AND created_at > ?','Mobile', 2.minutes.ago).uniq { |c| c.locatable_id }.each do |u|
       {}.tap do |user|
         mobile = Mobile.find(u.locatable_id)
         datos = mobile.datums.last(5)
-
+        user[:user] = mobile.user.email
         user[:ssid] = datos.first.access_point.ssid
         user[:ip] = datos.first.access_point.ip_address
         user[:mac] = mobile.mac_address

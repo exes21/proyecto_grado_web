@@ -6,7 +6,7 @@
           .mini-stat-type-3.shadow.border-danger
             span.text-uppercase.text-block.text-center Usuarios
             h3.text-strong.text-center
-              span.counter> @access_point.users_average
+              span.counter> = @access_point.users_average
             .meta-stat
               span.pull-left.text-uppercase Promedio
               span.clearfix
@@ -14,7 +14,7 @@
           .mini-stat-type-3.shadow.border-danger
             span.text-uppercase.text-block.text-center Alertas
             h3.text-strong.text-center
-              span.counter> 2@access_point.issues_this_month
+              span.counter> = @access_point.issues_this_month
             .meta-stat
               span.pull-left.text-uppercase Este mes
               span.clearfix
@@ -22,7 +22,7 @@
           .mini-stat-type-3.shadow.border-danger
             span.text-uppercase.text-block.text-center Errores
             h3.text-strong.text-center
-              span.counter> 24
+              span.counter> = @access_point.issues.count
             .meta-stat
               span.pull-left.text-uppercase Total
               span.clearfix

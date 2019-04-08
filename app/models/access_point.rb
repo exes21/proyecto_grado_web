@@ -22,15 +22,15 @@ class AccessPoint < ApplicationRecord
   after_create :default_values
 
   def users_count
-    datums.all.uniq { |p| p.user }.count
+    datums.all.uniq { |p| p.mobile }.count
   end
 
   def users_average
-    users_count / Users.count
+    datums.where('created_at > ?',30.days.ago).uniq { |p| p.mobile }.count
   end
 
   def issues_this_month
-    issues.where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
+    issues.where(created_at: Time.now.beginning_of_month..Time.now.end_of_month).count
   end
 
   private
