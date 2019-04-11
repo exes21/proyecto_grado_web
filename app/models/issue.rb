@@ -6,7 +6,7 @@ class Issue < ApplicationRecord
   acts_as_commentable
 
   after_save do
-    if status == 'inactivo' && issues_reports.count > Setting.tolerancia
+    if status == 'inactivo' && issues_reports.count > Setting.tolerancia.to_i
       update_attribute(:status, :activo)
       User.where(role: Role.first).each do |user|
         notification = Notification.new

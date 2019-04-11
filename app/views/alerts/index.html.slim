@@ -46,7 +46,7 @@
               td.text-center = alert.created_at.strftime("%m/%d/%Y a las %I:%M%p")
               td.text-center = alert.status.capitalize
               td
-                - if alert.status == "inactive"
+                - if alert.status == "inactivo"
                   .col-sm-3
                     = button_to  alert_cerrar_path(alert), class: "btn btn-success" do
                       = fa_icon('check')
