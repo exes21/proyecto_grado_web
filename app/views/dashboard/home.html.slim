@@ -10,7 +10,7 @@
       .panel-body.no-padding
         ul.list-group.no-margin
           - @datos.each do |dato|
-            li.list-group-item
+            li class="list-group-item list-group-item-#{status_color(dato.priority)}"
               = link_to alert_path(dato)
                 = dato.access_point.ssid
 

@@ -12,6 +12,7 @@
         .col-md-5
           = f.submit 'Buscar', class: 'btn btn-default'
           = link_to  fa_icon('refresh'),alerts_path ,class: 'btn btn-default'
+          = link_to  fa_icon('download'),alerts_path(format: 'csv') ,class: 'btn btn-default'
 
 .row
   .col-md-12

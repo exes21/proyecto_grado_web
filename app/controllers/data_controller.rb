@@ -8,6 +8,15 @@ class DataController < ApplicationController
     @q = Datum.ransack(params[:q])
     @q.sorts = "created_at desc"
     @income = @q.result(distinct: true).paginate(page: params[:page], per_page: 50)
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        export = DataExport.new
+        export.collection = @income
+        send_data export.to_csv
+      end
+    end
   end
 
   # GET /data/1

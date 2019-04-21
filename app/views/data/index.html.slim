@@ -11,6 +11,7 @@
         .col-md-5
           = f.submit 'Buscar', class: 'btn btn-default'
           = link_to  fa_icon('refresh'),data_path ,class: 'btn btn-default'
+          = link_to  fa_icon('download'),data_path(format: 'csv') ,class: 'btn btn-default'
           = will_paginate(@income)
 
 .row

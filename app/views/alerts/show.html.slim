@@ -19,7 +19,7 @@
                 .clearfix
               .panel-body
                 ul.list-group.no-margin
-                  -@issue.issues_reports.map { |r| Datum.find(r.data_id) }.group_by { |dato| [dato.created_at.sec, dato.access_point_id ] }.each do |m, datos|
+                  -@issue.issues_reports.map { |r| Datum.find(r.data_id) }.group_by { |dato| [dato.created_at.sec, dato.mobile_id ] }.each do |m, datos|
                     li.list-group-item
                       p = "Dispositivo: #{ Mobile.find(m[1]).mac_address }"
                       p = "Recibido: #{ datos.first.created_at.strftime("%d/%m/%Y a las %I:%M%p") }"
@@ -58,7 +58,7 @@
               = select_tag(:priority, options_for_select(Issue.priorities))
 
           .row
-            - if @issue.status == "activo"
+            - if @issue.status != "activo"
               = link_to  "Cancelar", '', class: 'col-md-4 btn btn-danger', id: 'cancel'
               = link_to  "Cerrar", '', class: 'col-md-4 btn btn-success', id: 'close'
             = link_to  "Comentar",'', class: 'col-md-4 btn btn-default', id: 'add_comment'

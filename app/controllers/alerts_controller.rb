@@ -10,6 +10,14 @@ class AlertsController < ApplicationController
 
     @q = Issue.ransack(params[:q])
     @alerts = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.csv do
+        export = ErrorsExport.new
+        export.collection = @alerts
+        send_data export.to_csv
+      end
+    end
   end
 
   # GET /alert/1

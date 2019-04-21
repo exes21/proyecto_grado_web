@@ -137,6 +137,8 @@ GEM
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    lp_csv_exportable (0.2.9)
+      activesupport
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
@@ -319,6 +321,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   letter_opener
   listen (>= 3.0.5, < 3.2)
+  lp_csv_exportable
   nested_form
   pg
   pry-rails
