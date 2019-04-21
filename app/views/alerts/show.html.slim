@@ -24,7 +24,7 @@
                       p = "Dispositivo: #{ Mobile.find(m[1]).mac_address }"
                       p = "Recibido: #{ datos.first.created_at.strftime("%d/%m/%Y a las %I:%M%p") }"
                       - datos.each do |dato|
-                        p = "#{dato.type}:#{dato.type != 'Ping' ? dato.value : dato.status }"
+                        p = "#{dato.type}:#{dato.type != 'Ping' ? " #{dato.value} #{measure_for(dato.type)}" : " #{dato.percent} %" }"
 
           .col-sm-4
             .panel

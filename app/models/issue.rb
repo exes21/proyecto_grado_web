@@ -13,7 +13,7 @@ class Issue < ApplicationRecord
 
   before_save do
     if notified
-      status= 'activo'
+      self.status = 'activo'
       if (low..mid).to_a.include?(issues_reports.count)
         self.priority = 'bajo'
       elsif (low..mid).to_a.include?(issues_reports.count)

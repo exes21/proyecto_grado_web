@@ -37,7 +37,7 @@
                   td
                     .label.label-default.rounded
                       span Usuarios:
-                      = ap.user
+                      = ap.users_average
   .col-md-6
     .panel.panel-default.panel-issue-tracker.shadow
       .panel-heading
@@ -53,12 +53,14 @@
                   td
                     span.label.label-danger.rounded
                   td
-                    = type
+                    = type.titleize
                   td
-                    = (datos.pluck(:value).reduce(:+).to_f / datos.pluck(:value).count ) unless type == "Ping"
-                    - if type == "Ping"
+                    - unless type == "Ping"
+                      - average = datos.map { |d| d.value.to_f }
+                      = "#{(average.reduce(:+).to_f / average.count).to_s[0..5]} #{measure_for(type)}"
+                    - else
                       - percent = datos.map { |d| d.percent }
-                      p = percent.reduce(:+).to_f / percent.size.to_f
+                      p = "#{(percent.reduce(:+).to_f / percent.size.to_f).round(4)} #{measure_for(type)}"
 javascript:
   var map = new GMaps({
     el: '#zone_map',
