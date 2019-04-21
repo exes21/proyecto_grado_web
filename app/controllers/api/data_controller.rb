@@ -136,9 +136,9 @@ class Api::DataController < ApplicationController
   end
 
   def set_access_point
-    @ap = ApChannel.find_by(bssid: params['MacDelRouter']) ||
-          AccessPoint.find_by(mac_address: params['MacDelRouter']) ||
+    @ap = AccessPoint.find_by(mac_address: params['MacDelRouter']) ||
           AccessPoint.find_by(ip_address: params["DefaultGate"].split('.').reverse.join('.')) ||
+          ApChannel.find_by(bssid: params['MacDelRouter']) ||
           AccessPoint.find_by(ssid: JSON.parse(params['ssid']))
     #ip_address: params["DefaultGate"].split('.').reverse.join('.')
 
