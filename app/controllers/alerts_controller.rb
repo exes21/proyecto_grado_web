@@ -25,6 +25,7 @@ class AlertsController < ApplicationController
   def show
     @issue = Issue.find(params[:id])
     @mobiles = @issue.issues_reports.map { |report| Datum.find(report.data_id).mobile }.uniq
+    @coordinates = @mobiles.map { |m| m.coordinates.map { |c| [c.latitude.to_f, c.longitude.to_f] } }
   end
 
   def edit

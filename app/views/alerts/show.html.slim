@@ -126,6 +126,7 @@ javascript:
       }
     });
   })
+
   var map = new GMaps({
     el: '#map',
     lat:  #{Setting.center[0]},
@@ -141,13 +142,13 @@ javascript:
       }
     ]
   });
-  var puntos = #{ @mobiles.map { |m| m.coordinates.map { |c| [c.latitude.to_f, c.longitude.to_f] } } || [] }
+  var puntos = #{ @coordinates  || [] }
 
   $(document).ready(function(){
-    $.each(puntos, function(index, value){
+    $.each(puntos[0], function(index, value){
       map.addMarker({
-          lat: value[0],
-          lng: value[1]
+        lat: value[0],
+        lng: value[1]
       });
     })
   });
