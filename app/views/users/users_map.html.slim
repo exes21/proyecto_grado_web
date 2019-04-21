@@ -2,10 +2,10 @@
   .col-md-12
     .panel.panel-success.shadow
       .panel-body
-        #zones style=("width: 100%; height: 400px;")
+        #active_users style=("width: 100%; height: 400px;")
 javascript:
-  var map = new GMaps({
-    el: '#zones',
+  var user_map = new GMaps({
+    el: '#active_users',
     lat:  #{ Setting.center[0] },
     lng:  #{ Setting.center[1] },
     disableDefaultUI: true,
@@ -26,9 +26,9 @@ javascript:
         url:  "#{api_data_last_connected_users_path}",
         success: function(data, textStatus, jqXHR){
           console.log(data);
-          map.removeMarkers()
+          user_map.removeMarkers()
           $.each(data,function(index, value){
-            map.addMarker({
+            user_map.addMarker({
                 lat: value.latitude,
                 lng: value.longitude,
                 infoWindow: {
