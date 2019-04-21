@@ -16,7 +16,7 @@
               = link_to access_point do
                 .pull-left
                   p
-                    = access_point.ip_address
+                    = access_point.ssid
                 .pull-right
                   = link_to 'Editar', edit_access_point_path(access_point), class: "btn btn-default"
                   = link_to 'Borrar', access_point, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete

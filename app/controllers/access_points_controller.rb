@@ -24,6 +24,33 @@ class AccessPointsController < ApplicationController
     @access_point.channels.new
     @title = "Nuevo Equipo"
     @icon = "wifi"
+
+    @min_jitter = @access_point.settings.min_jitter
+    @max_jitter = @access_point.settings.max_jitter
+    @min_ping = @access_point.settings.min_ping
+    @max_ping = @access_point.settings.max_ping
+    @min_latency = @access_point.settings.min_latency
+    @max_latency = @access_point.settings.max_latency
+    @min_link_speed = @access_point.settings.min_link_speed
+    @max_link_speed = @access_point.settings.max_link_speed
+    @min_sign_level = @access_point.settings.min_sign_level
+    @max_sign_level = @access_point.settings.max_sign_level
+    @distance = @access_point.settings.distance
+    @low_jitter = @access_point.settings.low_jitter
+    @mid_jitter = @access_point.settings.mid_jitter
+    @high_jitter = @access_point.settings.high_jitter
+    @low_ping = @access_point.settings.low_ping
+    @mid_ping = @access_point.settings.mid_ping
+    @high_ping = @access_point.settings.high_ping
+    @low_latency = @access_point.settings.low_latency
+    @mid_latency = @access_point.settings.mid_latency
+    @high_latency = @access_point.settings.high_latency
+    @low_link_speed = @access_point.settings.low_link_speed
+    @mid_link_speed = @access_point.settings.mid_link_speed
+    @high_link_speed = @access_point.settings.high_link_speed
+    @low_sing_level = @access_point.settings.low_sing_level
+    @mid_sing_level = @access_point.settings.mid_sing_level
+    @high_link_speed = @access_point.settings.high_link_speed
   end
 
   # GET /access_points/1/edit
@@ -90,6 +117,21 @@ class AccessPointsController < ApplicationController
       @min_sign_level = @access_point.settings.min_sign_level
       @max_sign_level = @access_point.settings.max_sign_level
       @distance = @access_point.settings.distance
+      @low_jitter = @access_point.settings.low_jitter
+      @mid_jitter = @access_point.settings.mid_jitter
+      @high_jitter = @access_point.settings.high_jitter
+      @low_ping = @access_point.settings.low_ping
+      @mid_ping = @access_point.settings.mid_ping
+      @high_ping = @access_point.settings.high_ping
+      @low_latency = @access_point.settings.low_latency
+      @mid_latency = @access_point.settings.mid_latency
+      @high_latency = @access_point.settings.high_latency
+      @low_link_speed = @access_point.settings.low_link_speed
+      @mid_link_speed = @access_point.settings.mid_link_speed
+      @high_link_speed = @access_point.settings.high_link_speed
+      @low_sing_level = @access_point.settings.low_sing_level
+      @mid_sing_level = @access_point.settings.mid_sing_level
+      @high_link_speed = @access_point.settings.high_link_speed
     end
 
     def update_settings
@@ -104,6 +146,22 @@ class AccessPointsController < ApplicationController
       @access_point.settings.min_sign_level = params[:min_sign_level]
       @access_point.settings.max_sign_level = params[:max_sign_level]
       @access_point.settings.distance = params[:distance]
+
+      @access_point.settings.low_jitter = params["low_jitter"]
+      @access_point.settings.mid_jitter = params["mid_jitter"]
+      @access_point.settings.high_jitter = params["high_jitter"]
+      @access_point.settings.low_ping = params["low_ping"]
+      @access_point.settings.mid_ping = params["mid_ping"]
+      @access_point.settings.high_ping = params["high_ping"]
+      @access_point.settings.low_latency = params["low_latency"]
+      @access_point.settings.mid_latency = params["mid_latency"]
+      @access_point.settings.high_latency = params["high_latency"]
+      @access_point.settings.low_link_speed = params["low_link_speed"]
+      @access_point.settings.mid_link_speed = params["mid_link_speed"]
+      @access_point.settings.high_link_speed = params["high_link_speed"]
+      @access_point.settings.low_sing_level = params["low_sing_level"]
+      @access_point.settings.mid_sing_level = params["mid_sing_level"]
+      @access_point.settings.high_link_speed = params["high_link_speed"]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

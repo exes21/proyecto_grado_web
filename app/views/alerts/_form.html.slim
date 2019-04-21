@@ -3,52 +3,60 @@
     .panel.panel-default.panel-issue-tracker.shadow
       .panel-body
         = form_for(:save_setting, html: {class: "form-horizontal form-bordered"}) do |f|
-          .col-sm-6
-            .input-group.mb-15
-              .col-sm-3
-                | Jitter
-              .col-sm-7
-                = number_field_tag :min_jitter,@min_jitter, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_jitter,@max_jitter, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-            .input-group.mb-15
-              .col-sm-3
-                | Ping
-              .col-sm-7
-                = number_field_tag :min_ping, @min_ping, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_ping, @max_ping, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-            .input-group.mb-15
-              .col-sm-3
-                | Latencia
-              .col-sm-7
-                = number_field_tag :min_latency, @min_latency, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_latency, @max_latency, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-            .input-group.mb-15
-              .col-sm-3
-                | Velocidad de enlace (mb/s)
-              .col-sm-7
-                = number_field_tag :min_link_speed, @min_link_speed, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_link_speed, @max_link_speed, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-            .input-group.mb-15
-              .col-sm-3
-                | Nivel de senal
-              .col-sm-7
-                = number_field_tag :min_sign_level, @min_sign_level, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-                = number_field_tag :max_sign_level, @max_sign_level, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-            .input-group.mb-15
-              .col-sm-3
-                | Tolerancia
-              .col-sm-7
-                = number_field_tag :tolerancia, @tolerancia, class: 'form-control no-border-right', placeholder: 'Grado de tolerancia'
-            .input-group.mb-15
-              .col-sm-3
-                | Ip Portal
-              .col-sm-7
-                = text_field_tag :portal_url, @portal_url, class: 'form-control no-border-right'
-            .input-group.mb-15
-              .col-sm-3
-                | Puerto portal
-              .col-sm-7
-                = number_field_tag :portal_port, @portal_port, class: 'form-control no-border-right'
+          - input_class_centers = 'form-control no-border-left no-border-right'
+          .col-md-6
+            table
+              tr
+                th
+                th = 'Minimo'
+                th = 'Maximo'
+                th = 'Bajo'
+                th = 'Medio'
+                th = 'Alto'
+              tr
+                td = 'Jitter'
+                td = number_field_tag :min_jitter,@min_jitter, class: 'form-control no-border-right', placeholder: 'min'
+                td = number_field_tag :max_jitter,@max_jitter, class: input_class_centers, placeholder: 'max'
+                td = number_field_tag :low_jitter, @low_jitter, class: input_class_centers, placeholder: 'low'
+                td = number_field_tag :mid_jitter, @mid_jitter, class: input_class_centers, placeholder: 'mid'
+                td = number_field_tag :high_jitter, @high_jitter, class: 'form-control no-border-left', placeholder: 'high'
+              tr
+                td = 'RTT'
+                td = number_field_tag :min_ping, @min_ping, class: 'form-control no-border-right', placeholder: 'min'
+                td = number_field_tag :max_ping, @max_ping, class: input_class_centers, placeholder: 'max'
+                td = number_field_tag :low_ping, @low_ping, class: input_class_centers, placeholder: 'low'
+                td = number_field_tag :mid_ping, @mid_ping, class: input_class_centers, placeholder: 'mid'
+                td = number_field_tag :high_ping, @high_ping, class: 'form-control no-border-left', placeholder: 'high'
+              tr
+                td = 'Latencia'
+                td = number_field_tag :min_latency, @min_latency, class: 'form-control no-border-right', placeholder: 'min'
+                td = number_field_tag :max_latency, @max_latency, class: input_class_centers, placeholder: 'max'
+                td = number_field_tag :low_latency, @low_latency, class: input_class_centers, placeholder: 'low'
+                td = number_field_tag :mid_latency, @mid_latency, class: input_class_centers, placeholder: 'mid'
+                td = number_field_tag :high_latency, @high_latency, class: 'form-control no-border-left', placeholder: 'high'
+              tr
+                td = 'Velocidad de enlace'
+                td = number_field_tag :min_link_speed, @min_link_speed, class: 'form-control no-border-right', placeholder: 'min'
+                td = number_field_tag :max_link_speed, @max_link_speed, class: input_class_centers, placeholder: 'max'
+                td = number_field_tag :low_link_speed, @low_link_speed, class: input_class_centers, placeholder: 'low'
+                td = number_field_tag :mid_link_speed, @mid_link_speed, class: input_class_centers, placeholder: 'mid'
+                td = number_field_tag :high_link_speed, @high_link_speed, class: 'form-control no-border-left', placeholder: 'high'
+              tr
+                td = 'Nivel de senal'
+                td = number_field_tag :min_sign_level, @min_sign_level, class: 'form-control no-border-right', placeholder: 'min'
+                td = number_field_tag :max_sign_level, @max_sign_level, class: input_class_centers, placeholder: 'max'
+                td = number_field_tag :low_sing_level, @low_sing_level, class: input_class_centers, placeholder: 'low'
+                td = number_field_tag :mid_sing_level, @mid_sing_level, class: input_class_centers, placeholder: 'mid'
+                td = number_field_tag :high_link_speed, @high_link_speed, class: 'form-control no-border-left', placeholder: 'high'
+              .input-group
+                .col-sm-3
+                  | Ip Portal
+                .col-sm-3
+                  = text_field_tag :portal_url, @portal_url, class: 'form-control'
+                .col-sm-3
+                  | Puerto portal
+                .col-sm-3
+                  = number_field_tag :portal_port, @portal_port, class: 'form-control'
           .col-sm-6
             .ckbox.ckbox-theme
               input#select-all type="checkbox"

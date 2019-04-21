@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_225850) do
+ActiveRecord::Schema.define(version: 2019_04_21_021033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,9 @@ ActiveRecord::Schema.define(version: 2019_04_07_225850) do
     t.datetime "solved_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "priority", default: 0
+    t.integer "category", default: 0
+    t.boolean "notified", default: true
     t.index ["access_point_id"], name: "index_issues_on_access_point_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end

@@ -19,3 +19,5 @@
 //= require chartkick
 //= require gmaps
 //= require jquery_nested_form
+//= require tinymce
+//= require tinymce-jquery

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :alerts do
     post 'cancelar'
     post 'cerrar'
+    post 'comentar'
   end
   get "alert/setting", to: "alerts#edit"
   post "alert/setting", to: "alerts#save_setting"

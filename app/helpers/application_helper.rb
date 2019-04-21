@@ -1,10 +1,10 @@
 module ApplicationHelper
   def status_color(status)
     case status
-    when 'inactivo' then return 'active'
-    when 'activo' then return 'danger'
-    when 'cancelado' then return 'alert'
-    when 'resuelto' then return 'success'
+    when 'irrelevante' then return 'active'
+    when 'bajo' then return 'success'
+    when 'medio' then return 'warning'
+    when 'alto' then return 'danger'
     end
   end
 end

@@ -9,11 +9,18 @@ Role.new(
 Rake::Task['permissions:permissions'].invoke
 Permission.all.each do |permission|
   PermissionRole.create(
-    permission: permission,
+      permission: permission,
     role: Role.first
   )
 end
 
+User.new(
+    name: "Sistema",
+    password: "123456789",
+    password_confirmation: "123456789",
+    email: "no-reply@IARW.com",
+    role: Role.first
+).save
 
 User.new(
     name: "Jurado 1",
@@ -178,6 +185,8 @@ ap.coordinate= Coordinate.new(
     latitude: 19.44178705 ,
     longitude: -70.6831035
 )
+
+ap.channels.new(bssid: "BA:BA:BA:BA")
 ap.save
 
 
@@ -214,6 +223,7 @@ ap.coordinate= Coordinate.new(
     latitude: 19.44149365 ,
     longitude: -70.68340927
 )
+ap.channels.new(bssid:  "a0:c9:a0:8a:13:f1")
 ap.save
 
 # Lab. Ingenieria
@@ -250,4 +260,5 @@ ap.coordinate= Coordinate.new(
     latitude: 19.44107885 ,
     longitude: -70.6828782
 )
+ap.channels.new(bssid:  "a0:c9:a0:8a:13:f1")
 ap.save

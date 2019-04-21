@@ -25,41 +25,55 @@
       #router style=("width: 100%; height: 300px;")
   .row
     .col-sm-6
-      .input-group.mb-15
-        .col-sm-2
-          | Jitter
-        .col-sm-8
-          = number_field_tag :min_jitter,@min_jitter, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_jitter,@max_jitter, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-      .input-group.mb-15
-        .col-sm-2
-          | Ping
-        .col-sm-8
-          = number_field_tag :min_ping,@min_ping, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_ping,@max_ping, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-      .input-group.mb-15
-        .col-sm-2
-          | Latencia
-        .col-sm-8
-          = number_field_tag :min_latency,@min_latency, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_latency,@max_latency, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-      .input-group.mb-15
-        .col-sm-2
-          | Velocidad de enlace
-        .col-sm-8
-          = number_field_tag :min_link_speed,@min_link_speed, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_link_speed,@max_link_speed, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-      .input-group.mb-15
-        .col-sm-2
-          | Nivel de senal
-        .col-sm-8
-          = number_field_tag :min_sign_level,@min_sign_level, class: 'form-control no-border-right', style: 'width: 40%', placeholder: 'min'
-          = number_field_tag :max_sign_level,@max_sign_level, class: 'form-control no-border-left', style: 'width: 40%', placeholder: 'max'
-      .input-group.mb-15
-        .col-sm-4
-          | Distancia
-        .col-sm-8
-          = number_field_tag :distance, @distance, class: 'form-control', min: 0
+      - input_class_centers = 'form-control no-border-left no-border-right'
+      table
+        tr
+          th
+          th = 'Minimo'
+          th = 'Maximo'
+          th = 'Bajo'
+          th = 'Medio'
+          th = 'Alto'
+        tr
+          td = 'Jitter'
+          td = number_field_tag :min_jitter,@min_jitter, class: 'form-control no-border-right', placeholder: 'min'
+          td = number_field_tag :max_jitter,@max_jitter, class: input_class_centers, placeholder: 'max'
+          td = number_field_tag :low_jitter, @low_jitter, class: input_class_centers, placeholder: 'low'
+          td = number_field_tag :mid_jitter, @mid_jitter, class: input_class_centers, placeholder: 'mid'
+          td = number_field_tag :high_jitter, @high_jitter, class: 'form-control no-border-left', placeholder: 'high'
+        tr
+          td = 'RTT'
+          td = number_field_tag :min_ping, @min_ping, class: 'form-control no-border-right', placeholder: 'min'
+          td = number_field_tag :max_ping, @max_ping, class: input_class_centers, placeholder: 'max'
+          td = number_field_tag :low_ping, @low_ping, class: input_class_centers, placeholder: 'low'
+          td = number_field_tag :mid_ping, @mid_ping, class: input_class_centers, placeholder: 'mid'
+          td = number_field_tag :high_ping, @high_ping, class: 'form-control no-border-left', placeholder: 'high'
+        tr
+          td = 'Latencia'
+          td = number_field_tag :min_latency, @min_latency, class: 'form-control no-border-right', placeholder: 'min'
+          td = number_field_tag :max_latency, @max_latency, class: input_class_centers, placeholder: 'max'
+          td = number_field_tag :low_latency, @low_latency, class: input_class_centers, placeholder: 'low'
+          td = number_field_tag :mid_latency, @mid_latency, class: input_class_centers, placeholder: 'mid'
+          td = number_field_tag :high_latency, @high_latency, class: 'form-control no-border-left', placeholder: 'high'
+        tr
+          td = 'Velocidad de enlace'
+          td = number_field_tag :min_link_speed, @min_link_speed, class: 'form-control no-border-right', placeholder: 'min'
+          td = number_field_tag :max_link_speed, @max_link_speed, class: input_class_centers, placeholder: 'max'
+          td = number_field_tag :low_link_speed, @low_link_speed, class: input_class_centers, placeholder: 'low'
+          td = number_field_tag :mid_link_speed, @mid_link_speed, class: input_class_centers, placeholder: 'mid'
+          td = number_field_tag :high_link_speed, @high_link_speed, class: 'form-control no-border-left', placeholder: 'high'
+        tr
+          td = 'Nivel de senal'
+          td = number_field_tag :min_sign_level, @min_sign_level, class: 'form-control no-border-right', placeholder: 'min'
+          td = number_field_tag :max_sign_level, @max_sign_level, class: input_class_centers, placeholder: 'max'
+          td = number_field_tag :low_sing_level, @low_sing_level, class: input_class_centers, placeholder: 'low'
+          td = number_field_tag :mid_sing_level, @mid_sing_level, class: input_class_centers, placeholder: 'mid'
+          td = number_field_tag :high_link_speed, @high_link_speed, class: 'form-control no-border-left', placeholder: 'high'
+    .input-group.mb-15
+      .col-sm-4
+        | Distancia
+      .col-sm-8
+        = number_field_tag :distance, @distance, class: 'form-control', min: 0
     .col-sm-6
       = f.link_to_add "Agregar canal", :channels
       = f.fields_for :channels do |channel|

@@ -5,7 +5,10 @@ header#header
     .navbar-header
       = link_to root_path, class: 'navbar-brand' do
         /  img.logo alt=("brand logo") src="http://img.djavaui.com/?create=175x50,81B71A?f=ffffff" /
-        = image_tag  "logo.png" , style: "height:57px"
+        .pull-left
+          = image_tag  "logo.png" , style: "height:57px"
+        .pull-left
+          | IARW
     .navbar-minimize-mobile.right
       i.fa.fa-cog
     .clearfix

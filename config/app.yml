@@ -14,6 +14,21 @@ defaults: &defaults
   distance: 90
   portal_url: localhost
   portal_port: 8443
+  low_jitter: 10
+  mid_jitter: 20
+  high_jitter: 30
+  low_ping: 10
+  mid_ping: 20
+  high_ping: 30
+  low_latency: 10
+  mid_latency: 20
+  high_latency: 30
+  low_link_speed: 10
+  mid_link_speed: 20
+  high_link_speed: 30
+  low_sign_level: 10
+  mid_sign_level: 20
+  high_sign_level: 30
 development:
   <<: *defaults
 

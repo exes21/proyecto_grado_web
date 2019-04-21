@@ -39,10 +39,93 @@
                 p = "Equipo: #{@issue.access_point.ssid}"
                 p = "Mac Address: #{@issue.access_point.mac_address}"
                 p = "Usuarios afectados: #{@mobiles.count} "
-                p = "Estado: #{@issue.status}"
+                p = "Estado: #{@issue.status.capitalize}"
                 p = "Resuelto en: #{@issue.solved_at}"
+.row
+  .col-md-12
+    .panel.panel-default.panel-issue-tracker.shadow
+      .panel-heading
+        h3.panel-title
+          | Comentarios
+      .panel-body
+        .col-md-6
+          = tinymce
+          = text_area_tag(:comment, "", class: 'tinymce')
+          .row
+            .col-md-3
+              label = 'Prioridad'
+            .col-md-3
+              = select_tag(:priority, options_for_select(Issue.priorities))
+
+          .row
+            - if @issue.status == "activo"
+              = link_to  "Cancelar", '', class: 'col-md-4 btn btn-danger', id: 'cancel'
+              = link_to  "Cerrar", '', class: 'col-md-4 btn btn-success', id: 'close'
+            = link_to  "Comentar",'', class: 'col-md-4 btn btn-default', id: 'add_comment'
+        .col-md-6
+          .recent-activity
+            h3 Historial
+            - @issue.comments.reverse.each do |comment|
+              .recent-activity-item.recent-activity-warning
+                .recent-activity-badge
+                  span.recent-activity-badge-userpic
+                .recent-activity-body
+                  .recent-activity-body-head
+                    .recent-activity-body-head-caption
+                      b.recent-activity-body-title = comment.user.name
+                  .recent-activity-body-content
+                    p
+                      = comment.comment.html_safe
+                      span.text-block.text-muted = comment.created_at
 
 javascript:
+  $('#cancel').click(function(e){
+    e.preventDefault()
+    if (tinyMCE.get('comment').getContent() == ""){
+      console.log("Debe agregar un comentario")
+      return
+    }
+    $.ajax({
+      type: "POST",
+      url:  "#{alert_cancelar_path(@issue)}",
+      data: {
+        comment: tinyMCE.get('comment').getContent(),
+        user: "#{current_user.id}"
+      }
+    });
+  })
+
+  $('#close').click(function(e){
+    e.preventDefault()
+    if (tinyMCE.get('comment').getContent() == ""){
+      console.log("Debe agregar un comentario")
+      return
+    }
+    $.ajax({
+      type: "POST",
+      url:  "#{alert_cerrar_path(@issue)}",
+      data: {
+        comment: tinyMCE.get('comment').getContent(),
+        user: "#{current_user.id}"
+      }
+    });
+  })
+
+  $('#add_comment').click(function(e){
+    e.preventDefault()
+    if (tinyMCE.get('comment').getContent() == ""){
+      console.log("Debe agregar un comentario")
+      return
+    }
+    $.ajax({
+      type: "POST",
+      url:  "#{alert_comentar_path(@issue)}",
+      data: {
+        comment: tinyMCE.get('comment').getContent(),
+        user: "#{current_user.id}"
+      }
+    });
+  })
   var map = new GMaps({
     el: '#map',
     lat:  #{Setting.center[0]},
@@ -63,8 +146,8 @@ javascript:
   $(document).ready(function(){
     $.each(puntos, function(index, value){
       map.addMarker({
-                lat: value[0],
-                lng: value[1]
-            });
+          lat: value[0],
+          lng: value[1]
+      });
     })
   });
