@@ -12,7 +12,7 @@ class Issue < ApplicationRecord
   enum category: [:ping, :latency, :jitter, :link_speed, :sign_level]
 
   before_save do
-    self.status = 'activo'
+    self.status = 'activo' if status == 'inactivo'
     if (low..mid).to_a.include?(issues_reports.count)
       self.priority = 'bajo'
     elsif (mid..high).to_a.include?(issues_reports.count)

@@ -56,7 +56,7 @@
               = select_tag(:priority, options_for_select(Issue.priorities))
 
           .row
-            - if @issue.status != "activo"
+            - if @issue.status == "activo"
               = link_to  "Cancelar", '', class: 'col-md-4 btn btn-danger', id: 'cancel'
               = link_to  "Cerrar", '', class: 'col-md-4 btn btn-success', id: 'close'
             = link_to  "Comentar",'', class: 'col-md-4 btn btn-default', id: 'add_comment'
