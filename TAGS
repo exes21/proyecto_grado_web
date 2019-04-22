@@ -1,525 +1,0 @@
-
-db/migrate/20190212012259_create_data.rb,87
-class CreateData < ActiveRecord::Migration[5.2]CreateData1,0
-  def changechange2,0
-
-db/migrate/20190212010352_create_coordinates.rb,101
-class CreateCoordinates < ActiveRecord::Migration[5.2]CreateCoordinates1,0
-  def changechange2,0
-
-db/migrate/20190212005827_create_roles.rb,89
-class CreateRoles < ActiveRecord::Migration[5.2]CreateRoles1,0
-  def changechange2,0
-
-db/migrate/20190212011248_create_access_points.rb,103
-class CreateAccessPoints < ActiveRecord::Migration[5.2]CreateAccessPoints1,0
-  def changechange2,0
-
-db/migrate/20190212011945_create_mobiles.rb,93
-class CreateMobiles < ActiveRecord::Migration[5.2]CreateMobiles1,0
-  def changechange2,0
-
-db/migrate/20190212005833_create_permissions.rb,95
-class Createpermissions < ActiveRecord::Migration[5.2]Createpermissions1,0
-  def changechange2,0
-
-db/migrate/20190217013019_create_settings.rb,118
-class CreateSettings < ActiveRecord::Migration[5.2]CreateSettings1,0
-  def self.upup2,0
-  def self.downdown14,0
-
-db/migrate/20190217013836_devise_create_users.rb,101
-class DeviseCreateUsers < ActiveRecord::Migration[5.2]DeviseCreateUsers3,0
-  def changechange4,0
-
-db/migrate/20190212011608_create_zone__devices.rb,101
-class CreateZoneDevices < ActiveRecord::Migration[5.2]CreateZoneDevices1,0
-  def changechange2,0
-
-db/migrate/20190212011004_create_zones.rb,89
-class CreateZones < ActiveRecord::Migration[5.2]CreateZones1,0
-  def changechange2,0
-
-db/migrate/20190212010155_create_permissions_roles.rb,105
-class CreatepermissionsRoles < ActiveRecord::Migration[5.2]CreatepermissionsRoles1,0
-  def changechange2,0
-
-db/migrate/20190212011006_create_limite_zones.rb,101
-class CreateLimiteZones < ActiveRecord::Migration[5.2]CreateLimiteZones1,0
-  def changechange2,0
-
-db/migrate/20190212011517_create_location_devices.rb,109
-class CreateLocationDevices < ActiveRecord::Migration[5.2]CreateLocationDevices1,0
-  def changechange2,0
-
-config/application.rb,153
-module JpirWebJpirWeb22,0
-  class Application < Rails::ApplicationApplication23,0
-  class Application < Rails::ApplicationJpirWeb::Application23,0
-
-test/models/mobile_test.rb,58
-class MobileTest < ActiveSupport::TestCaseMobileTest3,0
-
-test/models/access_point_test.rb,68
-class AccessPointTest < ActiveSupport::TestCaseAccessPointTest3,0
-
-test/models/datum_test.rb,56
-class DatumTest < ActiveSupport::TestCaseDatumTest3,0
-
-test/models/role_test.rb,54
-class RoleTest < ActiveSupport::TestCaseRoleTest3,0
-
-test/models/permission_test.rb,66
-class PermissionTest < ActiveSupport::TestCasePermissionTest3,0
-
-test/models/zone_test.rb,54
-class ZoneTest < ActiveSupport::TestCaseZoneTest3,0
-
-test/models/user_test.rb,54
-class UserTest < ActiveSupport::TestCaseUserTest3,0
-
-test/models/permission_test.rb,60
-class permissionTest < ActiveSupport::TestCasepermissionTest3,0
-
-test/models/mobile_ip_test.rb,62
-class MobileIpTest < ActiveSupport::TestCaseMobileIpTest3,0
-
-test/models/permissions_role_test.rb,70
-class permissionsRoleTest < ActiveSupport::TestCasepermissionsRoleTest3,0
-
-test/models/cordinate_test.rb,64
-class CordinateTest < ActiveSupport::TestCaseCordinateTest3,0
-
-test/models/devise_position_test.rb,74
-class DevisePositionTest < ActiveSupport::TestCaseDevisePositionTest3,0
-
-test/models/device_test.rb,58
-class DeviceTest < ActiveSupport::TestCaseDeviceTest3,0
-
-test/models/zone__device_test.rb,66
-class ZoneDeviceTest < ActiveSupport::TestCaseZoneDeviceTest3,0
-
-test/models/rol_permission_test.rb,72
-class RolPermissionTest < ActiveSupport::TestCaseRolPermissionTest3,0
-
-test/models/zone_limit_test.rb,64
-class ZoneLimitTest < ActiveSupport::TestCaseZoneLimitTest3,0
-
-test/models/location_device_test.rb,74
-class LocationDeviceTest < ActiveSupport::TestCaseLocationDeviceTest3,0
-
-test/models/location_test.rb,62
-class LocationTest < ActiveSupport::TestCaseLocationTest3,0
-
-test/models/mobile_location_test.rb,74
-class MobileLocationTest < ActiveSupport::TestCaseMobileLocationTest3,0
-
-test/models/limite_zone_test.rb,66
-class LimiteZoneTest < ActiveSupport::TestCaseLimiteZoneTest3,0
-
-test/system/mobiles_test.rb,62
-class MobilesTest < ApplicationSystemTestCaseMobilesTest3,0
-
-test/system/roles_test.rb,58
-class RolesTest < ApplicationSystemTestCaseRolesTest3,0
-
-test/system/access_points_test.rb,72
-class AccessPointsTest < ApplicationSystemTestCaseAccessPointsTest3,0
-
-test/system/permissions_test.rb,64
-class permissionsTest < ApplicationSystemTestCasepermissionsTest3,0
-
-test/system/zone__devices_test.rb,70
-class ZoneDevicesTest < ApplicationSystemTestCaseZoneDevicesTest3,0
-
-test/system/cordinates_test.rb,68
-class CordinatesTest < ApplicationSystemTestCaseCordinatesTest3,0
-
-test/system/zones_test.rb,58
-class ZonesTest < ApplicationSystemTestCaseZonesTest3,0
-
-test/system/devices_test.rb,62
-class DevicesTest < ApplicationSystemTestCaseDevicesTest3,0
-
-test/system/permissions_roles_test.rb,74
-class permissionsRolesTest < ApplicationSystemTestCasepermissionsRolesTest3,0
-
-test/system/data_test.rb,56
-class DataTest < ApplicationSystemTestCaseDataTest3,0
-
-test/system/location_devices_test.rb,78
-class LocationDevicesTest < ApplicationSystemTestCaseLocationDevicesTest3,0
-
-test/controllers/data_controller_test.rb,82
-class DataControllerTest < ActionDispatch::IntegrationTestDataControllerTest3,0
-
-test/controllers/users_controller_test.rb,84
-class UsersControllerTest < ActionDispatch::IntegrationTestUsersControllerTest3,0
-
-test/controllers/permissions_controller_test.rb,90
-class permissionsControllerTest < ActionDispatch::IntegrationTestpermissionsControllerTest3,0
-
-test/controllers/permissions_roles_controller_test.rb,100
-class permissionsRolesControllerTest < ActionDispatch::IntegrationTestpermissionsRolesControllerTest3,0
-
-test/controllers/devices_controller_test.rb,88
-class DevicesControllerTest < ActionDispatch::IntegrationTestDevicesControllerTest3,0
-
-test/controllers/zone__devices_controller_test.rb,96
-class ZoneDevicesControllerTest < ActionDispatch::IntegrationTestZoneDevicesControllerTest3,0
-
-test/controllers/access_points_controller_test.rb,98
-class AccessPointsControllerTest < ActionDispatch::IntegrationTestAccessPointsControllerTest3,0
-
-test/controllers/general_settings_controller_test.rb,104
-class GeneralSettingsControllerTest < ActionDispatch::IntegrationTestGeneralSettingsControllerTest3,0
-
-test/controllers/api/location_controller_test.rb,195
-class Api::LocationControllerTest < ActionDispatch::IntegrationTestLocationControllerTest3,0
-class Api::LocationControllerTest < ActionDispatch::IntegrationTestApi::LocationControllerTest3,0
-
-test/controllers/zones_controller_test.rb,84
-class ZonesControllerTest < ActionDispatch::IntegrationTestZonesControllerTest3,0
-
-test/controllers/location_devices_controller_test.rb,104
-class LocationDevicesControllerTest < ActionDispatch::IntegrationTestLocationDevicesControllerTest3,0
-
-test/controllers/mobiles_controller_test.rb,88
-class MobilesControllerTest < ActionDispatch::IntegrationTestMobilesControllerTest3,0
-
-test/controllers/zone_controller_test.rb,82
-class ZoneControllerTest < ActionDispatch::IntegrationTestZoneControllerTest3,0
-
-test/controllers/cordinates_controller_test.rb,94
-class CordinatesControllerTest < ActionDispatch::IntegrationTestCordinatesControllerTest3,0
-
-test/controllers/dashboard_controller_test.rb,92
-class DashboardControllerTest < ActionDispatch::IntegrationTestDashboardControllerTest3,0
-
-test/controllers/roles_controller_test.rb,84
-class RolesControllerTest < ActionDispatch::IntegrationTestRolesControllerTest3,0
-
-test/application_system_test_case.rb,95
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCaseApplicationSystemTestCase3,0
-
-test/test_helper.rb,101
-class ActiveSupport::TestCaseTestCase5,0
-class ActiveSupport::TestCaseActiveSupport::TestCase5,0
-
-app/helpers/zones_helper.rb,35
-module ZonesHelperZonesHelper1,0
-
-app/helpers/permissions_helper.rb,41
-module permissionsHelperpermissionsHelper1,0
-
-app/helpers/data_helper.rb,33
-module DataHelperDataHelper1,0
-
-app/helpers/cordinates_helper.rb,45
-module CordinatesHelperCordinatesHelper1,0
-
-app/helpers/general_settings_helper.rb,55
-module GeneralSettingsHelperGeneralSettingsHelper1,0
-
-app/helpers/mobiles_helper.rb,39
-module MobilesHelperMobilesHelper1,0
-
-app/helpers/zone_helper.rb,33
-module ZoneHelperZoneHelper1,0
-
-app/helpers/api/location_helper.rb,97
-module Api::LocationHelperLocationHelper1,0
-module Api::LocationHelperApi::LocationHelper1,0
-
-app/helpers/application_helper.rb,47
-module ApplicationHelperApplicationHelper1,0
-
-app/helpers/access_points_helper.rb,49
-module AccessPointsHelperAccessPointsHelper1,0
-
-app/helpers/permissions_roles_helper.rb,51
-module permissionsRolesHelperpermissionsRolesHelper1,0
-
-app/helpers/users_helper.rb,35
-module UsersHelperUsersHelper1,0
-
-app/helpers/location_devices_helper.rb,55
-module LocationDevicesHelperLocationDevicesHelper1,0
-
-app/helpers/devices_helper.rb,39
-module DevicesHelperDevicesHelper1,0
-
-app/helpers/dashboard_helper.rb,43
-module DashboardHelperDashboardHelper1,0
-
-app/helpers/roles_helper.rb,35
-module RolesHelperRolesHelper1,0
-
-app/helpers/zone__devices_helper.rb,47
-module ZoneDevicesHelperZoneDevicesHelper1,0
-
-app/models/application_record.rb,67
-class ApplicationRecord < ActiveRecord::BaseApplicationRecord3,0
-
-app/models/permissions_role.rb,430
-class permissionsRole < ApplicationRecordpermissionsRole1,0
-  belongs_to :permissionspermissions2,0
-  belongs_to :permissionspermissions=2,0
-  belongs_to :permissionsbuild_permissions2,0
-  belongs_to :permissionscreate_permissions2,0
-  belongs_to :permissionscreate_permissions!2,0
-  belongs_to :rolesroles3,0
-  belongs_to :rolesroles=3,0
-  belongs_to :rolesbuild_roles3,0
-  belongs_to :rolescreate_roles3,0
-  belongs_to :rolescreate_roles!3,0
-
-app/models/cordinate.rb,50
-class Cordinate < ApplicationRecordCordinate1,0
-
-app/models/setting.rb,48
-class Setting < RailsSettings::BaseSetting2,0
-
-app/models/zone.rb,40
-class Zone < ApplicationRecordZone1,0
-
-app/models/role.rb,40
-class Role < ApplicationRecordRole1,0
-
-app/models/zone__device.rb,456
-class ZoneDevice < ApplicationRecordZoneDevice1,0
-  belongs_to :access_pointaccess_point2,0
-  belongs_to :access_pointaccess_point=2,0
-  belongs_to :access_pointbuild_access_point2,0
-  belongs_to :access_pointcreate_access_point2,0
-  belongs_to :access_pointcreate_access_point!2,0
-  belongs_to :zonezone3,0
-  belongs_to :zonezone=3,0
-  belongs_to :zonebuild_zone3,0
-  belongs_to :zonecreate_zone3,0
-  belongs_to :zonecreate_zone!3,0
-
-app/models/permission.rb,46
-class permission < ApplicationRecordpermission1,0
-
-app/models/location_device.rb,524
-class LocationDevice < ApplicationRecordLocationDevice1,0
-  belongs_to :access_pointaccess_point2,0
-  belongs_to :access_pointaccess_point=2,0
-  belongs_to :access_pointbuild_access_point2,0
-  belongs_to :access_pointcreate_access_point2,0
-  belongs_to :access_pointcreate_access_point!2,0
-  belongs_to :coordenatecoordenate3,0
-  belongs_to :coordenatecoordenate=3,0
-  belongs_to :coordenatebuild_coordenate3,0
-  belongs_to :coordenatecreate_coordenate3,0
-  belongs_to :coordenatecreate_coordenate!3,0
-
-app/models/datum.rb,224
-class Datum < ApplicationRecordDatum1,0
-  belongs_to :mobilemobile2,0
-  belongs_to :mobilemobile=2,0
-  belongs_to :mobilebuild_mobile2,0
-  belongs_to :mobilecreate_mobile2,0
-  belongs_to :mobilecreate_mobile!2,0
-
-app/models/limite_zone.rb,446
-class LimiteZone < ApplicationRecordLimiteZone1,0
-  belongs_to :zoneszones2,0
-  belongs_to :zoneszones=2,0
-  belongs_to :zonesbuild_zones2,0
-  belongs_to :zonescreate_zones2,0
-  belongs_to :zonescreate_zones!2,0
-  belongs_to :coordinatecoordinate3,0
-  belongs_to :coordinatecoordinate=3,0
-  belongs_to :coordinatebuild_coordinate3,0
-  belongs_to :coordinatecreate_coordinate3,0
-  belongs_to :coordinatecreate_coordinate!3,0
-
-app/models/access_point.rb,413
-class AccessPoint < ApplicationRecordAccessPoint1,0
-  has_one :cordinatecordinate2,0
-  has_one :cordinatecordinate=2,0
-  has_one :cordinatebuild_cordinate2,0
-  has_one :cordinatecreate_cordinate2,0
-  has_one :cordinatecreate_cordinate!2,0
-  belongs_to :zonezone3,0
-  belongs_to :zonezone=3,0
-  belongs_to :zonebuild_zone3,0
-  belongs_to :zonecreate_zone3,0
-  belongs_to :zonecreate_zone!3,0
-
-app/models/user.rb,40
-class User < ApplicationRecordUser1,0
-
-app/models/mobile.rb,44
-class Mobile < ApplicationRecordMobile1,0
-
-app/mailers/application_mailer.rb,67
-class ApplicationMailer < ActionMailer::BaseApplicationMailer1,0
-
-app/channels/application_cable/connection.rb,195
-module ApplicationCableApplicationCable1,0
-  class Connection < ActionCable::Connection::BaseConnection2,0
-  class Connection < ActionCable::Connection::BaseApplicationCable::Connection2,0
-
-app/channels/application_cable/channel.rb,177
-module ApplicationCableApplicationCable1,0
-  class Channel < ActionCable::Channel::BaseChannel2,0
-  class Channel < ActionCable::Channel::BaseApplicationCable::Channel2,0
-
-app/controllers/permissions_controller.rb,312
-class permissionsController < ApplicationControllerpermissionsController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_permissionset_permission66,0
-    def permission_paramspermission_params71,0
-
-app/controllers/zone__devices_controller.rb,338
-class ZoneDevicesController < ApplicationControllerZoneDevicesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_zone__deviceset_zone__device66,0
-    def zone__device_paramszone__device_params71,0
-
-app/controllers/cordinates_controller.rb,324
-class CordinatesController < ApplicationControllerCordinatesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_cordinateset_cordinate66,0
-    def cordinate_paramscordinate_params71,0
-
-app/controllers/location_devices_controller.rb,358
-class LocationDevicesController < ApplicationControllerLocationDevicesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_location_deviceset_location_device66,0
-    def location_device_paramslocation_device_params71,0
-
-app/controllers/zones_controller.rb,294
-class ZonesController < ApplicationControllerZonesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_zoneset_zone66,0
-    def zone_paramszone_params71,0
-
-app/controllers/users_controller.rb,88
-class UsersController < ApplicationControllerUsersController1,0
-  def indexindex2,0
-
-app/controllers/data_controller.rb,296
-class DataController < ApplicationControllerDataController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_datumset_datum66,0
-    def datum_paramsdatum_params71,0
-
-app/controllers/devices_controller.rb,306
-class DevicesController < ApplicationControllerDevicesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_deviceset_device66,0
-    def device_paramsdevice_params71,0
-
-app/controllers/general_settings_controller.rb,126
-class GeneralSettingsController < ApplicationControllerGeneralSettingsController1,0
-  def formform2,0
-  def savesave5,0
-
-app/controllers/access_points_controller.rb,340
-class AccessPointsController < ApplicationControllerAccessPointsController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_access_pointset_access_point66,0
-    def access_point_paramsaccess_point_params71,0
-
-app/controllers/api/location_controller.rb,177
-class Api::LocationController < ApplicationControllerLocationController1,0
-class Api::LocationController < ApplicationControllerApi::LocationController1,0
-  def getget2,0
-
-app/controllers/roles_controller.rb,294
-class RolesController < ApplicationControllerRolesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_roleset_role66,0
-    def role_paramsrole_params71,0
-
-app/controllers/mobiles_controller.rb,306
-class MobilesController < ApplicationControllerMobilesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_mobileset_mobile66,0
-    def mobile_paramsmobile_params71,0
-
-app/controllers/application_controller.rb,79
-class ApplicationController < ActionController::BaseApplicationController1,0
-
-app/controllers/dashboard_controller.rb,94
-class DashboardController < ApplicationControllerDashboardController1,0
-  def homehome2,0
-
-app/controllers/permissions_roles_controller.rb,346
-class permissionsRolesController < ApplicationControllerpermissionsRolesController1,0
-  def indexindex6,0
-  def showshow12,0
-  def newnew16,0
-  def editedit21,0
-  def createcreate26,0
-  def updateupdate42,0
-  def destroydestroy56,0
-    def set_permissions_roleset_permissions_role66,0
-    def permissions_role_paramspermissions_role_params71,0
-
-app/jobs/application_job.rb,58
-class ApplicationJob < ActiveJob::BaseApplicationJob1,0

@@ -7,9 +7,7 @@
           = @issue.id
       .panel-body
         .row
-          .col-sm-4
-            .map#map style="width: 100%; heigth: 400px"
-          .col-sm-4
+          .col-sm-6
             .panel.panel-scrollable style="overflow: hidden; outline: none;"
               .panel-heading
                 .pull-left
@@ -24,7 +22,7 @@
                       p = "Dispositivo: #{ Mobile.find(m[1]).mac_address }"
                       p = "Recibido: #{ datos.first.created_at.strftime("%d/%m/%Y a las %I:%M%p") }"
                       - datos.each do |dato|
-                        p = "#{dato.type}:#{dato.type != 'Ping' ? " #{dato.value} #{measure_for(dato.type)}" : " #{dato.percent} %" }"
+                        p = "#{dato.type}:#{dato.type != 'Ping' ? " #{dato.value} #{measure_for(dato.type)}" : " #{dato.average} #{measure_for(dato.type)}" }"
 
           .col-sm-4
             .panel
@@ -126,29 +124,3 @@ javascript:
       }
     });
   })
-
-  var map = new GMaps({
-    el: '#map',
-    lat:  #{Setting.center[0]},
-    lng:  #{Setting.center[1]},
-    disableDefaultUI: true,
-    zoom: 18,
-    styles: [
-      {
-        "featureType": "poi",
-        "stylers": [
-          { "visibility": "off" }
-        ]
-      }
-    ]
-  });
-  var puntos = #{ @coordinates  || [] }
-
-  $(document).ready(function(){
-    $.each(puntos[0], function(index, value){
-      map.addMarker({
-        lat: value[0],
-        lng: value[1]
-      });
-    })
-  });
