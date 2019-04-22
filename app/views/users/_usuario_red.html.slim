@@ -2,11 +2,7 @@
   .col-md-12
     .panel.panel-success.shadow
       .panel-heading
-        .pull-left
-          h3.panel-title Lista de Usuarios
-        .pull-right
-          = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
-        .clearfix
+        h3.panel-title Lista de Usuarios
       .panel-body
         = search_form_for @q do |f|
           .col-md-5
@@ -25,7 +21,6 @@
                 td
                   h3
                     = user.name
-
                 td
                   i.fa.fa-male.fg-success
                   = user.email
@@ -34,32 +29,3 @@
                   = user.role.name
           .panel-footer
             = will_paginate(@students)
-
-
-
-
-/ .row
-/   .col-md-12
-/     .panel.panel-success.shadow
-/       .panel-heading
-/         .pull-left
-/           h3.panel-title Lista de Usuarios
-/         .pull-right
-/           = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
-/         .clearfix
-/       .panel-body
-/         table.table.table-issue-tracker.table-middle
-/           tbody
-/             - @users.each do |user|
-/               tr
-/                 td
-/                   = link_to user do
-/                     h3
-/                       = user.name
-
-/                 td
-/                   i.fa.fa-male.fg-success
-/                   = user.email
-/                   = user.phone_number
-/                 td
-/                   = user.role.name

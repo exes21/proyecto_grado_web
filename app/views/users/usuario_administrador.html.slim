@@ -5,7 +5,7 @@
         .pull-left
           h3.panel-title Lista de Usuarios
         .pull-right
-          = link_to fa_icon('plus'), new_user_registration_path, class: 'btn btn-sm'
+          = link_to fa_icon('plus'), new_user_path, class: 'btn btn-sm'
         .clearfix
       .panel-body
         = search_form_for @q, url: administradores_path  do |f|

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
   require 'roo'
 
   def index
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
   def new
     @title = "Nuevo Usuario"
     @icon = "users"
+    @user = User.new
   end
 
   def edit
@@ -40,12 +40,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def create
+  def create_administrator
     @user = User.new(user_params)
-
+    @user.role = Role.first
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'El usuario ha sido creado' }
+        format.html { redirect_to users_path, notice: 'El usuario ha sido creado' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -55,5 +55,11 @@ class UsersController < ApplicationController
   end
 
   def update
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:id, :email, :password, :password_confirmation, :name, :phone)
   end
 end
