@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    title
+      | JPIR
+    = stylesheet_link_tag 'empty'
+  body style="background-image: url(#{asset_path('fondo.jpeg')}); background-repeat: no-repeat;background-size: cover;"
+    = yield

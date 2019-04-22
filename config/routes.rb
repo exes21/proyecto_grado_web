@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'general_settings/limits'
   get 'general_settings/form'
   post 'general_settings/save'
-
+  resources :portal
+  get 'portal/file', to: 'portal#file'
   resources :data
   resources :mobiles
   resources :access_points
