@@ -12,16 +12,15 @@ class Issue < ApplicationRecord
   enum category: [:ping, :latency, :jitter, :link_speed, :sign_level]
 
   before_save do
-    if notified
-      self.status = 'activo'
-      if (low..mid).to_a.include?(issues_reports.count)
-        self.priority = 'bajo'
-      elsif (low..mid).to_a.include?(issues_reports.count)
-        self.priority = 'medio'
-      elsif (mid..high).to_a.include?(issues_reports.count)
-        notify if !notified
-        self.priority = 'alto'
-      end
+    self.status = 'activo'
+    if (low..mid).to_a.include?(issues_reports.count)
+      self.priority = 'bajo'
+    elsif (mid..high).to_a.include?(issues_reports.count)
+      self.priority = 'medio'
+    elsif issues_reports.count > high
+      notify if notified
+      self.priority = 'alto'
+      self.notified = false
     end
   end
 
@@ -33,7 +32,6 @@ class Issue < ApplicationRecord
       notification.notificable_type = "Issue"
       notification.save
     end
-    update_attribute(:notified, true)
   end
 
   def low
