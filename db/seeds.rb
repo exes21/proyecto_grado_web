@@ -55,7 +55,7 @@ User.new(
 ).save
 
 User.new(
-    name: "exes",
+    name: "Exes",
     password: "123456789",
     password_confirmation: "123456789",
     email: "exes.itt@gmail.com",
@@ -176,17 +176,17 @@ zone.coordinates.new(
 ).save
 
 ap = AccessPoint.new(
-    ip_address: "10.0.0.2",
-    mac_address: "BA:BA:BA:BA",
+    ip_address: "192.168.1.100",
+    mac_address: "fc:ec:da:80:ef:d2",
     zone: zone,
-    ssid: "Flia.Marcelino Camilo"
+    ssid: "IARW_AP1"
 )
 ap.coordinate= Coordinate.new(
     latitude: 19.44178705 ,
     longitude: -70.6831035
 )
 
-ap.channels.new(bssid: "BA:BA:BA:BA")
+ap.channels.new(bssid: "fc:ec:da:80:ef:d2")
 ap.save
 
 
@@ -214,16 +214,16 @@ zona.coordinates.new(
 ).save
 
 ap = AccessPoint.new(
-    ip_address: "10.0.0.13",
-    mac_address: "a0:c9:a0:8a:13:f1",
+    ip_address: "192.168.1.200",
+    mac_address: "e8:94:f6:bf:45:29",
     zone: zona,
-    ssid: "IARW"
+    ssid: "IARW_AP2"
 )
 ap.coordinate= Coordinate.new(
     latitude: 19.44149365 ,
     longitude: -70.68340927
 )
-ap.channels.new(bssid:  "a0:c9:a0:8a:13:f1")
+ap.channels.new(bssid:  "e8:94:f6:bf:45:29")
 ap.save
 
 # Lab. Ingenieria
@@ -251,14 +251,14 @@ zone.coordinates.new(
 ).save
 
 ap = AccessPoint.new(
-    ip_address: "10.0.0.13",
-    mac_address: "a0:c9:a0:8a:13:f1",
+    ip_address: "192.168.1.1",
+    mac_address: "fc:ec:da:80:ef:d2",
     zone: zone,
-    ssid: "exes"
+    ssid: "ISP_IARW"
 )
 ap.coordinate= Coordinate.new(
     latitude: 19.44107885 ,
     longitude: -70.6828782
 )
-ap.channels.new(bssid:  "a0:c9:a0:8a:13:f1")
+ap.channels.new(bssid:  "fc:ec:da:80:ef:d2")
 ap.save
