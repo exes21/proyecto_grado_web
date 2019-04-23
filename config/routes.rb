@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     get 'data/last_connected_users'
   end
 
-  get 'dashboard/home'
-  root 'dashboard#home'
+  get 'dashboard', to: 'dashboard#home'
+  root 'portal#index'
 
 end
