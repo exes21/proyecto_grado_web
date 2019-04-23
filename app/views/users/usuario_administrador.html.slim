@@ -16,7 +16,7 @@
         table.table.table-issue-tracker.table-middle
           tbody
             - @users.each do |user|
-              tr
+              tr class="#{ "danger" unless user.active? }"
                 td
                   h3
                     = user.name
@@ -26,6 +26,8 @@
                   = user.phone_number
                 td
                   = user.role.name
+                td
+                  = link_to "Inactivar", inactivar_administrador_path(id: user)
       .panel-footer
             = will_paginate(@users)
 

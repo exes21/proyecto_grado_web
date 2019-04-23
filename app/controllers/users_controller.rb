@@ -10,6 +10,16 @@ class UsersController < ApplicationController
     @students = @q.result(distinct: true).where(role: Role.second).paginate(page: params[:page], per_page: 10)
   end
 
+  def inactivar_admin
+    User.find(params[:id]).update_attribute(:active, false)
+    redirect_to administradores_path
+  end
+
+  def inactivar_user
+    User.find(params[:id]).update_attribute(:active, false)
+    redirect_to users_path
+  end
+
   def usuario_administrador
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).where(role: Role.first).paginate(page: params[:page], per_page: 10)

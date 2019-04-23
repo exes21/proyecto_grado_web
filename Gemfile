@@ -32,6 +32,7 @@ gem 'acts_as_commentable'
 gem "nested_form"
 gem 'tinymce-rails'
 
+gem 'ruby-nmap'
 gem 'lp_csv_exportable'
 # Gemas solo para usar en la maquina local
 group :development, :test do

@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'users/create_administrator', to: 'users#create_administrator'
   get "users_map", to: "users#users_map"
   get "administradores", to: "users#usuario_administrador"
+  get 'inactivar_administrador', to: 'users#inactivar_admin'
+  get 'inactivar_usuario', to: 'users#inactivar_user'
   post "users/load", to: "users#load", as: 'user_imports'
   resources :zones
   get "zone/view", to: "zones#zone_view"

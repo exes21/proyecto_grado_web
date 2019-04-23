@@ -14,18 +14,19 @@
             th Nombre
             th Correo
             th Rol
-
+            th
           tbody
             - @students.each do |user|
-              tr
+              tr class="#{ "danger" unless user.active? }"
                 td
-                  h3
-                    = user.name
+                  p = user.name
                 td
                   i.fa.fa-male.fg-success
                   = user.email
                   = user.phone_number
                 td
                   = user.role.name
+                td
+                  = link_to  "Deshabilitar", inactivar_usuario_path(id: user.id)
           .panel-footer
             = will_paginate(@students)
