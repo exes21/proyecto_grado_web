@@ -11,7 +11,12 @@ class UsersController < ApplicationController
   end
 
   def inactivar_admin
-    User.find(params[:id]).update_attribute(:active, false)
+    user = User.find(params[:id])
+    if user.active?
+      user.update_attribute(:active, false)
+    else
+      user.update_attribute(:active, true)
+    end
     redirect_to administradores_path
   end
 

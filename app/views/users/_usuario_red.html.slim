@@ -27,6 +27,9 @@
                 td
                   = user.role.name
                 td
-                  = link_to  "Deshabilitar", inactivar_usuario_path(id: user.id)
+                  - if user.active?
+                    = link_to "Inactivar", inactivar_usuario_path(id: user)
+                  - else
+                    = link_to "Activar", inactivar_usuario_path(id: user)
           .panel-footer
             = will_paginate(@students)

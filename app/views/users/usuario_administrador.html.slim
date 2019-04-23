@@ -27,7 +27,10 @@
                 td
                   = user.role.name
                 td
-                  = link_to "Inactivar", inactivar_administrador_path(id: user)
+                  - if user.active?
+                    = link_to "Inactivar", inactivar_administrador_path(id: user)
+                  - else
+                    = link_to "Activar", inactivar_administrador_path(id: user)
       .panel-footer
             = will_paginate(@users)
 
