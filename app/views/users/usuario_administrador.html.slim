@@ -18,8 +18,8 @@
             - @users.each do |user|
               tr class="#{ "danger" unless user.active? }"
                 td
-                  h3
-                    = user.name
+                    = link_to edit_user_path(user) do
+                      = user.name
                 td
                   i.fa.fa-male.fg-success
                   = user.email

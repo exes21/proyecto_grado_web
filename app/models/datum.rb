@@ -7,7 +7,7 @@ end
 class Ping < Datum
   after_save do
     unless (access_point.settings.min_ping.to_i..access_point.settings.max_ping.to_i).to_a.include?(rtt.min)
-      issue = Issue.find_or_create_by(access_point: access_point, status: "inactivo", category: 'ping')
+      issue = Issue.find_or_create_by(access_point: access_point, status: "activo", category: 'ping')
       issue.update_attribute(:updated_at, Time.now)
       issue.issues_reports.find_or_create_by(data_id: id)
     end
@@ -16,7 +16,7 @@ class Ping < Datum
   def percent
     status = ActiveSupport::JSON.decode(value)['status']
     completed = status.select { |s| s == 'Success' }.count
-    return (completed / status.count) * 100
+    return 100 - ((completed / status.count) * 100)
   end
 
   def average
@@ -36,7 +36,7 @@ end
 class Latency < Datum
   after_save do
     unless (access_point.settings.min_latency.to_i..access_point.settings.max_latency.to_i).to_a.include?(value.to_i)
-      issue = Issue.find_or_create_by(access_point: access_point, status: "inactivo", category: 'latency')
+      issue = Issue.find_or_create_by(access_point: access_point, status: "activo", category: 'latency')
       issue.update_attribute(:updated_at, Time.now)
       issue.issues_reports.find_or_create_by(data_id: id)
     end
@@ -45,7 +45,7 @@ end
 class Jitter < Datum
   after_save do
     unless (access_point.settings.min_jitter.to_i..access_point.settings.max_jitter.to_i).to_a.include?(value.to_i)
-      issue = Issue.find_or_create_by(access_point: access_point, status: "inactivo", category: 'jitter')
+      issue = Issue.find_or_create_by(access_point: access_point, status: "activo", category: 'jitter')
       issue.update_attribute(:updated_at, Time.now)
       issue.issues_reports.find_or_create_by(data_id: id)
     end
@@ -55,7 +55,7 @@ end
 class LinkSpeed < Datum
   after_save do
     unless (access_point.settings.min_link_speed.to_i..access_point.settings.max_link_speed.to_i).to_a.include?(value.to_i)
-      issue = Issue.find_or_create_by(access_point: access_point, status: "inactivo", category: 'link_speed')
+      issue = Issue.find_or_create_by(access_point: access_point, status: "activo", category: 'link_speed')
       issue.update_attribute(:updated_at, Time.now)
       issue.issues_reports.find_or_create_by(data_id: id)
     end
@@ -65,7 +65,7 @@ end
 class SignLevel < Datum
   after_save do
     unless (access_point.settings.min_sign_level.to_i..access_point.settings.max_sign_level.to_i).to_a.include?(value.to_i)
-      issue = Issue.find_or_create_by(access_point: access_point, status: "inactivo", category: 'sign_level')
+      issue = Issue.find_or_create_by(access_point: access_point, status: "activo", category: 'sign_level')
       issue.update_attribute(:updated_at, Time.now)
       issue.issues_reports.find_or_create_by(data_id: id)
     end

@@ -5,7 +5,7 @@ class NotificationMailer < ApplicationMailer
   def notify(user, issue)
     subject = 'Notificacion de errores'
     @error = issue
-    @url = "localhost:3000/alert/#{@error.id}"
+    @url = "192.168.1.196/alert/#{@error.id}"
     mail(to: user.email, subject: subject)
   end
 end

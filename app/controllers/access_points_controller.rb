@@ -6,14 +6,14 @@ class AccessPointsController < ApplicationController
   # GET /access_points.json
   def index
     @access_points = AccessPoint.all.paginate(page: params[:page], per_page: 10)
-    @title = "Configuración de Equipos"
+    @title = "Configuración de equipos"
     @icon = "wifi"
   end
 
   # GET /access_points/1
   # GET /access_points/1.json
   def show
-    @title = "Vista de Equipos"
+    @title = "Vista de equipos"
     @icon = "wifi"
   end
 
@@ -22,7 +22,7 @@ class AccessPointsController < ApplicationController
     @access_point = AccessPoint.new
     @access_point.build_coordinate
     @access_point.channels.new
-    @title = "Nuevo Equipo"
+    @title = "Nuevo equipo"
     @icon = "wifi"
 
     @min_jitter = @access_point.settings.min_jitter
@@ -55,7 +55,7 @@ class AccessPointsController < ApplicationController
 
   # GET /access_points/1/edit
   def edit
-    @title = "Editar Equipo"
+    @title = "Editar equipo"
     @icon = "wifi"
   end
 
@@ -80,7 +80,7 @@ class AccessPointsController < ApplicationController
   # PATCH/PUT /access_points/1.json
   def update
     respond_to do |format|
-      if @access_point.update(access_point_params)
+      if @access_point.update_attributes(access_point_params)
         update_settings
         format.html { redirect_to @access_point, notice: 'Access point was successfully updated.' }
         format.json { render :show, status: :ok, location: @access_point }
@@ -174,11 +174,13 @@ class AccessPointsController < ApplicationController
                                             :password,
                                             :zone_id,
                                             coordinate_attributes: [
+                                              :id,
                                               :latitude,
                                               :longitude,
                                               :locatable_id
                                             ],
                                             channels_attributes: [
+                                              :id,
                                               :bssid
                                             ]
       )

@@ -6,25 +6,25 @@ class ZonesController < ApplicationController
   # GET /zones.json
   def index
     @zones = Zone.all.paginate(page: params[:page], per_page: 10)
-    @title = "Configuración de Áreas"
+    @title = "Configuración de areas"
   end
 
   # GET /zones/1
   # GET /zones/1.json
   def show
-    @title = "Mostrar Áreas"
+    @title = "Mostrar areas"
     @datos = Datum.where(access_point_id: @zone.access_points.pluck(:id)).group_by { |d| d.type }
   end
 
   # GET /zones/new
   def new
     @zone = Zone.new
-    @title = "Nueva Áreas"
+    @title = "Nueva areas"
   end
 
   # GET /zones/1/edit
   def edit
-    @title = "Editar Área"
+    @title = "Editar area"
   end
 
   # POST /zones

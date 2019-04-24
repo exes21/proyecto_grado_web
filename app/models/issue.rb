@@ -17,11 +17,12 @@ class Issue < ApplicationRecord
       self.priority = 'bajo'
     elsif (mid..high).to_a.include?(issues_reports.count)
       self.priority = 'medio'
-    elsif issues_reports.count > high
+    elsif issues_reports.count > high.to_i
       notify if notified
       self.priority = 'alto'
       self.notified = false
     end
+    #binding.pry
   end
 
   def notify

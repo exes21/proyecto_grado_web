@@ -1,0 +1,35 @@
+.row
+  .col-md-
+    .panel.rounded.shadow
+      .panel-heading
+        h3.panel-title  style="text-align: center" Modificar Usuario
+        .clearfix
+
+      .panel-body
+        .row
+            = form_for(@user, url: user_path, method: :PATCH , html: {class: "form-horizontal form-bordered"}) do |f|
+                .col-sm-12
+                    .form-group
+                        = f.label :name, class: "col-sm-2 control-label", style: "text-align: left"
+                        .col-sm-8
+                        = f.text_field :name, class: "form-control"
+                    .form-group
+                        = f.label "Número de teléfono", class: "col-sm-2 control-label", style: "text-align: left"
+                        .col-sm-8
+                        = f.text_field :phone_number, class: "form-control"
+                    .form-group
+                        = f.label :email, class: "col-sm-2 control-label", style: "text-align: left"
+                        .col-sm-8
+                        = f.text_field :email, class: "form-control"
+                    .form-group
+                        = f.label :password, class: "col-sm-2 control-label", style: "text-align: left"
+                        .col-sm-8
+                        = f.password_field :password, class: "form-control"
+                    .form-group
+                        = f.label :password_confirmation, class: "col-sm-2 control-label", style: "text-align: left"
+                        .col-sm-8
+                        = f.password_field :password_confirmation, class: "form-control"
+                    .form-group
+                        .col-md-4.col-md-offset-3
+                        = link_to "Cancelar", :back ,class: "btn btn-danger mr-5"
+                        = f.submit "Guardar", class: "btn btn-success mr-5"

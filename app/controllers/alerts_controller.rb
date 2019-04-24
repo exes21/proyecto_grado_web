@@ -2,10 +2,11 @@ class AlertsController < ApplicationController
   protect_from_forgery with: :null_session
 
   before_action :settings, only: :edit
+  before_action :issue, except: [:index]
   # GET /alert
   # GET /alert.json
   def index
-    @title = "Lista de Alarmas"
+    @title = "Lista de alarmas"
     @icon = "bell"
 
     @q = Issue.ransack(params[:q])
@@ -20,16 +21,24 @@ class AlertsController < ApplicationController
     end
   end
 
+  def notificar
+    notification = Notification.new
+    notification.user = current_user
+    notification.notificable_id = @issue.id
+    notification.notificable_type = "Issue"
+    notification.save
+    redirect_to alert_path(@issue)
+  end
+
   # GET /alert/1
   # GET /alert/1.json
   def show
-    @issue = Issue.find(params[:id])
     @mobiles = @issue.issues_reports.map { |report| Datum.find(report.data_id).mobile }.uniq
     @coordinates = @mobiles.map { |m| m.coordinates.map { |c| [c.latitude.to_f, c.longitude.to_f] } }
   end
 
   def edit
-    @title = "Configuración de Alarmas"
+    @title = "Configuración de alarmas"
     @icon = "bell"
   end
 
@@ -70,7 +79,6 @@ class AlertsController < ApplicationController
   end
 
   def cerrar
-    @issue = Issue.find(params[:alert_id])
     @issue.update_attribute(:status, :resuelto)
     @issue.update_attribute(:solved_at, Time.now)
     @issue.comments.create(
@@ -81,7 +89,6 @@ class AlertsController < ApplicationController
   end
 
   def cancelar
-    @issue = Issue.find(params[:alert_id])
     @issue.update_attribute(:status, :cancelado)
     @issue.comments.create(
       user: User.find(params[:user]),
@@ -92,7 +99,6 @@ class AlertsController < ApplicationController
   end
 
   def comentar
-    @issue = Issue.find(params[:alert_id])
     @issue.comments.create(
       user: User.find(params[:user]),
       comment: params[:comment]
@@ -101,6 +107,10 @@ class AlertsController < ApplicationController
   end
 
   private
+
+  def issue
+    @issue = Issue.find(params[:alert_id] || params[:id])
+  end
 
   def update_access_point_settings
     ap_ids = params['zones']['zones_id'].select { |x| x unless x.empty? }

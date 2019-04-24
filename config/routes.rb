@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "zone/view", to: "zones#zone_view"
   resources :devices
   resources :alerts do
+    get 'notificar'
     post 'cancelar'
     post 'cerrar'
     post 'comentar'

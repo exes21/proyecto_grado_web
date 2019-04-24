@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   require 'roo'
-
+  before_action :user, only: [:edit, :update]
   def index
     @user = User.new
     @users_import = UserImport.new
-    @title = "Configuración de Usuarios"
+    @title = "Configuración de usuarios"
     @icon = "users"
     @q = User.ransack(params[:q])
     @students = @q.result(distinct: true).where(role: Role.second).paginate(page: params[:page], per_page: 10)
@@ -31,24 +31,24 @@ class UsersController < ApplicationController
   end
 
   def users_map
-    @title = "Mapa de Usuarios"
+    @title = "Mapa de usuarios"
     @icon = "users"
     @users = User.all
   end
 
   def new
-    @title = "Nuevo Usuario"
+    @title = "Nuevo usuario"
     @icon = "users"
     @user = User.new
   end
 
   def edit
-    @title = "Editar Usuario"
+    @title = "Editar usuario"
     @icon = "users"
   end
 
   def load
-    @title = "Cargar Usuarios"
+    @title = "Cargar usuarios"
     @icon = "users"
     if UserImport.import(params[:user_import][:file])
       redirect_to users_path
@@ -70,11 +70,32 @@ class UsersController < ApplicationController
   end
 
   def update
+    respond_to do |format|
+      new_fields = user_params
+      new_fields = user_params.except(:password, :password_confirmation ) if user_params[:password].blank?
+      if @user.update_attributes(new_fields)
+        if @user.role == Role.first
+          format.html { redirect_to administradores_path, notice: 'El usuario ha sido creado' }
+        else
+          format.html { redirect_to users_path, notice: 'El usuario ha sido creado' }
+        end
+        
+      else
+        if @user.role == Role.first
+          format.html { redirect_to administradores_path, notice: 'El usuario no ha sido creado' }
+        else
+          format.html { redirect_to users_path, notice: 'El usuario no ha sido creado' }
+        end
+      end
+    end
   end
 
   private
+  def user
+    @user = User.find(params[:id])
+  end
 
   def user_params
-    params.require(:user).permit(:id, :email, :password, :password_confirmation, :name, :phone)
+    params.require(:user).permit(:id, :email, :password, :password_confirmation, :name, :phone_number)
   end
 end

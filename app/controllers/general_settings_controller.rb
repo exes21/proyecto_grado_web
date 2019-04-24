@@ -4,7 +4,7 @@ class GeneralSettingsController < ApplicationController
 
   def form
     @icon = "cog"
-    @title = "Configuración General"
+    @title = "Configuración general"
   end
 
   def save

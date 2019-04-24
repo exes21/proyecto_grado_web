@@ -6,7 +6,7 @@ class RolesController < ApplicationController
   # GET /roles.json
   def index
     @roles = Role.all.paginate(page: params[:page], per_page: 10)
-    @title = "Configuración de Roles"
+    @title = "Configuración de roles"
     @icon = "tags"
   end
 
@@ -18,13 +18,13 @@ class RolesController < ApplicationController
   # GET /roles/new
   def new
     @role = Role.new
-    @title = "Nuevo Rol"
+    @title = "Nuevo rol"
     @icon = "tags"
   end
 
   # GET /roles/1/edit
   def edit
-    @title = "Editar Rol"
+    @title = "Editar rol"
     @icon = "tags"
   end
 

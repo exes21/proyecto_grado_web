@@ -39,6 +39,7 @@
                 p = "Usuarios afectados: #{@mobiles.count} "
                 p = "Estado: #{@issue.status.capitalize}"
                 p = "Resuelto en: #{@issue.solved_at}"
+                = link_to  "Enviar por correo", alert_notificar_path(@issue), class: "btn btn-default"
 .row
   .col-md-12
     .panel.panel-default.panel-issue-tracker.shadow
