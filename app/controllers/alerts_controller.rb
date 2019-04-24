@@ -109,7 +109,8 @@ class AlertsController < ApplicationController
   private
 
   def issue
-    @issue = Issue.find(params[:alert_id] || params[:id])
+    id = params[:alert_id] || params[:id]
+    @issue = Issue.find(id)
   end
 
   def update_access_point_settings
