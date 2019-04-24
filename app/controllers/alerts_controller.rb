@@ -2,7 +2,7 @@ class AlertsController < ApplicationController
   protect_from_forgery with: :null_session
 
   before_action :settings, only: :edit
-  before_action :issue, except: [:index]
+  before_action :issue, except: [:index, :edit, :save_setting]
   # GET /alert
   # GET /alert.json
   def index
@@ -109,7 +109,7 @@ class AlertsController < ApplicationController
   private
 
   def issue
-    @issue = Issue.find(params[:alert_id]) || Issue.find(params[:id])
+    @issue = Issue.find(params[:alert_id] || params[:id])
   end
 
   def update_access_point_settings
