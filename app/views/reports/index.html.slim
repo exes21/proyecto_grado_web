@@ -1,0 +1,157 @@
+- @title = 'Reportes'
+
+.row
+  .col-md-8
+    .panel.panel-default.shadow
+      .panel-heading
+        .pull-left
+          h3.panel-title.text-uppercase Grafico de alertas
+        .pull-right
+          button.btn.btn-sm data-action="refresh" data-original-title="" data-placement="top" data-title="Refresh" data-toggle="tooltip" title=""
+            i.fa.fa-refresh
+        .clearfix
+      .panel-body
+        .panel.panel-tab.panel-tab-double.shadow
+          .panel-heading.no-padding
+            ul.nav.nav-tabs
+              li.nav-border.nav-border-top-danger.active
+                a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-1"
+                  | RTT
+              li.nav-border.nav-border-top-primary
+                a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-2"
+                  | Latencia
+              li.nav-border.nav-border-top-success
+                a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-3"
+                  | Velocidad de enlace
+              li.nav-border.nav-border-top-info
+                a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-4"
+                  | Nivel de senal
+          .panel-body
+            .tab-content
+              #tab6-1.tab-pane.fade.active.in
+                canvas id="rtt" width="400" height="200"
+              #tab6-2.tab-pane.fade
+                canvas id="latency" width="400" height="200"
+              #tab6-3.tab-pane.fade
+                canvas id="link_speed" width="400" height="200"
+              #tab6-4.tab-pane.fade
+                canvas id="sign_level" width="400" height="200"
+
+
+
+  .col-md-4
+    .panel.panel-default.shadow
+      .panel-heading
+        h3.panel-title Promedio de datos generales
+      .panel-body
+        ul.list-unstyled
+          li
+            a href="#"
+            .pull-left
+              p Promedio de RTT
+              h3
+                span.counter = @pings.collect(&:score).sum.to_f/@users.length if @pings.length > 0
+                | ms
+            .pull-right
+              span.status
+                i.fa.fa-arrow-circle-up.fg-success
+            .clearfix
+          li
+            a href="#"
+            .pull-left
+              p Velocidad de enlace promedio
+              h3
+                span.counter = @link_speeds.collect(&:score).sum.to_f/@users.length if @link_speeds.length > 0
+                | ms
+            .pull-right
+              span.status
+                i.fa.fa-arrow-circle-up.fg-success
+            .clearfix
+
+
+script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"
+javascript:
+  var ctx = document.getElementById('rtt').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+  var ctx = document.getElementById('latency').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+  var ctx = document.getElementById('link_speed').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });
+  var ctx = document.getElementById('sign_level').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          }
+      }
+  });

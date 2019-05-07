@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources 'reports' do
+
+  end
   devise_for :users
 
   get 'general_settings/limits'
