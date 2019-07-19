@@ -17,6 +17,7 @@
 //= require gmaps
 //= require Chart.bundle
 //= require chartkick
+//= require chartjs
 //= require gmaps
 //= require jquery_nested_form
 //= require tinymce

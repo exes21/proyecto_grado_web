@@ -2,6 +2,8 @@ class Datum < ApplicationRecord
   belongs_to :mobile
   belongs_to :access_point
   has_one :issues_report
+
+  delegate :name, to: :access_point, prefix: true
 end
 
 class Ping < Datum

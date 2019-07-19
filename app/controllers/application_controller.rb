@@ -12,6 +12,16 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def measure_for(type)
+    case type
+    when 'Ping' then return 'ms'
+    when 'Jitter' then return 'ms'
+    when 'Latency' then return 'ms'
+    when 'LinkSpeed' then return 'Mb/s'
+    when 'SignLevel' then return 'dBm'
+    end
+  end
+
   def base_config
     unless Setting.center.present?
       redirect_to general_settings_form_path

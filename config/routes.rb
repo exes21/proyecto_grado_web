@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources 'reports' do
-
+    post 'get_data', to: 'reports#get_data'
   end
   devise_for :users
 

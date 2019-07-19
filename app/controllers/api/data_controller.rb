@@ -13,7 +13,8 @@ class Api::DataController < ApplicationController
 
     @mobile.coordinates.create(location_params)
 
-    render status: 200, json: @mobile.to_json
+    render status: 200, json: { status: 200,
+      info: @mobile.to_json }
   end
 
   def zone_save_limits
@@ -125,7 +126,7 @@ class Api::DataController < ApplicationController
         logger.error ex.message
       end
     else
-      render json: { message: 'Usuario invalido' }, status: 403
+      render json: { message: 'Usuario invalido' }, status: 401
     end
   end
 
