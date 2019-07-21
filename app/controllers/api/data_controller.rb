@@ -1,6 +1,8 @@
 class Api::DataController < ApplicationController
   protect_from_forgery with: :null_session
-  before_action :set_user, :set_mobile, :set_access_point, only: :data_gather
+  before_action :set_user, 
+                :set_mobile, 
+                :set_access_point, only: :data_gather
 
   def data_gather
     data_params.map do |key, value|
@@ -36,7 +38,7 @@ class Api::DataController < ApplicationController
 
       render json: zone.coordinates.map { |c| [c.latitude, c.longitude] }.to_json, status: :ok
     else
-      render json: {status: 'error'}, status: 440
+      render json: {status: 'error'}, status: 409
     end
   end
 
@@ -126,7 +128,7 @@ class Api::DataController < ApplicationController
         logger.error ex.message
       end
     else
-      render json: { message: 'Usuario invalido' }, status: 403
+      render json: { message: 'Usuario invalido' }, status: 401
     end
   end
 
@@ -137,14 +139,13 @@ class Api::DataController < ApplicationController
   end
 
   def set_access_point
-    @ap = AccessPoint.find_by(ip_address: params["DefaultGate"].split('.').reverse.join('.')) ||
-          ApChannel.find_by(bssid: params['MacDelRouter']) ||
+    @ap = AccessPoint.find_by(ssid: JSON.parse(params['ssid']))
+          ApChannel.find_by(bssid: params['MacDelRouter']).try(:access_point) ||
+          AccessPoint.find_by(ip_address: params["DefaultGate"].split('.').reverse.join('.')) ||
           AccessPoint.find_by(mac_address: params['MacDelRouter']) ||
-          AccessPoint.find_by(ssid: JSON.parse(params['ssid']))
-    #ip_address: params["DefaultGate"].split('.').reverse.join('.')
 
     unless @ap.present?
-      render json: { message: 'AP no encontrado' }, status: 441
+      render json: { message: 'AP no encontrado' }, status: 403
     end
   end
 end

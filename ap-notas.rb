@@ -9,7 +9,7 @@ headers = {
 }
 
 response = HTTParty.post(
-  'https://192.168.1.110:8443/api/login',
+  'https://192.168.0.102:8443/api/login',
   body: body.to_json,
   headers: headers
 )

@@ -34,9 +34,9 @@ gem 'tinymce-rails'
 
 gem 'ruby-nmap'
 gem 'lp_csv_exportable'
+gem 'pry-rails' # Debug permite hacer paradas en el codigo y correr lineas de comando
 # Gemas solo para usar en la maquina local
 group :development, :test do
-  gem 'pry-rails' # Debug permite hacer paradas en el codigo y correr lineas de comando
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'letter_opener' # Probar correos en maquina local
 end

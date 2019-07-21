@@ -30,7 +30,8 @@
           -unless datos.type == "Ping"
             tr
               td =  datos.id
-              td.text-center = datos.access_point.mac_address
+              td.text-center 
+                = "#{datos.access_point.ssid}  (#{datos.access_point.mac_address})"
               td.text-center = datos.mobile.mac_address
               td
                   = datos.type

@@ -174,19 +174,19 @@ zone.coordinates.new(
     latitude: 19.44171117,
     longitude: -70.68333417
 ).save
-
+######## El Negrito
 ap = AccessPoint.new(
-    ip_address: "192.168.1.100",
-    mac_address: "fc:ec:da:80:ef:d2",
+    ip_address: "192.168.0.100",
+    mac_address: "24:F5:A2:EE:1F:C8",
     zone: zone,
-    ssid: "IARW_AP1"
+    ssid: "IARW_AP_prueba"
 )
 ap.coordinate= Coordinate.new(
     latitude: 19.44178705 ,
     longitude: -70.6831035
 )
 
-ap.channels.new(bssid: "fc:ec:da:80:ef:d2")
+ap.channels.new(bssid: "24:F5:A2:EE:1F:C8")
 ap.save
 
 
@@ -214,16 +214,16 @@ zona.coordinates.new(
 ).save
 
 ap = AccessPoint.new(
-    ip_address: "192.168.1.200",
-    mac_address: "e8:94:f6:bf:45:29",
+    ip_address: "192.168.0.150",
+    mac_address: "FC:EC:DA:80:EF:DA",
     zone: zona,
-    ssid: "IARW_AP2"
+    ssid: "IARW_APconPortal"
 )
 ap.coordinate= Coordinate.new(
     latitude: 19.44149365 ,
     longitude: -70.68340927
 )
-ap.channels.new(bssid:  "e8:94:f6:bf:45:29")
+ap.channels.new(bssid:  "FC:EC:DA:80:EF:DA")
 ap.save
 
 # Lab. Ingenieria
@@ -251,14 +251,19 @@ zone.coordinates.new(
 ).save
 
 ap = AccessPoint.new(
-    ip_address: "192.168.1.1",
-    mac_address: "fc:ec:da:80:ef:d2",
+    ip_address: "192.168.0.1",
+    mac_address: "C0:25:67:11:62:58",
     zone: zone,
-    ssid: "ISP_IARW"
+    ssid: "IARW_RouterPrincipal"
 )
 ap.coordinate= Coordinate.new(
     latitude: 19.44107885 ,
     longitude: -70.6828782
 )
-ap.channels.new(bssid:  "fc:ec:da:80:ef:d2")
+ap.channels.new(bssid:  "C0:25:67:11:62:58")
 ap.save
+ap.channels.new(bssid:  "C0:25:67:44:62:58")
+ap.save
+
+Setting.portal_url = 'http://192.168.0.95'
+Setting.portal_port = '8443'

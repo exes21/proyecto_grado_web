@@ -18,16 +18,19 @@
               ul.nav.nav-tabs
                 li.nav-border.nav-border-top-danger.active
                   a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-1"
-                    | RTT
+                    | Perdida de paquetes
                 li.nav-border.nav-border-top-primary
                   a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-2"
                     | Latencia
                 li.nav-border.nav-border-top-success
                   a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-3"
-                    | Velocidad de enlace
+                    | Jitter
                 li.nav-border.nav-border-top-info
                   a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-4"
                     | Nivel de senal
+                li.nav-border.nav-border-top-info
+                  a.text-center aria-expanded="false" data-toggle="tab" href="#tab6-5"
+                    | Velocidad de enlace              
             .panel-body
               .tab-content
                 #tab6-1.tab-pane.fade.active.in
@@ -45,32 +48,35 @@
     .col-md-4
       .panel.panel-default.shadow
         .panel-heading
-          h3.panel-title Promedio de datos generales
+          h3.panel-title Rangos de referencia
         .panel-body
-          ul.list-unstyled
-            li
-              a href="#"
-              .pull-left
-                p Promedio de RTT
-                h3
-                  span.counter 0
-                  | ms
-              .pull-right
-                span.status
-                  i.fa.fa-arrow-circle-up.fg-success
-              .clearfix
-            li
-              a href="#"
-              .pull-left
-                p Velocidad de enlace promedio
-                h3
-                  span.counter 0
-                  | ms
-              .pull-right
-                span.status
-                  i.fa.fa-arrow-circle-up.fg-success
-              .clearfix
-
+          table.table
+            thead
+              tr
+                th
+                th Maximo
+                th Minimo
+            tbody
+              tr
+                td Jitter
+                th scope="row"  = Setting.min_jitter
+                th scope="row"  = Setting.max_jitter
+              tr
+                td RTT
+                th scope="row"  = Setting.min_ping
+                th scope="row"  = Setting.max_ping
+              tr
+                td Latencia
+                th scope="row"  = Setting.min_latency
+                th scope="row"  =  Setting.max_latency                               
+              tr
+                td Velocidad de enlace
+                th scope="row"  = Setting.min_link_speed
+                th scope="row"  = Setting.max_link_speed                                
+              tr
+                td Nivel de senal
+                th scope="row"  = Setting.min_sign_level
+                th scope="row"  = Setting.max_sign_level                                                
   javascript:
     var dataset = [];
 

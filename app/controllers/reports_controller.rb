@@ -13,7 +13,7 @@ class ReportsController < ApplicationController
             order_by_ap = value.group_by(&:access_point)
 
             content[type.underscore] = order_by_ap.map do |ap|
-              values_array = ap[1].pluck(:type).first == 'Ping' ? ap[1].map(&:average) : ap[1].pluck(:value)
+              values_array = ap[1].pluck(:type).first == 'Ping' ? ap[1].map(&:package_loss) : ap[1].pluck(:value)
               [
                 ap[0].ssid,
                 values_array.sum { |n| n.to_i } / values_array.size,
