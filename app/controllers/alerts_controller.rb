@@ -30,6 +30,16 @@ class AlertsController < ApplicationController
     redirect_to alert_path(@issue)
   end
 
+  def notificar_todos
+    @issue.notify
+    redirect_to alert_path(@issue)
+  end
+
+  def notificar_a
+    NotificationMailer.notify_by_email(params[:email], @issue).deliver_now
+    redirect_to alert_path(@issue)
+  end
+
   # GET /alert/1
   # GET /alert/1.json
   def show

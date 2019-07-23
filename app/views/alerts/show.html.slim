@@ -40,6 +40,10 @@
                 p = "Estado: #{@issue.status.capitalize}"
                 p = "Resuelto en: #{@issue.solved_at}"
                 = link_to  "Enviar por correo", alert_notificar_path(@issue), class: "btn btn-default"
+                = link_to  "Enviar a todos", alert_notificar_todos_path(@issue), class: "btn btn-default"
+                = form_tag(alert_notificar_a_path(@issue) , remote: true) do
+                  = email_field_tag(:mail,'' ,class: 'form-control', required: true) 
+                  = submit_tag 'Enviar', class: 'btn btn-default'
 .row
   .col-md-12
     .panel.panel-default.panel-issue-tracker.shadow

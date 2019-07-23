@@ -7,9 +7,11 @@
       .panel.panel-default.shadow
         .panel-heading
           .pull-left
-            h3.panel-title.text-uppercase Grafico de alertas
+            h3.panel-title.text-uppercase Graficos
           .pull-right
-            button.btn.btn-sm data-action="refresh" data-original-title="" data-placement="top" data-title="Refresh" data-toggle="tooltip" title=""
+            = form_tag(reports_path , remote: true) do |f| 
+              = select_tag "frecuencia", options_for_select([["5 minutos", 1], ["10 minutos", 2],["15 minutos", 3],["30 minutos", 4],["1 hora", 5],["12 hora", 6],["24 hora", 7],["7 dias", 8],["1 mes", 9],["Todos",0]])
+            button.btn.btn-sm#refresh
               i.fa.fa-refresh
           .clearfix
         .panel-body
@@ -54,34 +56,48 @@
             thead
               tr
                 th
-                th Maximo
                 th Minimo
+                th Maximo
+                th Medida
             tbody
               tr
                 td Jitter
                 th scope="row"  = Setting.min_jitter
                 th scope="row"  = Setting.max_jitter
+                th scope="row"  = "ms"
               tr
                 td RTT
                 th scope="row"  = Setting.min_ping
                 th scope="row"  = Setting.max_ping
+                th scope="row"  = "ms"
               tr
                 td Latencia
                 th scope="row"  = Setting.min_latency
-                th scope="row"  =  Setting.max_latency                               
+                th scope="row"  = Setting.max_latency
+                th scope="row"  = "ms"                             
               tr
                 td Velocidad de enlace
                 th scope="row"  = Setting.min_link_speed
-                th scope="row"  = Setting.max_link_speed                                
+                th scope="row"  = Setting.max_link_speed
+                th scope="row"  = "Mb/s"                                
               tr
                 td Nivel de senal
                 th scope="row"  = Setting.min_sign_level
                 th scope="row"  = Setting.max_sign_level                                                
+                th scope="row"  = "dBm"
   javascript:
     var dataset = [];
 
     $(document).ready(function(){
       get_data();
+
+      $("#frecuencia").change(function(){
+        get_data();
+      })
+
+      $("#refresh").click(function(){
+        get_data();
+      })
 
       function update_chart(title, records){
         var ctx = document.getElementById(title).getContext('2d');
@@ -118,6 +134,9 @@
               }]
             },
             options: {
+              legend: {
+                display: false
+              },
               scales: {
                   yAxes: [{
                       ticks: {
@@ -132,6 +151,9 @@
       function get_data(){
         $.ajax({
           type: "GET",
+          data: {
+            desde: $("#frecuencia option:selected").val()
+          },
           url:  "#{reports_path(format: :json)}",
           success: function(data, textStatus, jqXHR){
             $.each(data, function(type, values){

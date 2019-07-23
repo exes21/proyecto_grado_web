@@ -18,13 +18,13 @@ class Ping < Datum
   def percent
     status = ActiveSupport::JSON.decode(value)['status']
     completed = status.select { |s| s == 'Success' }.count
-    return 100 - ((completed / status.count) * 100)
+    return 100 - ((completed.to_f / status.count) * 100)
   end
 
   def package_loss
     status = ActiveSupport::JSON.decode(value)['status']
-    completed = status.select { |s| s == 'TtlExpired' }.count
-    return 100 - ((completed / status.count) * 100)
+    rejected = status.select { |s| s == 'TtlExpired' }.count
+    return 100 - ((rejected.to_f / status.count) * 100)
   end
 
   def average

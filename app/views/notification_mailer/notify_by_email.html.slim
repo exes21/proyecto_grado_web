@@ -1,0 +1,8 @@
+H1 = "Caso: #{@error.id}"
+
+p = "Zona: #{@error.access_point.zone.name}"
+p = "Equipo: #{@error.access_point.ssid}"
+p = "Mac Address: #{@error.access_point.mac_address}"
+p = "Errores: #{@error.issues_reports.count}"
+p = "Fecha: #{@error.created_at}"
+p = "Estado: #{@error.status}"

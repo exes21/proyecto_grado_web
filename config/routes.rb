@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :devices
   resources :alerts do
     get 'notificar'
+    get 'notificar_todos'
+    post 'notificar_a'
     post 'cancelar'
     post 'cerrar'
     post 'comentar'
