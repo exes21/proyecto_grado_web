@@ -4,11 +4,6 @@
       .col-md-12
         .col-lg-3.col-md-3.col-sm-6.col-xs-12
           .mini-stat-type-3.shadow.border-danger
-            span.text-uppercase.text-block.text-center Usuarios
-            h3.text-strong.text-center
-              span = @access_point.users_average
-        .col-lg-3.col-md-3.col-sm-6.col-xs-12
-          .mini-stat-type-3.shadow.border-danger
             span.text-uppercase.text-block.text-center Alertas
             h3.text-strong.text-center
               = link_to  @access_point.issues.count, alerts_path(q: {access_point_id_eq: @access_point.id})

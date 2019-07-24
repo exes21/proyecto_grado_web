@@ -16,7 +16,7 @@
                   td
                     span.label.label-danger.rounded
                   td
-                    = type.titleize
+                    = type == "Ping" ? "RTT": type.titleize
                   td
                     - unless type == "Ping"
                       - average = datos.map { |d| d.value.to_f }
@@ -55,10 +55,6 @@
                     .label.label-success.rounded
                       | Reportes:
                       = ap.datums.count
-                  td
-                    .label.label-default.rounded
-                      span Usuarios:
-                      = ap.users_average
 javascript:
   var map = new GMaps({
     el: '#zone_map',
