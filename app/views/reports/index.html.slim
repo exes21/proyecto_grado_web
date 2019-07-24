@@ -10,7 +10,7 @@
             h3.panel-title.text-uppercase Graficos
           .pull-right
             = form_tag(reports_path , remote: true) do |f| 
-              = select_tag "frecuencia", options_for_select([["5 minutos", 1], ["10 minutos", 2],["15 minutos", 3],["30 minutos", 4],["1 hora", 5],["12 hora", 6],["24 hora", 7],["7 dias", 8],["1 mes", 9],["Todos",0]])
+              = select_tag "frecuencia", options_for_select([["Todos",0],["5 minutos", 1], ["10 minutos", 2],["15 minutos", 3],["30 minutos", 4],["1 hora", 5],["12 hora", 6],["24 hora", 7],["7 dias", 8],["1 mes", 9]])
             button.btn.btn-sm#refresh
               i.fa.fa-refresh
           .clearfix
@@ -86,11 +86,127 @@
                 th scope="row"  = Setting.max_sign_level                                                
                 th scope="row"  = "dBm"
   javascript:
-    var dataset = [];
+    var ping_label
+    var latency_label
+    var jitter_label
+    var link_speed_label
+    var sign_level_label
+
+    var ping_data
+    var latency_data
+    var link_speed_data
+    var sign_level_data
+    var jitter_data
+
+    var background_color = [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+    ]
+
+    var border_color = [
+      'rgba(255, 99, 132, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ]
+
+    var chart_options = {
+      hover: {mode: null},
+      legend: {
+        display: false
+      },
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+    }
+
+    var ctx_ping = document.getElementById('ping').getContext('2d');
+    var pingChart = new Chart(ctx_ping, {
+      type: 'bar',
+      data: {
+          labels: ping_label,
+          datasets: [{
+              data: ping_data,
+              backgroundColor: background_color,
+              borderColor: border_color,
+              borderWidth: 1
+          }]
+      },
+      options: chart_options
+    });
+
+    var ctx_latency = document.getElementById('latency').getContext('2d');
+    var latencyChart = new Chart(ctx_latency, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: background_color,
+              borderColor: border_color,
+              borderWidth: 1
+          }]
+      },
+      options: chart_options
+    });
+
+    var ctx_jitter = document.getElementById('jitter').getContext('2d');
+    var jitterChart = new Chart(ctx_jitter, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: background_color,
+              borderColor: border_color,
+              borderWidth: 1
+          }]
+      },
+      options: chart_options
+    });
+
+    var ctx_link_speed = document.getElementById('link_speed').getContext('2d');
+    var link_speedChart = new Chart(ctx_link_speed, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: background_color,
+              borderColor: border_color,
+              borderWidth: 1
+          }]
+      },
+      options: chart_options
+    });
+
+    var ctx_sign_level = document.getElementById('sign_level').getContext('2d');
+    var sign_levelChart = new Chart(ctx_sign_level, {
+      type: 'bar',
+      data: {
+          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          datasets: [{
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: background_color,
+              borderColor: border_color,
+              borderWidth: 1
+          }]
+      },
+      options: chart_options
+    });
 
     $(document).ready(function(){
       get_data();
-
       $("#frecuencia").change(function(){
         get_data();
       })
@@ -99,53 +215,35 @@
         get_data();
       })
 
-      function update_chart(title, records){
-        var ctx = document.getElementById(title).getContext('2d');
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: $.map(records, function(record){
-              return record[0]
-            }),
-            datasets: [{
-                label: $.map(records, function(record){
-                  return record[2]
-                }),
-                data: $.map(records, function(record){
-                  return record[1]
-                }),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-            },
-            options: {
-              legend: {
-                display: false
-              },
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true
-                      }
-                  }]
-              }
-            }
-          });
+      function clear_charts(){
+        ping_label = []
+        latency_label = []
+        jitter_label = []
+        link_speed_label = []
+        sign_level_label = []
+        ping_data = []
+        latency_data = []
+        link_speed_data = []
+        sign_level_data = []
+        jitter_data = []
+      }
+
+      function update_charts(){
+        pingChart.data.labels = ping_label
+        pingChart.data.datasets[0].data = ping_data
+        pingChart.update();
+        latencyChart.data.labels = latency_label
+        latencyChart.data.datasets[0].data = latency_data
+        latencyChart.update();
+        jitterChart.data.labels = jitter_label
+        jitterChart.data.datasets[0].data = jitter_data
+        jitterChart.update();
+        link_speedChart.data.labels = link_speed_label
+        link_speedChart.data.datasets[0].data = link_speed_data
+        link_speedChart.update();
+        sign_levelChart.data.labels = sign_level_label
+        sign_levelChart.data.datasets[0].data = sign_level_data
+        sign_levelChart.update();
       }
 
       function get_data(){
@@ -156,9 +254,57 @@
           },
           url:  "#{reports_path(format: :json)}",
           success: function(data, textStatus, jqXHR){
-            $.each(data, function(type, values){
-              update_chart(type, values);
+            clear_charts()
+            update_charts()
+            ping_label = $.map(data["ping"], function(record){
+              return record[0]
             })
+            ping_data = $.map(data["ping"], function(record){
+              return record[1]
+            })
+            pingChart.data.labels = ping_label
+            pingChart.data.datasets[0].data = ping_data
+            pingChart.update();
+
+            latency_label = $.map(data["latency"], function(record){
+              return record[0]
+            })
+            latency_data = $.map(data["latency"], function(record){
+              return record[1]
+            })
+            latencyChart.data.labels = latency_label
+            latencyChart.data.datasets[0].data = latency_data
+            latencyChart.update();
+
+            jitter_label = $.map(data["jitter"], function(record){
+              return record[0]
+            })
+            jitter_data = $.map(data["jitter"], function(record){
+              return record[1]
+            })
+            jitterChart.data.labels = jitter_label
+            jitterChart.data.datasets[0].data = jitter_data
+            jitterChart.update();
+
+            link_speed_label = $.map(data["link_speed"], function(record){
+              return record[0]
+            })
+            link_speed_data = $.map(data["link_speed"], function(record){
+              return record[1]
+            })
+            link_speedChart.data.labels = link_speed_label
+            link_speedChart.data.datasets[0].data = link_speed_data
+            link_speedChart.update();
+
+            sign_level_label = $.map(data["sign_level"], function(record){
+              return record[0]
+            })
+            sign_level_data = $.map(data["sign_level"], function(record){
+              return record[1]
+            })
+            sign_levelChart.data.labels = sign_level_label
+            sign_levelChart.data.datasets[0].data = sign_level_data
+            sign_levelChart.update();
           },
           error: function(jqXHR, textStatus, errorThrown){
             console.log("Error al recibir los datos: " + textStatus);
