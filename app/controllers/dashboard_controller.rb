@@ -6,6 +6,6 @@ class DashboardController < ApplicationController
     @title = "Bienvenido"
     @icon = "home"
 
-    @datos = Issue.where(status: 'inactivo').last(10)
+    @datos = Issue.where(status: 'activo').last(10)
   end
 end

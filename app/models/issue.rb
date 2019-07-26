@@ -18,9 +18,8 @@ class Issue < ApplicationRecord
     elsif (mid..high).to_a.include?(issues_reports.count)
       self.priority = 'medio'
     elsif issues_reports.count > high.to_i
-      notify if notified
+      notify
       self.priority = 'alto'
-      self.notified = false
     end
     #binding.pry
   end

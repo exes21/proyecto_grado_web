@@ -5,6 +5,7 @@
     .panel-body
       = search_form_for @q, url: data_path do |f|
         .col-md-5
+          = f.select :mobile_id, Mobile.all.map {|ap| ["#{ap.mac_address} (#{ap.user.email})", ap.id]}, include_blank: true, class: 'form-control'
           = f.select :access_point_id, AccessPoint.all.map {|ap| [ap.mac_address, ap.id]}, include_blank: true, class: 'form-control'
           = f.select :type_eq, ["Ping", "Jitter", "LinkSpeed", "SignLevel"], include_blank: true, class: 'form-control'
           = f.date_field :created_at_cont
@@ -58,4 +59,5 @@
                   ="Perdida de paquete"
               td
                 = datos.package_loss.to_s + "%"
+                = "(#{ datos.completed  } / #{ datos.statuses.count })"
               td = time_ago_in_words(datos.updated_at)

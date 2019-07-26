@@ -10,7 +10,7 @@
             h3.panel-title.text-uppercase Graficos
           .pull-right
             = form_tag(reports_path , remote: true) do |f| 
-              = select_tag "frecuencia", options_for_select([["Todos",0],["5 minutos", 1], ["10 minutos", 2],["15 minutos", 3],["30 minutos", 4],["1 hora", 5],["12 hora", 6],["24 hora", 7],["7 dias", 8],["1 mes", 9]])
+              = select_tag "frecuencia", options_for_select([["5 minutos", 1], ["10 minutos", 2],["15 minutos", 3],["30 minutos", 4],["1 hora", 5],["12 hora", 6],["24 hora", 7],["7 dias", 8],["1 mes", 9]],["Todos",0])
             button.btn.btn-sm#refresh
               i.fa.fa-refresh
           .clearfix
@@ -37,15 +37,49 @@
               .tab-content
                 #tab6-1.tab-pane.fade.active.in
                   canvas id="ping" width="400" height="200"
+                  table.table#ping_table
+                    thead
+                      tr
+                        th Id
+                        th Valor
+                        th SSID
+                    tbody
                 #tab6-2.tab-pane.fade
                   canvas id="latency" width="400" height="200"
+                  table.table#latency_table
+                    thead
+                      tr
+                        th Id
+                        th Valor
+                        th SSID
+                    tbody
                 #tab6-3.tab-pane.fade
                   canvas id="jitter" width="400" height="200"
+                  table.table#jitter_table
+                    thead
+                      tr
+                        th Id
+                        th Valor
+                        th SSID
+                    tbody
                 #tab6-4.tab-pane.fade
                   canvas id="sign_level" width="400" height="200"
+                  table.table#sign_table
+                    thead
+                      tr
+                        th Id
+                        th Valor
+                        th SSID
+                    tbody
                 #tab6-5.tab-pane.fade
                   canvas id="link_speed" width="400" height="200"
-
+                  table.table#link_table
+                    thead
+                      tr
+                        th Id
+                        th Valor
+                        th SSID
+                    tbody
 
     .col-md-4
       .panel.panel-default.shadow
@@ -98,6 +132,12 @@
     var sign_level_data
     var jitter_data
 
+    var ping_list
+    var latency_list
+    var link_speed_list
+    var sign_level_list
+    var jitter_list
+
     var background_color = [
       'rgba(255, 99, 132, 0.2)',
       'rgba(54, 162, 235, 0.2)',
@@ -142,16 +182,42 @@
               borderWidth: 1
           }]
       },
-      options: chart_options
+      options: {
+        hover: {mode: null},
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: true,
+          mode: 'single',
+          callbacks: {
+              title: function (tooltipItem, data) { 
+                  return "AP: " + data.labels[tooltipItem[0].index]; 
+              },
+              label: function(tooltipItems, data) {
+                  return "Total: " + tooltipItems.yLabel + ' %';
+              }
+          }
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    step: 10,
+                    max: 100
+                }
+            }]
+        }
+      }
     });
 
     var ctx_latency = document.getElementById('latency').getContext('2d');
     var latencyChart = new Chart(ctx_latency, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: latency_label,
           datasets: [{
-              data: [12, 19, 3, 5, 2, 3],
+              data: latency_data,
               backgroundColor: background_color,
               borderColor: border_color,
               borderWidth: 1
@@ -164,9 +230,9 @@
     var jitterChart = new Chart(ctx_jitter, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: jitter_label,
           datasets: [{
-              data: [12, 19, 3, 5, 2, 3],
+              data: jitter_data,
               backgroundColor: background_color,
               borderColor: border_color,
               borderWidth: 1
@@ -179,9 +245,9 @@
     var link_speedChart = new Chart(ctx_link_speed, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: link_speed_label,
           datasets: [{
-              data: [12, 19, 3, 5, 2, 3],
+              data: link_speed_data,
               backgroundColor: background_color,
               borderColor: border_color,
               borderWidth: 1
@@ -194,9 +260,9 @@
     var sign_levelChart = new Chart(ctx_sign_level, {
       type: 'bar',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: sign_level_label,
           datasets: [{
-              data: [12, 19, 3, 5, 2, 3],
+              data: sign_level_data,
               backgroundColor: background_color,
               borderColor: border_color,
               borderWidth: 1
@@ -262,6 +328,16 @@
             ping_data = $.map(data["ping"], function(record){
               return record[1]
             })
+            $("#ping_table tbody").empty();
+            $.map(data["ping"], function(record){
+              $.map(record[3], function(id, value){
+                $("#ping_table tbody").append('<tr>'+
+                  '<td>' + id[0] + '</td>' +
+                  '<td>' + id[1] + '</td>' +
+                  '<td>' + id[2] + '</td>' +
+                '</tr>')
+              });
+            })
             pingChart.data.labels = ping_label
             pingChart.data.datasets[0].data = ping_data
             pingChart.update();
@@ -271,6 +347,16 @@
             })
             latency_data = $.map(data["latency"], function(record){
               return record[1]
+            })
+            $("#latency_table tbody").empty();
+            $.map(data["latency"], function(record){
+              $.map(record[3], function(id, value){
+                $("#latency_table tbody").append('<tr>'+
+                  '<td>' + id[0] + '</td>' +
+                  '<td>' + id[1] + '</td>' +
+                  '<td>' + id[2] + '</td>' +
+                '</tr>')
+              });
             })
             latencyChart.data.labels = latency_label
             latencyChart.data.datasets[0].data = latency_data
@@ -282,6 +368,16 @@
             jitter_data = $.map(data["jitter"], function(record){
               return record[1]
             })
+            $("#jitter_table tbody").empty();
+            $.map(data["jitter"], function(record){
+              $.map(record[3], function(id, value){
+                $("#jitter_table tbody").append('<tr>'+
+                  '<td>' + id[0] + '</td>' +
+                  '<td>' + id[1] + '</td>' +
+                  '<td>' + id[2] + '</td>' +
+                '</tr>')
+              });
+            })            
             jitterChart.data.labels = jitter_label
             jitterChart.data.datasets[0].data = jitter_data
             jitterChart.update();
@@ -292,6 +388,16 @@
             link_speed_data = $.map(data["link_speed"], function(record){
               return record[1]
             })
+            $("#link_table tbody").empty();
+            $.map(data["link_speed"], function(record){
+              $.map(record[3], function(id, value){
+                $("#link_table tbody").append('<tr>'+
+                  '<td>' + id[0] + '</td>' +
+                  '<td>' + id[1] + '</td>' +
+                  '<td>' + id[2] + '</td>' +
+                '</tr>')
+              });
+            })   
             link_speedChart.data.labels = link_speed_label
             link_speedChart.data.datasets[0].data = link_speed_data
             link_speedChart.update();
@@ -302,6 +408,16 @@
             sign_level_data = $.map(data["sign_level"], function(record){
               return record[1]
             })
+            $("#sign_table tbody").empty();
+            $.map(data["sign_level"], function(record){
+              $.map(record[3], function(id, value){
+                $("#sign_table tbody").append('<tr>'+
+                  '<td>' + id[0] + '</td>' +
+                  '<td>' + id[1] + '</td>' +
+                  '<td>' + id[2] + '</td>' +
+                '</tr>')
+              });
+            })   
             sign_levelChart.data.labels = sign_level_label
             sign_levelChart.data.datasets[0].data = sign_level_data
             sign_levelChart.update();

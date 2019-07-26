@@ -41,11 +41,12 @@ class ReportsController < ApplicationController
             order_by_ap = value.group_by(&:access_point)
 
             content[type.underscore] = order_by_ap.map do |ap|
-              values_array = ap[1].pluck(:type).first == 'Ping' ? ap[1].map(&:package_loss) : ap[1].pluck(:value)
+              list = ap[1].map {|d| [d.id, d.type == "Ping" ? d.package_loss : d.value, d.access_point.ssid]}
               [
                 ap[0].ssid,
-                values_array.sum { |n| n.to_i } / values_array.size,
-                measure_for(type)
+                list.inject(0){|sum,x| sum + x[1].to_i } / list.count,
+                measure_for(type),
+                list
               ]
             end
           end
