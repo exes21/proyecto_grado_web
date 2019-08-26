@@ -123,7 +123,9 @@ class Api::DataController < ApplicationController
     @user = User.find_by(email: params["mail"])
     if @user.present? && @user.valid_password?(params['pass'])
       begin
-        ApConnect.new.autorize(params["MacAddress"])
+        mac = params["MacAddress"]
+        client = UnifiController.new
+        client.authorize_guest(mac) if !client.is_guest_authorized?(mac)
       rescue => ex
         logger.error ex.message
       end

@@ -6,15 +6,21 @@ class ApConnect
   attr_accessor :csrf, :unifises
 
   def initialize
-    response = HTTParty.post(
+    response = login
+    set_cookies(response)
+    logged_user
+  end
+
+  def login
+    HTTParty.post(
       default_url + '/api/login',
       body: controller_credentials,
       headers: default_headers
     )
+  end
 
-    set_cookies(response)
-
-    response = HTTParty.get(
+  def logged_user
+    HTTParty.get(
       default_url+'/api/self',
       headers: auth_headers
     )
@@ -22,8 +28,36 @@ class ApConnect
 
   def autorize(mac)
     HTTParty.post(
-      default_url + '/api/s/default/cmd/stamgr',
+      default_url + '/api/s/default/stat/guest',
       body: body_auth(mac),
+      headers: auth_headers
+    )
+  end
+
+  def logout
+    response = HTTParty.get(
+      default_url+'/api/logout',
+      headers: auth_headers
+    )
+  end
+
+  def guest_list
+    HTTParty.post(
+      default_url + '/api/s/default/cmd/stamgr',
+      body: {
+        within: 8760
+      }.to_json,
+      headers: auth_headers
+    )
+  end
+
+  def unauthorize(mac)
+    HTTParty.post(
+      default_url + '/api/s/default/cmd/stamgr',
+      body: {
+        cmd: 'unauthorize-guest',
+        mac: mac
+      },
       headers: auth_headers
     )
   end
@@ -70,3 +104,7 @@ class ApConnect
     cred.to_json
   end
 end
+
+
+
+#mac = "a0:c9:a0:8a:13:f1"
