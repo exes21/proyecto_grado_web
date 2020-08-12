@@ -87,7 +87,7 @@ GEM
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
-    chartkick (3.0.2)
+    chartkick (3.4.0)
     choice (0.2.0)
     chronic (0.10.2)
     coderay (1.1.2)
